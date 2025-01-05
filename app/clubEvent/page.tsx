@@ -16,15 +16,13 @@ import { events, Event } from "@/constants/Events";
 const ITEMS_PER_PAGE = 10;
 
 const ClubEvent = () => {
-  const [selectedYear, setSelectedYear] = useState(
-    new Date().getFullYear().toString(),
-  );
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [visibleItems, setVisibleItems] = useState(ITEMS_PER_PAGE);
 
   // Group events by year
   const eventsByYear = useMemo(() => {
     const grouped = events.reduce<Record<string, Event[]>>((acc, event) => {
-      const year = event.date.split("-")[0];
+      const year = parseInt(event.date.split("-")[0], 10);
       if (!acc[year]) {
         acc[year] = [];
       }
@@ -56,7 +54,7 @@ const ClubEvent = () => {
   const displayedEvents = currentEvents.slice(0, visibleItems);
   const hasMoreEvents = currentEvents.length > visibleItems;
 
-  const handleYearChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleYearChange = (event: React.SyntheticEvent, newValue: number) => {
     setSelectedYear(newValue);
     setVisibleItems(ITEMS_PER_PAGE); // Reset pagination when year changes
   };
@@ -275,7 +273,7 @@ const ClubEvent = () => {
           }}
         >
           {years.map((year) => (
-            <Tab key={year} label={year} value={year} />
+            <Tab key={year} label={year.toString()} value={year} />
           ))}
         </Tabs>
       </div>
