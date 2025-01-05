@@ -45,7 +45,10 @@ const ClubEvent = () => {
   }, []);
 
   const years = useMemo(
-    () => Object.keys(eventsByYear).sort((a, b) => b - a),
+    () =>
+      Object.keys(eventsByYear)
+        .map(Number)
+        .sort((a, b) => b - a),
     [eventsByYear],
   );
 
