@@ -87,12 +87,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 1. Create a new branch from the develop branch.
 
-   > [!NOTE]
-   > The name of the new branch should be in the format of "feature/xxxx".
+> [!NOTE]
+> The name of the new branch should be in the format of "feature/xxxx".
 
-   ```bash
-   git checkout -b feature/xxxx develop
-   ```
+```bash
+git checkout -b feature/xxxx develop
+```
 
 2. Commit your changes to the new branch.
 
