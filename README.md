@@ -80,13 +80,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - feature/xxxx
 - bugfix/xxxx
 
-[!IMPORTANT] Always create a new branch from the develop branch.
+> [!IMPORTANT] Always create a new branch from the develop branch.
 
 ### Adding a new feature
 
 1. Create a new branch from the develop branch.
 
-   [!NOTE] The name of the new branch should be in the format of "feature/xxxx".
+   > [!NOTE] The name of the new branch should be in the format of "feature/xxxx".
 
    ```bash
    git checkout -b feature/xxxx develop
@@ -110,7 +110,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 1. Create a new branch from the develop branch.
 
-   [!NOTE] The name of the new branch should be in the format of "bugfix/xxxx".
+   > [!NOTE] The name of the new branch should be in the format of "bugfix/xxxx".
 
    ```bash
    git checkout -b bugfix/xxxx develop
