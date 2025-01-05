@@ -4,6 +4,14 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/download/) (version 16.13.0 or higher)
+- [Git](https://git-scm.com/downloads)
+- [yarn](https://classic.yarnpkg.com/en/docs/install) (optional)
+- [pnpm](https://pnpm.io/installation) (optional)
+- [bun](https://bun.sh/install) (optional)
+
 First, install the dependencies:
 
 ```bash
@@ -21,11 +29,11 @@ Then, run the development server:
 ```bash
 npm run dev
 # or
-yarn dev
+yarn run dev
 # or
-pnpm dev
+pnpm run dev
 # or
-bun dev
+bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
