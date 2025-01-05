@@ -64,6 +64,27 @@ Format of the event object:
 
 3. Save the file.
 
+## To add Merch
+
+1. Go to `constants/Merch.ts`.
+
+2. Add your merch to the `products` array.
+
+Format of the merch object:
+
+```typescript
+{
+  id: number;
+  name: string;
+  image: string;
+  price: string;
+  description: string;
+  isFeatured?: boolean;
+}
+```
+
+3. Save the file.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
