@@ -19,4 +19,9 @@ export const logos = [
     src: "/graduan_logo.png",
     alt: "graduan_logo",
   },
+  {
+    name: "PWC Corporation",
+    src: "/pwc_logo.png",
+    alt: "pwc_logo",
+  },
 ];
