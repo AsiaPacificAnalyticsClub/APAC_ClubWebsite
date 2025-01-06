@@ -12,7 +12,6 @@ import Chip from "@mui/material/Chip";
 import Link from "next/link";
 import Image from "next/image";
 import { events, Event } from "@/constants/Events";
-import { logos } from "@/constants/Logos";
 
 const ITEMS_PER_PAGE = 10;
 
