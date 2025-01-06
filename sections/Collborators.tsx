@@ -28,8 +28,8 @@ const Collaborators = () => {
             </p>
           </div>
           <div className="w-full relative overflow-hidden">
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-white dark:from-background z-10"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-white dark:from-background z-10"></div>
 
             <div className="w-full flex justify-center items-center [perspective:300px]">
               <Marquee
