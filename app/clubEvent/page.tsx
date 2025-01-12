@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
@@ -11,13 +11,51 @@ import { Tabs, Tab, Button } from "@mui/material";
 import Chip from "@mui/material/Chip";
 import Link from "next/link";
 import Image from "next/image";
-import { events, Event } from "@/constants/Events";
+import { Event } from "@/constants/Events";
+import { images } from "@/constants/Images";
 
 const ITEMS_PER_PAGE = 10;
 
 const ClubEvent = () => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [visibleItems, setVisibleItems] = useState(ITEMS_PER_PAGE);
+  const [events, setEvents] = useState<Event[]>([]);
+
+  const formatDate = (date: string): string => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return new Date(date).toLocaleDateString("en-US", options);
+  };
+
+  const fetchEventsData = async () => {
+    const response = await fetch("/api/getAllData"); // Adjust the API endpoint as needed
+
+    if (response.ok) {
+      const data = await response.json();
+
+      // Process events to match your expected structure
+      const processedEvents = data.map((event: any) => ({
+        id: event._id, // Using the database _id
+        title: event.title,
+        description: event.description,
+        date: event.start_date, // Assuming you want to use start_date for the event date
+        displayDate: formatDate(event.start_date),
+        link: event.link,
+        image: images.find((img) => img.title === event.title)?.image, // Assuming an image is stored as an array
+      }));
+
+      setEvents(processedEvents);
+    } else {
+      alert("Failed to fetch data!");
+    }
+  };
+
+  useEffect(() => {
+    fetchEventsData();
+  }, []);
 
   // Group events by year
   const eventsByYear = useMemo(() => {
@@ -40,7 +78,7 @@ const ClubEvent = () => {
     });
 
     return grouped;
-  }, []);
+  }, [events]);
 
   const years = useMemo(
     () =>
