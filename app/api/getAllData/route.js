@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-export async function GET(req) {
+export async function GET() {
   const client = new MongoClient(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

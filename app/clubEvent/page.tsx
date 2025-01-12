@@ -31,30 +31,62 @@ const ClubEvent = () => {
   };
 
   const fetchEventsData = async () => {
-    const response = await fetch("/api/getAllData"); // Adjust the API endpoint as needed
+    try {
+      const response = await fetch("/api/getAllData");
 
-    if (response.ok) {
-      const data = await response.json();
+      if (!response.ok) {
+        throw new Error("Failed to fetch events");
+      }
 
-      // Process events to match your expected structure
-      const processedEvents = data.map((event: any) => ({
-        id: event._id, // Using the database _id
+      const data: ApiEvent[] = await response.json();
+
+      const processedEvents: Event[] = data.map((event) => ({
+        id: event._id,
         title: event.title,
         description: event.description,
-        date: event.start_date, // Assuming you want to use start_date for the event date
+        date: event.start_date,
         displayDate: formatDate(event.start_date),
         link: event.link,
-        image: images.find((img) => img.title === event.title)?.image, // Assuming an image is stored as an array
+        image: images.find((img) => img.title === event.title)?.image || "", // Provide a default value
       }));
 
       setEvents(processedEvents);
-    } else {
-      alert("Failed to fetch data!");
+    } catch (error) {
+      console.error("Error fetching events:", error);
+      // Handle error appropriately
     }
   };
 
+  // Move fetchEventsData inside useEffect to handle the dependency warning
   useEffect(() => {
-    fetchEventsData();
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch("/api/getAllData");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch events");
+        }
+
+        const data: ApiEvent[] = await response.json();
+
+        const processedEvents: Event[] = data.map((event) => ({
+          id: event._id,
+          title: event.title,
+          description: event.description,
+          date: event.start_date,
+          displayDate: formatDate(event.start_date),
+          link: event.link,
+          image: images.find((img) => img.title === event.title)?.image || "",
+        }));
+
+        setEvents(processedEvents);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+        // Handle error appropriately
+      }
+    };
+
+    fetchEvents();
   }, []);
 
   // Group events by year
