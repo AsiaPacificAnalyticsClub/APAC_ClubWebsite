@@ -12,6 +12,7 @@ import Chip from "@mui/material/Chip";
 import Link from "next/link";
 import Image from "next/image";
 import { Event } from "@/constants/Events";
+import { ApiEvent } from "@/constants/ApiEvent";
 import { images } from "@/constants/Images";
 
 const ITEMS_PER_PAGE = 10;
@@ -30,33 +31,6 @@ const ClubEvent = () => {
     return new Date(date).toLocaleDateString("en-US", options);
   };
 
-  const fetchEventsData = async () => {
-    try {
-      const response = await fetch("/api/getAllData");
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch events");
-      }
-
-      const data: ApiEvent[] = await response.json();
-
-      const processedEvents: Event[] = data.map((event) => ({
-        id: event._id,
-        title: event.title,
-        description: event.description,
-        date: event.start_date,
-        displayDate: formatDate(event.start_date),
-        link: event.link,
-        image: images.find((img) => img.title === event.title)?.image || "", // Provide a default value
-      }));
-
-      setEvents(processedEvents);
-    } catch (error) {
-      console.error("Error fetching events:", error);
-      // Handle error appropriately
-    }
-  };
-
   // Move fetchEventsData inside useEffect to handle the dependency warning
   useEffect(() => {
     const fetchEvents = async () => {
@@ -72,11 +46,11 @@ const ClubEvent = () => {
         const processedEvents: Event[] = data.map((event) => ({
           id: event._id,
           title: event.title,
-          description: event.description,
           date: event.start_date,
           displayDate: formatDate(event.start_date),
-          link: event.link,
+          description: event.description,
           image: images.find((img) => img.title === event.title)?.image || "",
+          link: event.link,
         }));
 
         setEvents(processedEvents);
