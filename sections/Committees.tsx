@@ -1,7 +1,6 @@
 "use client";
 import ImageSlide from "@/components/ImageSlide";
 import React from "react";
-import { useState } from "react";
 
 const Committees = () => {
   return (
@@ -24,7 +23,7 @@ const Committees = () => {
 
         {/*Image Slide*/}
         <div className="mt-5">
-            <ImageSlide/>
+          <ImageSlide />
         </div>
       </div>
     </section>
