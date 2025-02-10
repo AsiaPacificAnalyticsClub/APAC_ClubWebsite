@@ -14,7 +14,7 @@ export const images: Image[] = [
   },
   {
     title: "APAC Game Night: Pizza & Playtime",
-    image: "/gameNight.png",
+    image: "/gameNight.jpg",
   },
   {
     title: "APAC x GRADUAN: Level Up Your Career",
