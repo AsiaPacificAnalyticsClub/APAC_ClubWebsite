@@ -35,7 +35,7 @@ const ClubEvent = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch("/api/getAllData");
+        const response = await fetch(`/api/getAllData?t=${Date.now()}`);
 
         if (!response.ok) {
           throw new Error("Failed to fetch events");
