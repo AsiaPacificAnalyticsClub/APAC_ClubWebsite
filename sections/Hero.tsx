@@ -14,7 +14,7 @@ const Hero = () => {
           </div>
           <div className="flex flex-col items-center md:items-start">
             <h1 className="text-5xl md:text-8xl font-extrabold tracking-tighter bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text mt-6">
-              Asia Pacific Analytic Club
+              Asia Pacific Analytics Club
             </h1>
             <p className="text-2xl text-[#010D3E] tracking-tight mt-6">
               Vibrant University{" "}
