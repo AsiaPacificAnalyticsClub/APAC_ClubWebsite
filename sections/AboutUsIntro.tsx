@@ -65,4 +65,3 @@ const AboutUsIntro = () => {
 };
 
 export default AboutUsIntro;
-
