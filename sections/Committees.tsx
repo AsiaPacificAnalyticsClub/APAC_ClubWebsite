@@ -4,7 +4,7 @@ import React from "react";
 
 const Committees = () => {
   return (
-    <section className="min-h-[700px] w-screen fixed-container bg-white">
+    <section className="md:min-h-[700px] w-screen md:fixed-container bg-white">
       <div className="flex flex-col">
         <div className="w-full flex flex-col items-center justify-center">
           <div className="tag max-w-[300px]">
