@@ -22,7 +22,7 @@ const Committees = () => {
         </div>
 
         {/*Image Slide*/}
-        <div className="mt-5 w-full flex justify-center">
+        <div className="mt-5">
           <ImageSlide />
         </div>
       </div>
