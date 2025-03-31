@@ -93,16 +93,16 @@ export const images: Image[] = [
     image: "/TalkEp3.png",
   },
   {
-    title: "Demonstration Purpose for Ongoing event",
-    image: "/IQC.png",
-  },
-  {
-    title: "Demonstration Purpose for Upcoming event",
-    image: "/IQC.png",
-  },
-  {
     title: "TUG@KL 9th Meetup",
     image: "/TUG9.jpeg",
+  },
+  {
+    title: "Data Analytics with Python Workshop",
+    image: "/APACPythonWorkshop.png",
+  },
+  {
+    title: "IQC Workshop 2025",
+    image: "/IQC_workshop_2025.png",
   },
   // Add more entries as needed...
 ];
