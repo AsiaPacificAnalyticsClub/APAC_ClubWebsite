@@ -7,8 +7,7 @@ import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
-import { Tabs, Tab, Button, Modal, Box, IconButton } from "@mui/material";
-import { IoClose } from "react-icons/io5";
+import { Tabs, Tab, Button, Modal, Box } from "@mui/material";
 import Chip from "@mui/material/Chip";
 import Link from "next/link";
 import Image from "next/image";
@@ -366,6 +365,7 @@ const ClubEvent = () => {
         onClose={handleCloseModal}
         aria-labelledby="image-zoom-modal"
         aria-describedby="enlarges event image"
+        className="flex"
       >
         <Box
           sx={{
@@ -373,42 +373,30 @@ const ClubEvent = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: { xs: "90%", sm: "80%", md: "70%" },
-            maxWidth: "1000px",
+            width: "60%",
+            height: "60vh",
             bgcolor: "background.paper",
+            borderRadius: "16px",
+            borderColor: "#4f4f4f",
+            borderWidth: "2px",
             boxShadow: 24,
-            p: 2,
-            borderRadius: 2,
+            p: 0,
             outline: "none",
+            overflow: "hidden",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "cetner",
-              mb: 1,
-            }}
-          >
-            <h3 className="text-xl font-semibold">{zoomTitle}</h3>
-            <IconButton
-              onClick={handleCloseModal}
-              aria-label="close"
-              size="large"
-            >
-              <IoClose />
-            </IconButton>
-          </Box>
-          <div className="relative w-full" style={{ height: "70vh" }}>
+          <div className="relative w-full h-full">
             {zoomImage && (
-              <Image
-                src={zoomImage}
-                alt={zoomTitle}
-                fill
-                className="object-contain"
-                sizes="100vw"
-                priority
-              />
+              <div className="relative w-full h-full">
+                <Image
+                  src={zoomImage}
+                  alt={zoomTitle}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
             )}
           </div>
         </Box>
