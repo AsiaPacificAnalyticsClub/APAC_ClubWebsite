@@ -374,7 +374,7 @@ const ClubEvent = () => {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: "60%",
-            height: "60vh",
+            aspectRatio: "16 / 9",
             bgcolor: "background.paper",
             borderRadius: "16px",
             borderColor: "#4f4f4f",
