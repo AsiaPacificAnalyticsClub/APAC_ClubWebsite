@@ -24,4 +24,60 @@ export const logos = [
     src: "/pwc_logo.png",
     alt: "pwc_logo",
   },
+  //Added new logos by Bowie
+  {
+    name: "Al Rajhi Bank",
+    src: "/Al-Rajhi-Bank-logo.webp",
+    alt: "AlRajhi_Bank_logo",
+  },
+  {
+    name: "Ant International",
+    src: "/Ant_International_logo.jpg",
+    alt: "Ant_International_logo",
+  },
+  {
+    name: "Bank Negara Malaysia",
+    src: "/bank_Negara_Malaysia_logo.png",
+    alt: "Bank_Negara_Malaysia_logo",
+  },
+  {
+    name: "Boost",
+    src: "/boost_logo.png",
+    alt: "Boost_logo",
+  },
+  {
+    name: "BP",
+    src: "/BP_logo.png",
+    alt: "bp_logo",
+  },
+  {
+    name: "Gamuda",
+    src: "/gamuda_logo.png",
+    alt: "Gamuda_logo",
+  },
+  {
+    name: "Hartalega",
+    src: "/hartalega_logo.png",
+    alt: "Hartalega_logo",
+  },
+  {
+    name: "JobStreet",
+    src: "/JobStreet_logo.png",
+    alt: "Jobstreet_logo",
+  },
+  {
+    name: "Kabel",
+    src: "/Kabel_logo.png",
+    alt: "Kabel_logo",
+  },
+  {
+    name: "KPMG",
+    src: "/KPMG_logo.png",
+    alt: "KPMG_logo",
+  },
+  {
+    name: "Morimatsu Dialog",
+    src: "/MD_logo.png",
+    alt: "MD_logo",
+  },
 ];

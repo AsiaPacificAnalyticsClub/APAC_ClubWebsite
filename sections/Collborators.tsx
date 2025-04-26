@@ -33,7 +33,7 @@ const Collaborators = () => {
 
             <div className="w-full flex justify-center items-center [perspective:300px]">
               <Marquee
-                className="justify-center overflow-hidden [--duration:40s] [--gap:3rem]"
+                className="justify-center overflow-hidden [--duration:80s] [--gap:4rem]"
                 style={{
                   transform:
                     "translateX(0px) translateY(0px) translateZ(-50px) scale(1.5)",
