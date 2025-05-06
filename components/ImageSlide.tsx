@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
@@ -51,43 +50,61 @@ const ImageSlide: React.FC = () => {
     const slideInterval = setInterval(() => {
       nextSlide();
     }, 5000);
-
     return () => clearInterval(slideInterval);
   }, [nextSlide]);
 
   return (
-    <div className="md:max-w-[780px] md:max-h-[780px] w-full m-auto py-16 px-4 relative group md:mb-16">
-      <div className="w-full h-full rounded-2xl overflow-hidden">
-        <Image
-          src={slides[currentIndex].url}
-          alt={slides[currentIndex].alt}
-          width={1200}
-          height={1200}
-          className="w-full h-full object-cover object-center"
-        />
+    <div className="md:max-w-[780px] w-full m-auto py-16 relative md:mb-16 flex items-center">
+      {/* Left Arrow - Now outside the image */}
+      <div className="flex-none mr-4">
+        <button
+          onClick={prevSlide}
+          className="p-2 rounded-full text-gray hover:text-white hover:bg-gray-700"
+          aria-label="Previous slide"
+        >
+          <BsChevronCompactLeft size={30} />
+        </button>
       </div>
-      {/* Left Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-        <BsChevronCompactLeft onClick={prevSlide} size={30} />
+
+      <div className="flex-grow px-4">
+        {/* Main image container */}
+        <div className="w-full rounded-2xl overflow-hidden">
+          <Image
+            src={slides[currentIndex].url}
+            alt={slides[currentIndex].alt}
+            width={1200}
+            height={1200}
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
+
+        {/* Dots navigation */}
+        <div className="flex justify-center py-2">
+          {slides.map((slide, slideIndex) => (
+            <div
+              key={slideIndex}
+              onClick={() => goToSlide(slideIndex)}
+              className="text-2xl cursor-pointer"
+            >
+              <RxDotFilled
+                className={
+                  currentIndex === slideIndex ? "text-black" : "text-gray-500"
+                }
+              />
+            </div>
+          ))}
+        </div>
       </div>
-      {/* Right Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-        <BsChevronCompactRight onClick={nextSlide} size={30} />
-      </div>
-      <div className="flex justify-center py-2">
-        {slides.map((slide, slideIndex) => (
-          <div
-            key={slideIndex}
-            onClick={() => goToSlide(slideIndex)}
-            className="text-2xl cursor-pointer"
-          >
-            <RxDotFilled
-              className={
-                currentIndex === slideIndex ? "text-white" : "text-gray-500"
-              }
-            />
-          </div>
-        ))}
+
+      {/* Right Arrow - Now outside the image */}
+      <div className="flex-none ml-4">
+        <button
+          onClick={nextSlide}
+          className="p-2 rounded-full text-gray hover:text-white hover:bg-gray-700"
+          aria-label="Next slide"
+        >
+          <BsChevronCompactRight size={30} />
+        </button>
       </div>
     </div>
   );
