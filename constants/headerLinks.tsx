@@ -19,5 +19,8 @@ export const headerLinks = [
     headerName: "Contact Us",
     link: "/contactUs",
   },
+  {
+    headerName: "Data Science Week",
+    link: "/DSW",
+  },
 ];
-

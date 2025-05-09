@@ -7,7 +7,7 @@ import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
-import { Tabs, Tab, Button } from "@mui/material";
+import { Tabs, Tab, Button, Modal, Box } from "@mui/material";
 import Chip from "@mui/material/Chip";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,6 +21,9 @@ const ClubEvent = () => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [visibleItems, setVisibleItems] = useState(ITEMS_PER_PAGE);
   const [events, setEvents] = useState<Event[]>([]);
+  const [zoomImage, setZoomImage] = useState<string | null>(null);
+  const [zoomTitle, setZoomTitle] = useState<string>("");
+  const [modalOpen, setModalOpen] = useState(false);
 
   const formatDate = (date: string): string => {
     const options: Intl.DateTimeFormatOptions = {
@@ -109,6 +112,16 @@ const ClubEvent = () => {
     );
   };
 
+  const handleImageClick = (image: string, title: string) => {
+    setZoomImage(image);
+    setZoomTitle(title);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
   const renderMobileTimeline = (events: Event[]) => (
     <div className="md:hidden space-y-8 px-4">
       {events.map((event) => (
@@ -116,7 +129,10 @@ const ClubEvent = () => {
           key={event.id}
           className="bg-white rounded-lg overflow-hidden shadow-sm"
         >
-          <div className="relative w-full aspect-video">
+          <div
+            className="relative w-full aspect-video cursor-pointer"
+            onClick={() => handleImageClick(event.image, event.title)}
+          >
             <Image
               src={event.image}
               alt={event.title}
@@ -180,7 +196,10 @@ const ClubEvent = () => {
                   justifyContent: "flex-end",
                 }}
               >
-                <div className="relative w-full max-w-md aspect-video overflow-hidden rounded-lg">
+                <div
+                  className="relative w-full max-w-md aspect-video overflow-hidden rounded-lg cursor-pointer"
+                  onClick={() => handleImageClick(event.image, event.title)}
+                >
                   <Image
                     src={event.image}
                     alt={event.title}
@@ -340,6 +359,48 @@ const ClubEvent = () => {
           </Button>
         </div>
       )}
+
+      <Modal
+        open={modalOpen}
+        onClose={handleCloseModal}
+        aria-labelledby="image-zoom-modal"
+        aria-describedby="enlarges event image"
+        className="flex"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "60%",
+            aspectRatio: "16 / 9",
+            bgcolor: "background.paper",
+            borderRadius: "16px",
+            borderColor: "#4f4f4f",
+            borderWidth: "2px",
+            boxShadow: 24,
+            p: 0,
+            outline: "none",
+            overflow: "hidden",
+          }}
+        >
+          <div className="relative w-full h-full">
+            {zoomImage && (
+              <div className="relative w-full h-full">
+                <Image
+                  src={zoomImage}
+                  alt={zoomTitle}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+            )}
+          </div>
+        </Box>
+      </Modal>
     </div>
   );
 };
