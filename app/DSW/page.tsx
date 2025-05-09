@@ -10,38 +10,58 @@ import {
   Grid,
 } from "@mui/material";
 
-// Dummy data for games and events
-const games = [
-  {
-    id: 1,
-    title: "Data Trivia",
-    description: "Test your data knowledge in a fast-paced trivia game!",
-    image: null,
-  },
-  {
-    id: 2,
-    title: "Code Quest",
-    description: "Solve data challenges to reach the top!",
-    image: null, // example path
-  },
+type Game = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+};
+
+type Event = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+};
+// Add your games and events here
+// Uncomment to enabled the games and events section
+const games: Game[] = [
+  // {
+  //   id: 1,
+  //   title: "Data Trivia",
+  //   description: "Test your data knowledge in a fast-paced trivia game!",
+  //   image: null,
+  //   link: "",
+  // },
+  // {
+  //   id: 2,
+  //   title: "Code Quest",
+  //   description: "Solve data challenges to reach the top!",
+  //   image: null,
+  //   link: "",
+  // },
 ];
 
-const events = [
-  {
-    id: 1,
-    title: "Opening Ceremony",
-    description: "Kick off the Data Science Week with an exciting ceremony.",
-    image: null,
-  },
-  {
-    id: 2,
-    title: "Workshop: Python for Data Analysis",
-    description: "Hands-on workshop covering pandas and matplotlib.",
-    image: null,
-  },
+const events: Event[] = [
+  // {
+  //   id: 1,
+  //   title: "Opening Ceremony",
+  //   description: "Kick off the Data Science Week with an exciting ceremony.",
+  //   image: null,
+  //   link: "",
+  // },
+  // {
+  //   id: 2,
+  //   title: "Workshop: Python for Data Analysis",
+  //   description: "Hands-on workshop covering pandas and matplotlib.",
+  //   image: null,
+  //   link: "",
+  // },
 ];
 
-const placeholderImage = "/APACPythonWorkshop.png"; // Path to your placeholder image
+const placeholderImage = ""; // Path to your placeholder image
 
 const DswEvent = () => {
   const [value, setValue] = useState(0);
@@ -58,7 +78,7 @@ const DswEvent = () => {
         </h1>
         <p className="text-center text-gray-600">
           {content.length === 0
-            ? "No events to show for this year"
+            ? "No upcoming activities"
             : "Join us in our upcoming activities"}
         </p>
       </div>
@@ -79,32 +99,42 @@ const DswEvent = () => {
         </Tabs>
 
         <Grid container spacing={4}>
-          {content.map((item) => (
-            <Grid item xs={12} sm={6} md={4} key={item.id}>
-              <Card
-                sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  height="180"
-                  image={item.image || placeholderImage}
-                  alt={item.title}
-                />
-                <CardContent>
-                  <Typography variant="h6" component="div" gutterBottom>
-                    {item.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.description}
-                  </Typography>
-                </CardContent>
-              </Card>
+          {content.length > 0 ? (
+            content.map((item) => (
+              <Grid item xs={12} sm={6} md={4} key={item.id}>
+                <Card
+                  sx={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="180"
+                    image={item.image || placeholderImage}
+                    alt={item.title}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" component="div" gutterBottom>
+                      {item.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {item.description}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))
+          ) : (
+            <Grid item xs={12}>
+              <div className="absolute flex justify-center items-center">
+                <h1 className="text-3xl font-bold text-center mb-2">
+                  Coming Soon
+                </h1>
+              </div>
             </Grid>
-          ))}
+          )}
         </Grid>
       </div>
     </div>
