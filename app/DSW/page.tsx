@@ -38,7 +38,7 @@ const games: Game[] = [
     title: "Data Trivia Quiz",
     description: "Test your data knowledge in a fast-paced trivia game!",
     image: "dsw_TriviaQuiz.png",
-    link: "test.com",
+    link: "https://app.youths.asia/event/Z0SQgLcLsqGQxEhxtwaQ",
     tags: "Upcoming",
   },
   {
