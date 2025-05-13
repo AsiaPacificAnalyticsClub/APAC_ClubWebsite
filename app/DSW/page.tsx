@@ -35,19 +35,99 @@ type Event = {
 const games: Game[] = [
   {
     id: 1,
-    title: "Data Trivia",
+    title: "Data Trivia Quiz",
     description: "Test your data knowledge in a fast-paced trivia game!",
-    image: null,
-    link: "test.com",
-    tags: "Ongoing",
+    image: "dsw_TriviaQuiz.png",
+    link: "https://app.youths.asia/event/Z0SQgLcLsqGQxEhxtwaQ",
+    tags: "Upcoming",
   },
   {
     id: 2,
-    title: "Code Quest",
+    title: "DataHack: Code Quest",
     description: "Solve data challenges to reach the top!",
-    image: null,
+    image: "dsw_CodeQuest.png",
     link: "",
-    tags: "Past",
+    tags: "Upcoming",
+  },
+  {
+    id: 3,
+    title: "Machine Learning Mania",
+    description: "Build and train a model to predict new data accurately.",
+    image: "dsw_MachineLearnigMania.png",
+    link: "",
+    tags: "Upcoming",
+  },
+  {
+    id: 4,
+    title: "Find the Key",
+    description: "Visualize messy data to choose the right key and win!",
+    image: "dsw_FindKey.png",
+    link: "",
+    tags: "Upcoming",
+  },
+  {
+    id: 5,
+    title: "Titanic Survivor",
+    description: "Predict Titanic survivors using ML and real data.",
+    image: "dsw_Titanic.png",
+    link: "",
+    tags: "Upcoming",
+  },
+  {
+    id: 6,
+    title: "Data Science Escape Room",
+    description: "Solve data puzzles within time limit to escape the room!",
+    image: "dsw_EscapeRoom.png",
+    link: "",
+    tags: "Upcoming",
+  },
+  {
+    id: 7,
+    title: "Word Hunt",
+    description: "Find hidden words from clues and scrambled letters.",
+    image: "dsw_WordHunt.png",
+    link: "",
+    tags: "Upcoming",
+  },
+  {
+    id: 8,
+    title: "AI Art Spotting",
+    description: "Guess if an image is AI-generated or human-made.",
+    image: "dsw_AIArt.png",
+    link: "",
+    tags: "Upcoming",
+  },
+  {
+    id: 9,
+    title: "Data Science Pictionary",
+    description: "Draw and guess data terms — fun and fast-paced!",
+    image: "dsw_DSPicctionary.png",
+    link: "",
+    tags: "Upcoming",
+  },
+  {
+    id: 11,
+    title: "CodinGame",
+    description: "Play coding challenges that test your skills and logic.",
+    image: "dsw_CodinGame.png",
+    link: "",
+    tags: "Upcoming",
+  },
+  {
+    id: 12,
+    title: "Data Jeopardy",
+    description: "Buzz in to answer data questions — fastest team wins!",
+    image: "dsw_DataJeopardy.png",
+    link: "",
+    tags: "Upcoming",
+  },
+  {
+    id: 13,
+    title: "SQL Detective Game",
+    description: "Use SQL to solve a mystery in this story-based game.",
+    image: "dsw_SQLDetective.png",
+    link: "",
+    tags: "Upcoming",
   },
 ];
 
@@ -116,6 +196,14 @@ const DswEvent = () => {
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
+                    borderRadius: 4, //round corner Kylan Shane want
+                    overflow: "hidden", // picture follow card curve
+                    boxShadow: 6, //3d card
+                    transition: "transform 0.2s, box-shadow 0.2s",
+                    "&:hover": {
+                      transform: "scale(1.02)",
+                      boxShadow: 6,
+                    },
                   }}
                 >
                   <CardMedia
@@ -145,7 +233,7 @@ const DswEvent = () => {
                         size="small"
                       />
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" fontSize="0.9rem">
                       {item.description}
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
@@ -157,7 +245,14 @@ const DswEvent = () => {
                       target="_blank"
                       className="w-full"
                       disabled={!item.link || item.tags !== "Upcoming"}
-                      sx={{ mt: 2, borderRadius: 1 }}
+                      sx={{
+                        mt:2,
+                        borderRadius: 1,
+                        backgroundColor: "#3f51b5",
+                        "&:hover": {
+                          backgroundColor: "#2e3da0",
+                        },
+                      }}
                     >
                       Learn More
                     </Button>
