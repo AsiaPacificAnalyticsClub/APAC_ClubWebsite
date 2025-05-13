@@ -38,7 +38,7 @@ const games: Game[] = [
     title: "Data Trivia Quiz",
     description: "Test your data knowledge in a fast-paced trivia game!",
     image: "dsw_TriviaQuiz.png",
-    link: "https://app.youths.asia/event/Z0SQgLcLsqGQxEhxtwaQ",
+    link: "",
     tags: "Upcoming",
   },
   {
@@ -137,7 +137,7 @@ const events: Event[] = [
     title: "Opening Ceremony",
     description: "Kick off the Data Science Week with an exciting ceremony.",
     image: null,
-    link: "test.com",
+    link: "",
     tags: "Upcoming",
   },
   {
@@ -233,7 +233,11 @@ const DswEvent = () => {
                         size="small"
                       />
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" fontSize="0.9rem">
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      fontSize="0.9rem"
+                    >
                       {item.description}
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
@@ -246,7 +250,7 @@ const DswEvent = () => {
                       className="w-full"
                       disabled={!item.link || item.tags !== "Upcoming"}
                       sx={{
-                        mt:2,
+                        mt: 2,
                         borderRadius: 1,
                         backgroundColor: "#3f51b5",
                         "&:hover": {
