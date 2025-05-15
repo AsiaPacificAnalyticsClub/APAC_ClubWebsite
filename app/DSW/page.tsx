@@ -13,12 +13,15 @@ import {
   Chip,
 } from "@mui/material";
 
+import { CalendarToday as CalendarTodayIcon } from "@mui/icons-material";
+
 type Game = {
   id: number;
   title: string;
   description: string;
   image: null | string;
   link: string;
+  date: string;
   tags: string;
 };
 
@@ -28,6 +31,7 @@ type Event = {
   description: string;
   image: null | string;
   link: string;
+  date: string;
   tags: string;
 };
 // Add your games and events here
@@ -39,6 +43,7 @@ const games: Game[] = [
     description: "Test your data knowledge in a fast-paced trivia game!",
     image: "dsw_TriviaQuiz.png",
     link: "https://app.youths.asia/event/Z0SQgLcLsqGQxEhxtwaQ",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
   {
@@ -47,6 +52,7 @@ const games: Game[] = [
     description: "Solve data challenges to reach the top!",
     image: "dsw_CodeQuest.png",
     link: "",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
   {
@@ -55,6 +61,7 @@ const games: Game[] = [
     description: "Build and train a model to predict new data accurately.",
     image: "dsw_MachineLearnigMania.png",
     link: "",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
   {
@@ -63,6 +70,7 @@ const games: Game[] = [
     description: "Visualize messy data to choose the right key and win!",
     image: "dsw_FindKey.png",
     link: "",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
   {
@@ -71,6 +79,7 @@ const games: Game[] = [
     description: "Predict Titanic survivors using ML and real data.",
     image: "dsw_Titanic.png",
     link: "",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
   {
@@ -79,6 +88,7 @@ const games: Game[] = [
     description: "Solve data puzzles within time limit to escape the room!",
     image: "dsw_EscapeRoom.png",
     link: "",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
   {
@@ -87,6 +97,7 @@ const games: Game[] = [
     description: "Find hidden words from clues and scrambled letters.",
     image: "dsw_WordHunt.png",
     link: "",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
   {
@@ -95,6 +106,7 @@ const games: Game[] = [
     description: "Guess if an image is AI-generated or human-made.",
     image: "dsw_AIArt.png",
     link: "",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
   {
@@ -103,6 +115,7 @@ const games: Game[] = [
     description: "Draw and guess data terms — fun and fast-paced!",
     image: "dsw_DSPicctionary.png",
     link: "",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
   {
@@ -111,6 +124,7 @@ const games: Game[] = [
     description: "Play coding challenges that test your skills and logic.",
     image: "dsw_CodinGame.png",
     link: "",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
   {
@@ -119,6 +133,7 @@ const games: Game[] = [
     description: "Buzz in to answer data questions — fastest team wins!",
     image: "dsw_DataJeopardy.png",
     link: "",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
   {
@@ -127,6 +142,7 @@ const games: Game[] = [
     description: "Use SQL to solve a mystery in this story-based game.",
     image: "dsw_SQLDetective.png",
     link: "",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
 ];
@@ -138,6 +154,7 @@ const events: Event[] = [
     description: "Kick off the Data Science Week with an exciting ceremony.",
     image: null,
     link: "test.com",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
   {
@@ -146,6 +163,7 @@ const events: Event[] = [
     description: "Hands-on workshop covering pandas and matplotlib.",
     image: null,
     link: "",
+    date: "2025-04-01, Mon",
     tags: "Upcoming",
   },
 ];
@@ -163,7 +181,7 @@ const DswEvent = () => {
     <div className="min-h-screen w-full bg-white">
       <div className="mb-8 pt-8">
         <h1 className="text-3xl font-bold text-center mb-2">
-          Data Science Week
+          Data Science Week 2025
         </h1>
         <p className="text-center text-gray-600">
           {content.length === 0
@@ -233,7 +251,29 @@ const DswEvent = () => {
                         size="small"
                       />
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" fontSize="0.9rem">
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      fontSize="0.9rem"
+                      sx={{
+                        display: "flex",
+                      }}
+                    >
+                      <CalendarTodayIcon
+                        sx={{
+                          color: "text.secondary",
+                          mr: 0.5,
+                          fontSize: "1.2rem",
+                          mb: 1,
+                        }}
+                      />
+                      {item.date}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      fontSize="0.9rem"
+                    >
                       {item.description}
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
@@ -246,7 +286,7 @@ const DswEvent = () => {
                       className="w-full"
                       disabled={!item.link || item.tags !== "Upcoming"}
                       sx={{
-                        mt:2,
+                        mt: 2,
                         borderRadius: 1,
                         backgroundColor: "#3f51b5",
                         "&:hover": {
