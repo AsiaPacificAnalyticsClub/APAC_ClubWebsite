@@ -42,18 +42,23 @@ const games: Game[] = [
   {
     id: 1,
     title: "Find the Key",
-    description: "Clean, fix and visualize messy data to choose the right key and win!",
-    detailedDescription: "A beginner-friendly competition where participants clean raw data, create visualizations, and uncover hidden insights. The 'key' lies in how well they prepare and understand the dataset.",
+    description:
+      "Clean, fix and visualize messy data to choose the right key and win!",
+    detailedDescription:
+      "A beginner-friendly competition where participants clean raw data, create visualizations, and uncover hidden insights. The 'key' lies in how well they prepare and understand the dataset.",
     image: "dsw_FindKey.png",
-    link: "https://app.youths.asia/event/Z0SQgLcLsqGQxEhxtwaQ",
+    // link: "https://app.youths.asia/event/Z0SQgLcLsqGQxEhxtwaQ",
+    link: "",
     date: "2025-06-24, Tues",
     tags: "Upcoming",
   },
   {
     id: 2,
     title: "Dataverse Explorers",
-    description: "A fun, gamified session combining quizzes, drawing, and strategy challenges.",
-    detailedDescription: "An interactive session designed to teach data science concepts through games, encouraging creativity, collaboration, and use of data terms in a stress-free environment ideal for students and beginners.",
+    description:
+      "A fun, gamified session combining quizzes, drawing, and strategy challenges.",
+    detailedDescription:
+      "An interactive session designed to teach data science concepts through games, encouraging creativity, collaboration, and use of data terms in a stress-free environment ideal for students and beginners.",
     image: "dsw_Dataverse.png",
     link: "",
     date: "2025-06-24, Tues",
@@ -63,7 +68,8 @@ const games: Game[] = [
     id: 3,
     title: "DataHack: Code & Solve",
     description: "Solve data challenges to reach the top!",
-    detailedDescription: "Inspired by LeetCode, this coding challenge tasks participants with solving programming problems of increasing difficulty. It rewards speed, accuracy, and strategic thinking in a race for the leaderboard.",
+    detailedDescription:
+      "Inspired by LeetCode, this coding challenge tasks participants with solving programming problems of increasing difficulty. It rewards speed, accuracy, and strategic thinking in a race for the leaderboard.",
     image: "dsw_DataHack.png",
     link: "",
     date: "2025-06-25, Wed",
@@ -72,8 +78,10 @@ const games: Game[] = [
   {
     id: 4,
     title: "SQL Murder Mystery Showdown",
-    description: "Use SQL to follow clues and solve a murder mystery. Be the fastest detective with the right answers!",
-    detailedDescription: "Participants become detectives solving a fictional murder case using SQL queries. They analyze clues in a database, identify suspects, and race to uncover both the murderer and hidden mastermind.",
+    description:
+      "Use SQL to follow clues and solve a murder mystery. Be the fastest detective with the right answers!",
+    detailedDescription:
+      "Participants become detectives solving a fictional murder case using SQL queries. They analyze clues in a database, identify suspects, and race to uncover both the murderer and hidden mastermind.",
     image: "dsw_SQL.png",
     link: "",
     date: "2025-06-25, Wed",
@@ -83,7 +91,8 @@ const games: Game[] = [
     id: 5,
     title: "Machine Learning Tuning Challenge",
     description: "Tune a machine learning model to get the best results!",
-    detailedDescription: "A 2-hour hands-on competition where participants will adjust model settings (hyperparameters) to improve prediction accuracy on a real dataset. A quick and exciting intro to model optimization and leaderboard competition.",
+    detailedDescription:
+      "A 2-hour hands-on competition where participants will adjust model settings (hyperparameters) to improve prediction accuracy on a real dataset. A quick and exciting intro to model optimization and leaderboard competition.",
     image: "dsw_MLTuning.png",
     link: "",
     date: "2025-06-26, Thur",
@@ -93,12 +102,13 @@ const games: Game[] = [
     id: 6,
     title: "Titanic Survivor",
     description: "Predict Titanic survivors using ML and real data.",
-    detailedDescription: "A team-based challenge where participants use real Titanic data to build machine learning models that predict survival. A great way to practice data cleaning, feature selection, and evaluation on Google Colab.",
+    detailedDescription:
+      "A team-based challenge where participants use real Titanic data to build machine learning models that predict survival. A great way to practice data cleaning, feature selection, and evaluation on Google Colab.",
     image: "dsw_Titanic.png",
     link: "",
     date: "2025-06-26, Thur",
     tags: "Upcoming",
-  }
+  },
 ];
 
 const events: Event[] = [
@@ -304,3 +314,4 @@ const DswEvent = () => {
 };
 
 export default DswEvent;
+
