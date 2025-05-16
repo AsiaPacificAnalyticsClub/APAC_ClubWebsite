@@ -19,6 +19,7 @@ type Game = {
   id: number;
   title: string;
   description: string;
+  detailedDescription?: string;
   image: null | string;
   link: string;
   date: string;
@@ -29,6 +30,7 @@ type Event = {
   id: number;
   title: string;
   description: string;
+  detailedDescription?: string; // Optional detailed description
   image: null | string;
   link: string;
   date: string;
@@ -39,110 +41,72 @@ type Event = {
 const games: Game[] = [
   {
     id: 1,
-    title: "Data Trivia Quiz",
-    description: "Test your data knowledge in a fast-paced trivia game!",
-    image: "dsw_TriviaQuiz.png",
-    link: "https://app.youths.asia/event/Z0SQgLcLsqGQxEhxtwaQ",
-    date: "2025-04-01, Mon",
+    title: "Find the Key",
+    description:
+      "Clean, fix and visualize messy data to choose the right key and win!",
+    detailedDescription:
+      "A beginner-friendly competition where participants clean raw data, create visualizations, and uncover hidden insights. The 'key' lies in how well they prepare and understand the dataset.",
+    image: "dsw_FindKey.png",
+    // link: "https://app.youths.asia/event/Z0SQgLcLsqGQxEhxtwaQ",
+    link: "",
+    date: "2025-06-24, Tues",
     tags: "Upcoming",
   },
   {
     id: 2,
-    title: "DataHack: Code Quest",
-    description: "Solve data challenges to reach the top!",
-    image: "dsw_CodeQuest.png",
+    title: "Dataverse Explorers",
+    description:
+      "A fun, gamified session combining quizzes, drawing, and strategy challenges.",
+    detailedDescription:
+      "An interactive session designed to teach data science concepts through games, encouraging creativity, collaboration, and use of data terms in a stress-free environment ideal for students and beginners.",
+    image: "dsw_Dataverse.png",
     link: "",
-    date: "2025-04-01, Mon",
+    date: "2025-06-24, Tues",
     tags: "Upcoming",
   },
   {
     id: 3,
-    title: "Machine Learning Mania",
-    description: "Build and train a model to predict new data accurately.",
-    image: "dsw_MachineLearnigMania.png",
+    title: "DataHack: Code & Solve",
+    description: "Solve data challenges to reach the top!",
+    detailedDescription:
+      "Inspired by LeetCode, this coding challenge tasks participants with solving programming problems of increasing difficulty. It rewards speed, accuracy, and strategic thinking in a race for the leaderboard.",
+    image: "dsw_DataHack.png",
     link: "",
-    date: "2025-04-01, Mon",
+    date: "2025-06-25, Wed",
     tags: "Upcoming",
   },
   {
     id: 4,
-    title: "Find the Key",
-    description: "Visualize messy data to choose the right key and win!",
-    image: "dsw_FindKey.png",
+    title: "SQL Murder Mystery Showdown",
+    description:
+      "Use SQL to follow clues and solve a murder mystery. Be the fastest detective with the right answers!",
+    detailedDescription:
+      "Participants become detectives solving a fictional murder case using SQL queries. They analyze clues in a database, identify suspects, and race to uncover both the murderer and hidden mastermind.",
+    image: "dsw_SQL.png",
     link: "",
-    date: "2025-04-01, Mon",
+    date: "2025-06-25, Wed",
     tags: "Upcoming",
   },
   {
     id: 5,
-    title: "Titanic Survivor",
-    description: "Predict Titanic survivors using ML and real data.",
-    image: "dsw_Titanic.png",
+    title: "Machine Learning Tuning Challenge",
+    description: "Tune a machine learning model to get the best results!",
+    detailedDescription:
+      "A 2-hour hands-on competition where participants will adjust model settings (hyperparameters) to improve prediction accuracy on a real dataset. A quick and exciting intro to model optimization and leaderboard competition.",
+    image: "dsw_MLTuning.png",
     link: "",
-    date: "2025-04-01, Mon",
+    date: "2025-06-26, Thur",
     tags: "Upcoming",
   },
   {
     id: 6,
-    title: "Data Science Escape Room",
-    description: "Solve data puzzles within time limit to escape the room!",
-    image: "dsw_EscapeRoom.png",
+    title: "Titanic Survivor",
+    description: "Predict Titanic survivors using ML and real data.",
+    detailedDescription:
+      "A team-based challenge where participants use real Titanic data to build machine learning models that predict survival. A great way to practice data cleaning, feature selection, and evaluation on Google Colab.",
+    image: "dsw_Titanic.png",
     link: "",
-    date: "2025-04-01, Mon",
-    tags: "Upcoming",
-  },
-  {
-    id: 7,
-    title: "Word Hunt",
-    description: "Find hidden words from clues and scrambled letters.",
-    image: "dsw_WordHunt.png",
-    link: "",
-    date: "2025-04-01, Mon",
-    tags: "Upcoming",
-  },
-  {
-    id: 8,
-    title: "AI Art Spotting",
-    description: "Guess if an image is AI-generated or human-made.",
-    image: "dsw_AIArt.png",
-    link: "",
-    date: "2025-04-01, Mon",
-    tags: "Upcoming",
-  },
-  {
-    id: 9,
-    title: "Data Science Pictionary",
-    description: "Draw and guess data terms — fun and fast-paced!",
-    image: "dsw_DSPicctionary.png",
-    link: "",
-    date: "2025-04-01, Mon",
-    tags: "Upcoming",
-  },
-  {
-    id: 11,
-    title: "CodinGame",
-    description: "Play coding challenges that test your skills and logic.",
-    image: "dsw_CodinGame.png",
-    link: "",
-    date: "2025-04-01, Mon",
-    tags: "Upcoming",
-  },
-  {
-    id: 12,
-    title: "Data Jeopardy",
-    description: "Buzz in to answer data questions — fastest team wins!",
-    image: "dsw_DataJeopardy.png",
-    link: "",
-    date: "2025-04-01, Mon",
-    tags: "Upcoming",
-  },
-  {
-    id: 13,
-    title: "SQL Detective Game",
-    description: "Use SQL to solve a mystery in this story-based game.",
-    image: "dsw_SQLDetective.png",
-    link: "",
-    date: "2025-04-01, Mon",
+    date: "2025-06-26, Thur",
     tags: "Upcoming",
   },
 ];
@@ -152,6 +116,7 @@ const events: Event[] = [
     id: 1,
     title: "Opening Ceremony",
     description: "Kick off the Data Science Week with an exciting ceremony.",
+    detailedDescription: "",
     image: null,
     link: "test.com",
     date: "2025-04-01, Mon",
@@ -161,6 +126,7 @@ const events: Event[] = [
     id: 2,
     title: "Python for Data Analysis",
     description: "Hands-on workshop covering pandas and matplotlib.",
+    detailedDescription: "",
     image: null,
     link: "",
     date: "2025-04-01, Mon",
@@ -183,6 +149,9 @@ const DswEvent = () => {
         <h1 className="text-3xl font-bold text-center mb-2">
           Data Science Week 2025
         </h1>
+        <p className="text-center text-lg font-semibold text-indigo-700 mb-1">
+          24 June - 26 June
+        </p>
         <p className="text-center text-gray-600">
           {content.length === 0
             ? "No upcoming activities"
@@ -224,12 +193,41 @@ const DswEvent = () => {
                     },
                   }}
                 >
-                  <CardMedia
-                    component="img"
-                    height="180"
-                    image={item.image || placeholderImage}
-                    alt={item.title}
-                  />
+                  <Box sx={{ position: "relative" }}>
+                    <CardMedia
+                      component="img"
+                      height="180"
+                      image={item.image || placeholderImage}
+                      alt={item.title}
+                    />
+                    {/* Detailed description overlay when hovering to image */}
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: "rgba(0, 0, 0, 0.6)",
+                        backdropFilter: "blur(4px)",
+                        color: "#fff",
+                        opacity: 0,
+                        transition: "opacity 0.3s ease",
+                        padding: 1,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        textAlign: "center",
+                        "&:hover": {
+                          opacity: 1,
+                        },
+                      }}
+                    >
+                      <Typography variant="body2" sx={{ fontSize: "0.85rem" }}>
+                        {item.detailedDescription || item.description}
+                      </Typography>
+                    </Box>
+                  </Box>
                   <CardContent
                     sx={{
                       flexGrow: 1,
@@ -316,3 +314,4 @@ const DswEvent = () => {
 };
 
 export default DswEvent;
+
