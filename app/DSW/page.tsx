@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { CalendarToday as CalendarTodayIcon } from "@mui/icons-material";
-import {Modal} from "@mui/material";
+import { Modal } from "@mui/material";
 import Image from "next/image";
 
 type Game = {
@@ -23,7 +23,7 @@ type Game = {
   description: string;
   detailedDescription?: string;
   image: null | string;
-  images?: string[];// only for datahack cuz it has 2 poster wth
+  images?: string[]; // only for datahack cuz it has 2 poster wth
   link: string;
   date: string;
   tags: string;
@@ -120,7 +120,8 @@ const events: Event[] = [
   {
     id: 1,
     title: "Insight of Data Science",
-    description: "Learn more about the current hiring trends in data science industry.",
+    description:
+      "Learn more about the current hiring trends in data science industry.",
     detailedDescription: "",
     image: "/evnt_InsightDS.png",
     link: "",
@@ -140,7 +141,8 @@ const events: Event[] = [
   {
     id: 3,
     title: "Intelligent Robotic Systems",
-    description: "Explore autonomous decision-making and optimization in healthcare and agriculture.",
+    description:
+      "Explore autonomous decision-making and optimization in healthcare and agriculture.",
     detailedDescription: "",
     image: "/evnt_Robotic.png",
     link: "",
@@ -150,7 +152,8 @@ const events: Event[] = [
   {
     id: 4,
     title: "AWS Workshop",
-    description: "Build data pipeline to support analyzing clickstream data with AWS.",
+    description:
+      "Build data pipeline to support analyzing clickstream data with AWS.",
     detailedDescription: "",
     image: "/evnt_AWS.png",
     link: "",
@@ -170,7 +173,8 @@ const events: Event[] = [
   {
     id: 6,
     title: "Practical AI Workshop",
-    description: "Build intelligent workflows from web scraping to multi-agent systems.",
+    description:
+      "Build intelligent workflows from web scraping to multi-agent systems.",
     detailedDescription: "",
     image: "/evnt_PracticalAI.png",
     link: "",
@@ -193,7 +197,7 @@ const placeholderImage = "/APACPythonWorkshop.png"; // Path to your placeholder 
 
 const DswEvent = () => {
   const [openImage, setOpenImage] = useState<string[] | null>(null);
-  
+
   const [value, setValue] = useState(0);
   const handleChange = (event: SyntheticEvent, newValue: number) =>
     setValue(newValue);
@@ -203,8 +207,6 @@ const DswEvent = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0); //track datahack state
 
   return (
-    
-
     <div className="min-h-screen w-full bg-white">
       <div className="mb-8 pt-8">
         <h1 className="text-3xl font-bold text-center mb-2">
@@ -236,13 +238,17 @@ const DswEvent = () => {
       <Modal
         open={!!openImage}
         onClose={() => setOpenImage(null)}
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "rgba(0,0,0,0.5)",
+        }}
       >
         <Box
           sx={{
             position: "relative",
-            maxWidth: "90%",
-            maxHeight: "90%",
+            width: "60%",
             outline: "none",
           }}
         >
@@ -261,7 +267,7 @@ const DswEvent = () => {
               <Button
                 onClick={() =>
                   setCurrentImageIndex((prev) =>
-                    prev === 0 ? openImage.length - 1 : prev - 1
+                    prev === 0 ? openImage.length - 1 : prev - 1,
                   )
                 }
                 sx={{
@@ -280,7 +286,7 @@ const DswEvent = () => {
               <Button
                 onClick={() =>
                   setCurrentImageIndex((prev) =>
-                    prev === openImage.length - 1 ? 0 : prev + 1
+                    prev === openImage.length - 1 ? 0 : prev + 1,
                   )
                 }
                 sx={{
@@ -351,37 +357,42 @@ const DswEvent = () => {
                       sx={{ cursor: "pointer" }}
                       onClick={() => {
                         setCurrentImageIndex(0); // reset to first image
-                        setOpenImage(item.images || [item.image || placeholderImage]);
+                        setOpenImage(
+                          item.images || [item.image || placeholderImage],
+                        );
                       }}
                     />
                     {/* Hover Overlay for games only */}
                     {value === 0 && (
-                    <Box
-                      className="hover-overlay"
-                      sx={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        backgroundColor: "rgba(0, 0, 0, 0.6)",
-                        backdropFilter: "blur(4px)",
-                        color: "#fff",
-                        opacity: 0,
-                        transition: "opacity 0.3s ease",
-                        padding: 1,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        textAlign: "center",
-                        pointerEvents: "none",
-                      }}
-                    >
-                      <Typography variant="body2" sx={{ fontSize: "0.85rem" }}>
-                        {item.detailedDescription || item.description}
-                      </Typography>
-                    </Box>
-                  )}
+                      <Box
+                        className="hover-overlay"
+                        sx={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          width: "100%",
+                          height: "100%",
+                          backgroundColor: "rgba(0, 0, 0, 0.6)",
+                          backdropFilter: "blur(4px)",
+                          color: "#fff",
+                          opacity: 0,
+                          transition: "opacity 0.3s ease",
+                          padding: 1,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          textAlign: "center",
+                          pointerEvents: "none",
+                        }}
+                      >
+                        <Typography
+                          variant="body2"
+                          sx={{ fontSize: "0.85rem" }}
+                        >
+                          {item.detailedDescription || item.description}
+                        </Typography>
+                      </Box>
+                    )}
                   </Box>
                   <CardContent
                     sx={{
