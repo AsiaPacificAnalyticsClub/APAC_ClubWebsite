@@ -14,6 +14,8 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { CalendarToday as CalendarTodayIcon } from "@mui/icons-material";
+import {Modal} from "@mui/material";
+import Image from "next/image";
 
 type Game = {
   id: number;
@@ -21,6 +23,7 @@ type Game = {
   description: string;
   detailedDescription?: string;
   image: null | string;
+  images?: string[];// only for datahack cuz it has 2 poster wth
   link: string;
   date: string;
   tags: string;
@@ -32,6 +35,7 @@ type Event = {
   description: string;
   detailedDescription?: string; // Optional detailed description
   image: null | string;
+  images?: string[];
   link: string;
   date: string;
   tags: string;
@@ -46,7 +50,7 @@ const games: Game[] = [
       "Clean, fix and visualize messy data to choose the right key and win!",
     detailedDescription:
       "A beginner-friendly competition where participants clean raw data, create visualizations, and uncover hidden insights. The 'key' lies in how well they prepare and understand the dataset.",
-    image: "dsw_FindKey.png",
+    image: "/dsw_FindKey.png",
     // link: "https://app.youths.asia/event/Z0SQgLcLsqGQxEhxtwaQ",
     link: "",
     date: "2025-06-24, Tues",
@@ -59,7 +63,7 @@ const games: Game[] = [
       "A fun, gamified session combining quizzes, drawing, and strategy challenges.",
     detailedDescription:
       "An interactive session designed to teach data science concepts through games, encouraging creativity, collaboration, and use of data terms in a stress-free environment ideal for students and beginners.",
-    image: "dsw_Dataverse.png",
+    image: "/dsw_DataverseExplorers.png",
     link: "",
     date: "2025-06-24, Tues",
     tags: "Upcoming",
@@ -70,7 +74,8 @@ const games: Game[] = [
     description: "Solve data challenges to reach the top!",
     detailedDescription:
       "Inspired by LeetCode, this coding challenge tasks participants with solving programming problems of increasing difficulty. It rewards speed, accuracy, and strategic thinking in a race for the leaderboard.",
-    image: "dsw_DataHack.png",
+    image: "/dsw_DataHack.png",
+    images: ["/dsw_DataHack.png", "/dsw_DataHack_Rules.png"],
     link: "",
     date: "2025-06-25, Wed",
     tags: "Upcoming",
@@ -82,7 +87,7 @@ const games: Game[] = [
       "Use SQL to follow clues and solve a murder mystery. Be the fastest detective with the right answers!",
     detailedDescription:
       "Participants become detectives solving a fictional murder case using SQL queries. They analyze clues in a database, identify suspects, and race to uncover both the murderer and hidden mastermind.",
-    image: "dsw_SQL.png",
+    image: "/dsw_SQL.png",
     link: "",
     date: "2025-06-25, Wed",
     tags: "Upcoming",
@@ -93,7 +98,7 @@ const games: Game[] = [
     description: "Tune a machine learning model to get the best results!",
     detailedDescription:
       "A 2-hour hands-on competition where participants will adjust model settings (hyperparameters) to improve prediction accuracy on a real dataset. A quick and exciting intro to model optimization and leaderboard competition.",
-    image: "dsw_MLTuning.png",
+    image: "/dsw_MachineLearning.png",
     link: "",
     date: "2025-06-26, Thur",
     tags: "Upcoming",
@@ -104,7 +109,7 @@ const games: Game[] = [
     description: "Predict Titanic survivors using ML and real data.",
     detailedDescription:
       "A team-based challenge where participants use real Titanic data to build machine learning models that predict survival. A great way to practice data cleaning, feature selection, and evaluation on Google Colab.",
-    image: "dsw_Titanic.png",
+    image: "/dsw_Titanic.png",
     link: "",
     date: "2025-06-26, Thur",
     tags: "Upcoming",
@@ -112,38 +117,94 @@ const games: Game[] = [
 ];
 
 const events: Event[] = [
-  // {
-  //   id: 1,
-  //   title: "Opening Ceremony",
-  //   description: "Kick off the Data Science Week with an exciting ceremony.",
-  //   detailedDescription: "",
-  //   image: null,
-  //   link: "test.com",
-  //   date: "2025-04-01, Mon",
-  //   tags: "Upcoming",
-  // },
-  // {
-  //   id: 2,
-  //   title: "Python for Data Analysis",
-  //   description: "Hands-on workshop covering pandas and matplotlib.",
-  //   detailedDescription: "",
-  //   image: null,
-  //   link: "",
-  //   date: "2025-04-01, Mon",
-  //   tags: "Upcoming",
-  // },
+  {
+    id: 1,
+    title: "Insight of Data Science",
+    description: "Learn more about the current hiring trends in data science industry.",
+    detailedDescription: "",
+    image: "/evnt_InsightDS.png",
+    link: "",
+    date: "2025-06-24, Tues",
+    tags: "Upcoming",
+  },
+  {
+    id: 2,
+    title: "GIS To Monitor Smart Cities",
+    description: "Hands-on GIS solutions.",
+    detailedDescription: "",
+    image: "/evnt_GIS.png",
+    link: "",
+    date: "2025-06-24, Tues",
+    tags: "Upcoming",
+  },
+  {
+    id: 3,
+    title: "Intelligent Robotic Systems",
+    description: "Explore autonomous decision-making and optimization in healthcare and agriculture.",
+    detailedDescription: "",
+    image: "/evnt_Robotic.png",
+    link: "",
+    date: "2025-06-24, Tues",
+    tags: "Upcoming",
+  },
+  {
+    id: 4,
+    title: "AWS Workshop",
+    description: "Build data pipeline to support analyzing clickstream data with AWS.",
+    detailedDescription: "",
+    image: "/evnt_AWS.png",
+    link: "",
+    date: "2025-06-25, Wed",
+    tags: "Upcoming",
+  },
+  {
+    id: 5,
+    title: "Smart and Adaptive AI Agents at the Edge",
+    description: "Experience real-time active inference for IoT and drones.",
+    detailedDescription: "",
+    image: "/evnt_InsightDS.png",
+    link: "",
+    date: "2025-06-25, Wed",
+    tags: "Upcoming",
+  },
+  {
+    id: 6,
+    title: "Practical AI Workshop",
+    description: "Build intelligent workflows from web scraping to multi-agent systems.",
+    detailedDescription: "",
+    image: "/evnt_PracticalAI.png",
+    link: "",
+    date: "2025-06-26, Thur",
+    tags: "Upcoming",
+  },
+  {
+    id: 7,
+    title: "Dell Tech Talk",
+    description: "Explore large language models and machine learning.",
+    detailedDescription: "",
+    image: "/evnt_DellTech.png",
+    link: "",
+    date: "2025-06-26, Thur",
+    tags: "Upcoming",
+  },
 ];
 
 const placeholderImage = "/APACPythonWorkshop.png"; // Path to your placeholder image
 
 const DswEvent = () => {
+  const [openImage, setOpenImage] = useState<string[] | null>(null);
+  
   const [value, setValue] = useState(0);
   const handleChange = (event: SyntheticEvent, newValue: number) =>
     setValue(newValue);
 
   const content = value === 0 ? games : events;
 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); //track datahack state
+
   return (
+    
+
     <div className="min-h-screen w-full bg-white">
       <div className="mb-8 pt-8">
         <h1 className="text-3xl font-bold text-center mb-2">
@@ -170,6 +231,75 @@ const DswEvent = () => {
           )}
         </p>
       </div>
+
+      {/* enlarge poster when click */}
+      <Modal
+        open={!!openImage}
+        onClose={() => setOpenImage(null)}
+        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      >
+        <Box
+          sx={{
+            position: "relative",
+            maxWidth: "90%",
+            maxHeight: "90%",
+            outline: "none",
+          }}
+        >
+          <Image
+            src={openImage?.[currentImageIndex] || placeholderImage}
+            alt="Enlarged preview"
+            layout="responsive"
+            width={800}
+            height={500}
+            style={{ borderRadius: "12px" }}
+          />
+
+          {/* Only show nav if multiple images */}
+          {openImage && openImage.length > 1 && (
+            <>
+              <Button
+                onClick={() =>
+                  setCurrentImageIndex((prev) =>
+                    prev === 0 ? openImage.length - 1 : prev - 1
+                  )
+                }
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: 8,
+                  transform: "translateY(-50%)",
+                  zIndex: 1,
+                  backgroundColor: "rgba(0,0,0,0.5)",
+                  color: "#fff",
+                  "&:hover": { backgroundColor: "rgba(0,0,0,0.8)" },
+                }}
+              >
+                ◀
+              </Button>
+              <Button
+                onClick={() =>
+                  setCurrentImageIndex((prev) =>
+                    prev === openImage.length - 1 ? 0 : prev + 1
+                  )
+                }
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  right: 8,
+                  transform: "translateY(-50%)",
+                  zIndex: 1,
+                  backgroundColor: "rgba(0,0,0,0.5)",
+                  color: "#fff",
+                  "&:hover": { backgroundColor: "rgba(0,0,0,0.8)" },
+                }}
+              >
+                ▶
+              </Button>
+            </>
+          )}
+        </Box>
+      </Modal>
 
       <div className="max-w-6xl mx-auto px-4 mb-8">
         <Tabs
@@ -205,15 +335,29 @@ const DswEvent = () => {
                     },
                   }}
                 >
-                  <Box sx={{ position: "relative" }}>
+                  <Box
+                    sx={{
+                      position: "relative",
+                      "&:hover .hover-overlay": {
+                        opacity: 1,
+                      },
+                    }}
+                  >
                     <CardMedia
                       component="img"
                       height="180"
                       image={item.image || placeholderImage}
                       alt={item.title}
+                      sx={{ cursor: "pointer" }}
+                      onClick={() => {
+                        setCurrentImageIndex(0); // reset to first image
+                        setOpenImage(item.images || [item.image || placeholderImage]);
+                      }}
                     />
-                    {/* Detailed description overlay when hovering to image */}
+                    {/* Hover Overlay for games only */}
+                    {value === 0 && (
                     <Box
+                      className="hover-overlay"
                       sx={{
                         position: "absolute",
                         top: 0,
@@ -230,15 +374,14 @@ const DswEvent = () => {
                         alignItems: "center",
                         justifyContent: "center",
                         textAlign: "center",
-                        "&:hover": {
-                          opacity: 1,
-                        },
+                        pointerEvents: "none",
                       }}
                     >
                       <Typography variant="body2" sx={{ fontSize: "0.85rem" }}>
                         {item.detailedDescription || item.description}
                       </Typography>
                     </Box>
+                  )}
                   </Box>
                   <CardContent
                     sx={{
