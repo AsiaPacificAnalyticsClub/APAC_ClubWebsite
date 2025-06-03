@@ -165,7 +165,7 @@ const events: Event[] = [
     title: "Smart and Adaptive AI Agents at the Edge",
     description: "Experience real-time active inference for IoT and drones.",
     detailedDescription: "",
-    image: "/evnt_InsightDS.png",
+    image: "/evnt_AIAgent.png",
     link: "",
     date: "2025-06-25, Wed",
     tags: "Upcoming",
