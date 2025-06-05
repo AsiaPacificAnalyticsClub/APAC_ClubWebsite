@@ -51,7 +51,7 @@ const games: Game[] = [
     detailedDescription:
       "A beginner-friendly competition where participants clean raw data, create visualizations, and uncover hidden insights. The 'key' lies in how well they prepare and understand the dataset.",
     image: "/dsw_FindKey.png",
-    link: "https://app.youths.asia/event/jaM0lY6e67ZFNuEaGnB5",
+    link: "https://app.youths.asia/event/ZAtKyz37GpymbiasKOSg",
     date: "2025-06-24, Tues",
     tags: "Upcoming",
   },
@@ -63,7 +63,7 @@ const games: Game[] = [
     detailedDescription:
       "An interactive session designed to teach data science concepts through games, encouraging creativity, collaboration, and use of data terms in a stress-free environment ideal for students and beginners.",
     image: "/dsw_DataverseExplorers.png",
-    link: "https://app.youths.asia/event/cCTIYzYW4nDxfAKYqhYQ",
+    link: "https://app.youths.asia/event/oFNlyJ45PnlOuLYPyV9Z",
     date: "2025-06-24, Tues",
     tags: "Upcoming",
   },
@@ -75,7 +75,7 @@ const games: Game[] = [
       "Inspired by LeetCode, this coding challenge tasks participants with solving programming problems of increasing difficulty. It rewards speed, accuracy, and strategic thinking in a race for the leaderboard.",
     image: "/dsw_DataHack.png",
     images: ["/dsw_DataHack.png", "/dsw_DataHack_Rules.png"],
-    link: "https://app.youths.asia/event/WSMkzjQc3s3ATNFo7mRx",
+    link: "https://app.youths.asia/event/oaP3nOkU9m1OYWfzlR1j",
     date: "2025-06-25, Wed",
     tags: "Upcoming",
   },
@@ -87,7 +87,7 @@ const games: Game[] = [
     detailedDescription:
       "Participants become detectives solving a fictional murder case using SQL queries. They analyze clues in a database, identify suspects, and race to uncover both the murderer and hidden mastermind.",
     image: "/dsw_SQL.png",
-    link: "https://app.youths.asia/event/qMdHuminMlSvcdSyGSQR",
+    link: "https://app.youths.asia/event/hwMVhiahOK8deI1108cM",
     date: "2025-06-25, Wed",
     tags: "Upcoming",
   },
@@ -98,7 +98,7 @@ const games: Game[] = [
     detailedDescription:
       "A 2-hour hands-on competition where participants will adjust model settings (hyperparameters) to improve prediction accuracy on a real dataset. A quick and exciting intro to model optimization and leaderboard competition.",
     image: "/dsw_MachineLearning.png",
-    link: "https://app.youths.asia/event/cxXFiNKUTtfxj0QMSzDX",
+    link: "https://app.youths.asia/event/8OK4rZ03r3KKVHWrPzpW",
     date: "2025-06-26, Thur",
     tags: "Upcoming",
   },
@@ -109,7 +109,7 @@ const games: Game[] = [
     detailedDescription:
       "A team-based challenge where participants use real Titanic data to build machine learning models that predict survival. A great way to practice data cleaning, feature selection, and evaluation on Google Colab.",
     image: "/dsw_Titanic.png",
-    link: "https://app.youths.asia/event/qs9xQHP7QtcRos51inz0",
+    link: "https://app.youths.asia/event/dPhwLL2PJOeoO9cvfguc",
     date: "2025-06-26, Thur",
     tags: "Upcoming",
   },
