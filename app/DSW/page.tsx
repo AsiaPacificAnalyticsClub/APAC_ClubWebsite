@@ -12,7 +12,6 @@ import {
   Button,
   Chip,
 } from "@mui/material";
-import Link from "next/link";
 import { CalendarToday as CalendarTodayIcon } from "@mui/icons-material";
 import { Modal } from "@mui/material";
 import Image from "next/image";
