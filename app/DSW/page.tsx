@@ -215,21 +215,9 @@ const DswEvent = () => {
           24 June - 26 June
         </p>
         <p className="text-center text-gray-600">
-          {content.length === 0 ? (
-            "No upcoming activities"
-          ) : (
-            <>
-              Join us in our upcoming activities.{" "}
-              {
-                <Link
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSeaN8Axmm0sSqeqcJ9fh-XLuLHQmpVq4Dr-j_hSOQd_LiF6Vg/viewform?usp=dialog"
-                  className="underline text-blue-500 font-bold"
-                >
-                  Pick your interests
-                </Link>
-              }
-            </>
-          )}
+          {content.length === 0
+            ? "No upcoming activities"
+            : "Join us in our upcoming activities."}
         </p>
       </div>
 
