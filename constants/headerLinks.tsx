@@ -12,7 +12,7 @@ export const headerLinks = [
     link: "/merch",
   },
   {
-    headerName: "Resources",
+    headerName: "Careers",
     link: "/resources",
   },
   {
