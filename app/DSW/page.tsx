@@ -13,6 +13,7 @@ import {
   Chip,
 } from "@mui/material";
 import { CalendarToday as CalendarTodayIcon } from "@mui/icons-material";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Modal } from "@mui/material";
 import Image from "next/image";
 
@@ -25,6 +26,7 @@ type Game = {
   images?: string[]; // only for datahack cuz it has 2 poster wth
   link: string;
   date: string;
+  time: string;
   tags: string;
 };
 
@@ -37,6 +39,7 @@ type Event = {
   images?: string[];
   link: string;
   date: string;
+  time: string;
   tags: string;
 };
 // Add your games and events here
@@ -52,6 +55,7 @@ const games: Game[] = [
     image: "/dsw_FindKey.png",
     link: "https://app.youths.asia/event/ZAtKyz37GpymbiasKOSg",
     date: "2025-06-24, Tues",
+    time: "9:30 AM - 11:30 AM",
     tags: "Upcoming",
   },
   {
@@ -64,6 +68,7 @@ const games: Game[] = [
     image: "/dsw_DataverseExplorers.png",
     link: "https://app.youths.asia/event/oFNlyJ45PnlOuLYPyV9Z",
     date: "2025-06-24, Tues",
+    time: "1:00 PM - 3:00 PM",
     tags: "Upcoming",
   },
   {
@@ -76,6 +81,7 @@ const games: Game[] = [
     images: ["/dsw_DataHack.png", "/dsw_DataHack_Rules.png"],
     link: "https://app.youths.asia/event/oaP3nOkU9m1OYWfzlR1j",
     date: "2025-06-25, Wed",
+    time: "9:30 AM - 11:30 AM",
     tags: "Upcoming",
   },
   {
@@ -88,6 +94,7 @@ const games: Game[] = [
     image: "/dsw_SQL.png",
     link: "https://app.youths.asia/event/hwMVhiahOK8deI1108cM",
     date: "2025-06-25, Wed",
+    time: "1:00 PM - 3:00 PM",
     tags: "Upcoming",
   },
   {
@@ -99,6 +106,7 @@ const games: Game[] = [
     image: "/dsw_MachineLearning.png",
     link: "https://app.youths.asia/event/8OK4rZ03r3KKVHWrPzpW",
     date: "2025-06-26, Thur",
+    time: "9:30 AM - 11:30 AM",
     tags: "Upcoming",
   },
   {
@@ -110,6 +118,7 @@ const games: Game[] = [
     image: "/dsw_Titanic.png",
     link: "https://app.youths.asia/event/dPhwLL2PJOeoO9cvfguc",
     date: "2025-06-26, Thur",
+    time: "3:00 PM - 5:00 PM",
     tags: "Upcoming",
   },
 ];
@@ -124,6 +133,7 @@ const events: Event[] = [
     image: "/evnt_InsightDS.png",
     link: "https://app.youths.asia/event/dMoqMkpCgeyMDsumMIC4",
     date: "2025-06-24, Tues",
+    time: "1:00 PM - 3:00 PM",
     tags: "Upcoming",
   },
   {
@@ -134,6 +144,7 @@ const events: Event[] = [
     image: "/evnt_GIS.png",
     link: "https://app.youths.asia/event/Gslgen7n95IQ9PAdC6Uh",
     date: "2025-06-24, Tues",
+    time: "3:00 PM - 5:00 PM",
     tags: "Upcoming",
   },
   {
@@ -145,6 +156,7 @@ const events: Event[] = [
     image: "/evnt_Robotic.png",
     link: "https://app.youths.asia/event/5KOIu8drgMREFkRvHjAi",
     date: "2025-06-24, Tues",
+    time: "9:30 AM - 11:30 AM",
     tags: "Upcoming",
   },
   {
@@ -156,6 +168,7 @@ const events: Event[] = [
     image: "/evnt_AWS.png",
     link: "https://app.youths.asia/event/6dA77OsXE4RN8Js3YZ7E",
     date: "2025-06-25, Wed",
+    time: "1:00 PM - 3:00 PM",
     tags: "Upcoming",
   },
   {
@@ -166,6 +179,7 @@ const events: Event[] = [
     image: "/evnt_AIAgent.png",
     link: "https://app.youths.asia/event/sTAe7AyazLenskHE29je",
     date: "2025-06-25, Wed",
+    time: "3:00 PM - 5:00 PM",
     tags: "Upcoming",
   },
   {
@@ -177,6 +191,7 @@ const events: Event[] = [
     image: "/evnt_PracticalAI.png",
     link: "https://app.youths.asia/event/sv4soywVZupG9Rz0va4P",
     date: "2025-06-26, Thur",
+    time: "9:30 AM - 11:30 AM",
     tags: "Upcoming",
   },
   {
@@ -187,6 +202,7 @@ const events: Event[] = [
     image: "/evnt_DellTech.png",
     link: "https://app.youths.asia/event/NbEGdSz7MlnzBWqoavsx",
     date: "2025-06-26, Thur",
+    time: "1:00 PM - 3:00 PM",
     tags: "Upcoming",
   },
 ];
@@ -418,6 +434,24 @@ const DswEvent = () => {
                         }}
                       />
                       {item.date}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      fontSize="0.9rem"
+                      sx={{
+                        display: "flex",
+                      }}
+                    >
+                      <AccessTimeIcon
+                        sx={{
+                          color: "text.secondary",
+                          mr: 0.5,
+                          fontSize: "1.2rem",
+                          mb: 1,
+                        }}
+                      />
+                      {item.time}
                     </Typography>
                     <Typography
                       variant="body2"

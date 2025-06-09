@@ -13,15 +13,15 @@ const Resources = () => {
   // Career opportunities data
   // add the career opportunities you want to display here
   const careers: Career[] = [
-    // {
-    //   position: "Intern",
-    //   department: "Data Office",
-    //   company: "Allianz",
-    //   contact: "mailto:koh.kayxin@allianz.com.my",
-    //   details: "Preferable start date: Jan 2025",
-    //   moreDetails:
-    //     "Work on real-world data analysis and support the Data Office team.",
-    // },
+    {
+      position: "Intern",
+      department: "Data Office",
+      company: "Allianz",
+      contact: "mailto:koh.kayxin@allianz.com.my",
+      details: "Accpeting applications",
+      moreDetails:
+        "Work on real-world data analysis and support the Data Office team.",
+    },
     // {
     //   position: "Internship / Part-time Positions",
     //   department: "Research and Development",
