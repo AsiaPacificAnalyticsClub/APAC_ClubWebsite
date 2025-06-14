@@ -13,33 +13,34 @@ import {
   Chip,
 } from "@mui/material";
 import { CalendarToday as CalendarTodayIcon } from "@mui/icons-material";
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Modal } from "@mui/material";
 import Image from "next/image";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 type Game = {
   id: number;
   title: string;
-  description: string;
   detailedDescription?: string;
   image: null | string;
   images?: string[]; // only for datahack cuz it has 2 poster wth
   link: string;
   date: string;
   time: string;
+  venue: string; // Added venue for games
   tags: string;
 };
 
 type Event = {
   id: number;
   title: string;
-  description: string;
   detailedDescription?: string; // Optional detailed description
   image: null | string;
   images?: string[];
   link: string;
   date: string;
   time: string;
+  venue: string; // Added venue for events
   tags: string;
 };
 // Add your games and events here
@@ -48,77 +49,74 @@ const games: Game[] = [
   {
     id: 1,
     title: "Find the Key",
-    description:
-      "Clean, fix and visualize messy data to choose the right key and win!",
     detailedDescription:
-      "A beginner-friendly competition where participants clean raw data, create visualizations, and uncover hidden insights. The 'key' lies in how well they prepare and understand the dataset.",
+      "We set up the Find The Key Competition just for you! You don’t need to know anything, just be interested and we’ll help you unleash your data and turn it into appealing content. The twist? How you manage the data equally shapes the outcome of your storytelling. Only 40 players are allowed in each slot and you can win some fun rewards too 🤫. Learn about trading and you may end up winning something exciting!",
     image: "/dsw_FindKey.png",
     link: "https://app.youths.asia/event/ZAtKyz37GpymbiasKOSg",
     date: "2025-06-24, Tues",
     time: "9:30 AM - 11:30 AM",
+    venue: "APU Campus Block D-06-03",
     tags: "Upcoming",
   },
   {
     id: 2,
     title: "Dataverse Explorers",
-    description:
-      "A fun, gamified session combining quizzes, drawing, and strategy challenges.",
     detailedDescription:
-      "An interactive session designed to teach data science concepts through games, encouraging creativity, collaboration, and use of data terms in a stress-free environment ideal for students and beginners.",
+      "On our journey, we'll be diving into the fundamentals of data science in a low-pressure, hands-on setting where learning is powered by fun, teamwork, and creativity. Discover the new side of Data Analytics where it involves beyond than just coding.",
     image: "/dsw_DataverseExplorers.png",
     link: "https://app.youths.asia/event/oFNlyJ45PnlOuLYPyV9Z",
     date: "2025-06-24, Tues",
     time: "1:00 PM - 3:00 PM",
+    venue: "APU Campus Block D-06-03",
     tags: "Upcoming",
   },
   {
     id: 3,
     title: "DataHack: Code & Solve",
-    description: "Solve data challenges to reach the top!",
     detailedDescription:
-      "Inspired by LeetCode, this coding challenge tasks participants with solving programming problems of increasing difficulty. It rewards speed, accuracy, and strategic thinking in a race for the leaderboard.",
+      "In our event, you will need to take on a series of brainstorming programming and data challenges that grows harder as you rise through the ranks. Along the way, you will sharpen your coding skills, learn how to solve problems efficiently, and level-up your data science mindset - all while racing up to the top !",
     image: "/dsw_DataHack.png",
     images: ["/dsw_DataHack.png", "/dsw_DataHack_Rules.png"],
     link: "https://app.youths.asia/event/oaP3nOkU9m1OYWfzlR1j",
     date: "2025-06-25, Wed",
     time: "9:30 AM - 11:30 AM",
+    venue: "APU Campus Block D-06-03",
     tags: "Upcoming",
   },
   {
     id: 4,
     title: "SQL Murder Mystery Showdown",
-    description:
-      "Use SQL to follow clues and solve a murder mystery. Be the fastest detective with the right answers!",
     detailedDescription:
-      "Participants become detectives solving a fictional murder case using SQL queries. They analyze clues in a database, identify suspects, and race to uncover both the murderer and hidden mastermind.",
+      "Are you an analytical detective who can solve a mysterious murder case with SQL? In this showdown, young detectives compete with each other to find the sussy imposter by implementing SQL knowledge and problem solving skills.",
     image: "/dsw_SQL.png",
     link: "https://app.youths.asia/event/hwMVhiahOK8deI1108cM",
     date: "2025-06-25, Wed",
     time: "1:00 PM - 3:00 PM",
+    venue: "APU Campus Block D-06-03",
     tags: "Upcoming",
   },
   {
     id: 5,
     title: "Machine Learning Tuning Challenge",
-    description: "Tune a machine learning model to get the best results!",
     detailedDescription:
-      "A 2-hour hands-on competition where participants will adjust model settings (hyperparameters) to improve prediction accuracy on a real dataset. A quick and exciting intro to model optimization and leaderboard competition.",
+      "Join our 2-hour Machine Learning Showdown and put your skills to the test by fine-tuning an MLPClassifier on the Covertype dataset! Compete live with 60 participants and climb the leaderboard in real-time 🔥",
     image: "/dsw_MachineLearning.png",
     link: "https://app.youths.asia/event/8OK4rZ03r3KKVHWrPzpW",
     date: "2025-06-26, Thur",
     time: "9:30 AM - 11:30 AM",
+    venue: "APU Campus Block D-06-03",
     tags: "Upcoming",
   },
   {
     id: 6,
     title: "Titanic Survivor",
-    description: "Predict Titanic survivors using ML and real data.",
     detailedDescription:
-      "A team-based challenge where participants use real Titanic data to build machine learning models that predict survival. A great way to practice data cleaning, feature selection, and evaluation on Google Colab.",
+      "Whether you are a beginner or have some experience, this is your chance to see a real-world data science workflow! Don't miss it~😉",
     image: "/dsw_Titanic.png",
     link: "https://app.youths.asia/event/dPhwLL2PJOeoO9cvfguc",
     date: "2025-06-26, Thur",
     time: "3:00 PM - 5:00 PM",
+    venue: "APU Campus Block D-06-03",
     tags: "Upcoming",
   },
 ];
@@ -126,83 +124,115 @@ const games: Game[] = [
 const events: Event[] = [
   {
     id: 1,
-    title: "Insight of Data Science",
-    description:
-      "Learn more about the current hiring trends in data science industry.",
-    detailedDescription: "",
+    title:
+      "Insight of Data Science: Current Hiring Trends in the Data Science Industry",
+    detailedDescription:
+      "🧠💼Curious on how people actually get hired in Data Science industry? Wondering what sort of skills the company really want? Or how to stand out among others? 👀📊 This session is perfect for you! Come and join us for “Insights of Data Science: Current Hiring Trends in the Data Science Industry” featuring from a Head of Data Analytics and AI at DataMicron Systems Sdn Bhd!🚀📈",
     image: "/evnt_InsightDS.png",
     link: "https://app.youths.asia/event/dMoqMkpCgeyMDsumMIC4",
     date: "2025-06-24, Tues",
     time: "1:00 PM - 3:00 PM",
+    venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
   },
   {
     id: 2,
     title: "GIS To Monitor Smart Cities",
-    description: "Hands-on GIS solutions.",
-    detailedDescription: "",
+    detailedDescription:
+      "Wondered how cities become “smart”? It’s about using map and location data to make decisions! Join our workshop to learn how mapping technology, helps cities monitor everything from traffic and pollution to public services. In this workshop, hosted by DLS Solution, you'll learn how advanced mapping tools can help urban managers get real-time spatial insights to make cities smarter, cleaner, safer, and more efficient. You don't need a tech background to join!",
     image: "/evnt_GIS.png",
     link: "https://app.youths.asia/event/Gslgen7n95IQ9PAdC6Uh",
     date: "2025-06-24, Tues",
     time: "3:00 PM - 5:00 PM",
+    venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
   },
   {
     id: 3,
-    title: "Intelligent Robotic Systems",
-    description:
-      "Explore autonomous decision-making and optimization in healthcare and agriculture.",
-    detailedDescription: "",
-    image: "/evnt_Robotic.png",
+    title:
+      "Autonomous Decision-Making and Optimization in Healthcare and Agriculture",
+    detailedDescription:
+      "🚀Ready to dive into the world of AI and Data Analytics?It’s not just about tech, but also saving lives and growing food in a smarter way? Yes, you heard that right! We are talking about Healthcare🏥 and Agriculture🌾 in the world of Artificial Intelligence and Data Analytics! Join us at APCORE - Center of Robotics for a mind-blowing session on how intelligent robotic systems can optimise in these two fields. 🤖✨",
+    image: "/evnt_autonomous.png",
     link: "https://app.youths.asia/event/5KOIu8drgMREFkRvHjAi",
     date: "2025-06-24, Tues",
     time: "9:30 AM - 11:30 AM",
+    venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
   },
   {
     id: 4,
-    title: "AWS Workshop",
-    description:
-      "Build data pipeline to support analyzing clickstream data with AWS.",
-    detailedDescription: "",
-    image: "/evnt_AWS.png",
-    link: "https://app.youths.asia/event/6dA77OsXE4RN8Js3YZ7E",
-    date: "2025-06-25, Wed",
-    time: "1:00 PM - 3:00 PM",
-    tags: "Upcoming",
-  },
-  {
-    id: 5,
     title: "Smart and Adaptive AI Agents at the Edge",
-    description: "Experience real-time active inference for IoT and drones.",
-    detailedDescription: "",
+    detailedDescription:
+      "Join us in our exciting session with Ir. Naren from CREDIT Center of IoT to discover how real-time active inference is transforming IoT🕹️ and drones🚁 into intelligent and adaptive systems that are next-level cool, no cap!!👀🚀",
     image: "/evnt_AIAgent.png",
     link: "https://app.youths.asia/event/sTAe7AyazLenskHE29je",
     date: "2025-06-25, Wed",
     time: "3:00 PM - 5:00 PM",
+    venue: "APU Campus Block A, Auditorium 3",
+    tags: "Upcoming",
+  },
+  {
+    id: 5,
+    title: "Practical AI workshop - UM Startup Community",
+    detailedDescription:
+      "Wanna build your own smart AI system from scratch?👀🧠 Step into an exciting session where you’ll learn how to create intelligent workflows from web scraping all the way to multi-agent systems that think, decide, and act like real teammates!🤖⚙️Hosted by the UM Startup Community, this session is perfect for AI newbies and automation enthusiasts alike. Whether you’re curious or committed, we got you covered with practical skills and powerful tools that’ll level up your game💻💥.",
+    image: "/evnt_PracticalAI.png",
+    link: "https://app.youths.asia/event/sv4soywVZupG9Rz0va4P",
+    date: "2025-06-20, Fri",
+    time: "9:30 AM - 11:30 AM",
+    venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
   },
   {
     id: 6,
-    title: "Practical AI Workshop",
-    description:
-      "Build intelligent workflows from web scraping to multi-agent systems - by UM startup community.",
-    detailedDescription: "",
-    image: "/evnt_PracticalAI.png",
-    link: "https://app.youths.asia/event/sv4soywVZupG9Rz0va4P",
-    date: "2025-06-26, Thur",
+    title:
+      "AWS Workshop: Building data pipeline to support analyzing clickstream data with AWS",
+    detailedDescription:
+      "Ready to level up your skills? Pull up to our AWS Workshop and learn how to build a data pipeline for analyzing clickstream data💥. You’ll get hands-on experience with AWS tools to click into insights that actually slap📊💡.",
+    image: "/evnt_AWS.png",
+    link: "https://app.youths.asia/event/6dA77OsXE4RN8Js3YZ7E",
+    date: "2025-06-20, Fri",
     time: "9:30 AM - 11:30 AM",
+    venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
   },
   {
     id: 7,
-    title: "Dell Tech Talk",
-    description: "Explore large language models and machine learning.",
-    detailedDescription: "",
+    title:
+      "DELL Tech Talk Series : Large Language Models and Machine Learning by DELL",
+    detailedDescription:
+      "AI is not future anymore, it’s NOW‼️🤯 Don’t miss it and catch the vibes with DELL Tech Talk Series on Large Language Models and Machine Learning!🕹️🤖",
     image: "/evnt_DellTech.png",
     link: "https://app.youths.asia/event/NbEGdSz7MlnzBWqoavsx",
     date: "2025-06-26, Thur",
     time: "1:00 PM - 3:00 PM",
+    venue: "APU Campus, D-06-03",
+    tags: "Upcoming",
+  },
+  {
+    id: 8,
+    title: "Using Power BI for Data Analysis",
+    detailedDescription:
+      "📊✨Wanna level up your data game and actually understand what is going on in those dashboard? Power BI here to save your analytics life with Dr. Mohammed Al-Obaydee is gonna show you how it is done! 🧠💻 This is where your glow-up in data analytics begins!",
+    image: "/evnt_PowerBI.png",
+    link: "https://app.youths.asia/event/dK5E8tcz9RmWC27cG4XD",
+    date: "2025-06-25, Wed",
+    time: "9:00 am - 11:30 am",
+    venue: "APU Campus Block A, Auditorium 3",
+    tags: "Upcoming",
+  },
+  {
+    id: 9,
+    title:
+      "Beyond the Hype: Unpacking the Planning and Reasoning Abilities of LLMs and LRMs",
+    detailedDescription:
+      "LLMs can do many things such as write poems, essays even code, but do they actually think or plan? Or just remixing the patterns? 🤖💭Come join us to go beyond the hype to unpack whether LLMs and LRMs are true reasoners or just really good guessers.",
+    image: "/evnt_BeyondHype.png",
+    link: "https://app.youths.asia/event/fCbYMxMayM044cO42Ofq",
+    date: "2025-06-24, Tues",
+    time: "1:00 PM - 3:00 PM",
+    venue: "Microsoft Teams",
     tags: "Upcoming",
   },
 ];
@@ -364,37 +394,31 @@ const DswEvent = () => {
                         );
                       }}
                     />
-                    {/* Hover Overlay for games only */}
-                    {value === 0 && (
-                      <Box
-                        className="hover-overlay"
-                        sx={{
-                          position: "absolute",
-                          top: 0,
-                          left: 0,
-                          width: "100%",
-                          height: "100%",
-                          backgroundColor: "rgba(0, 0, 0, 0.6)",
-                          backdropFilter: "blur(4px)",
-                          color: "#fff",
-                          opacity: 0,
-                          transition: "opacity 0.3s ease",
-                          padding: 1,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          textAlign: "center",
-                          pointerEvents: "none",
-                        }}
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{ fontSize: "0.85rem" }}
-                        >
-                          {item.detailedDescription || item.description}
-                        </Typography>
-                      </Box>
-                    )}
+                    <Box
+                      className="hover-overlay"
+                      sx={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: "rgba(0, 0, 0, 0.6)",
+                        backdropFilter: "blur(4px)",
+                        color: "#fff",
+                        opacity: 0,
+                        transition: "opacity 0.3s ease",
+                        padding: 1,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        textAlign: "center",
+                        pointerEvents: "none",
+                      }}
+                    >
+                      <Typography variant="body2" sx={{ fontSize: "0.85rem" }}>
+                        {item.detailedDescription}
+                      </Typography>
+                    </Box>
                   </Box>
                   <CardContent
                     sx={{
@@ -453,12 +477,23 @@ const DswEvent = () => {
                       />
                       {item.time}
                     </Typography>
-                    <Typography
+                    <Typography //added venue
                       variant="body2"
                       color="text.secondary"
                       fontSize="0.9rem"
+                      sx={{
+                        display: "flex",
+                      }}
                     >
-                      {item.description}
+                      <LocationOnIcon
+                        sx={{
+                          color: "text.secondary",
+                          mr: 0.5,
+                          fontSize: "1.2rem",
+                          mb: 1,
+                        }}
+                      />
+                      {item.venue}
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
                     <Button
