@@ -13,15 +13,14 @@ import {
   Chip,
 } from "@mui/material";
 import { CalendarToday as CalendarTodayIcon } from "@mui/icons-material";
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Modal } from "@mui/material";
 import Image from "next/image";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 type Game = {
   id: number;
   title: string;
-  description: string;
   detailedDescription?: string;
   image: null | string;
   images?: string[]; // only for datahack cuz it has 2 poster wth
@@ -35,7 +34,6 @@ type Game = {
 type Event = {
   id: number;
   title: string;
-  description: string;
   detailedDescription?: string; // Optional detailed description
   image: null | string;
   images?: string[];
@@ -51,8 +49,6 @@ const games: Game[] = [
   {
     id: 1,
     title: "Find the Key",
-    description:
-      "Have you always wanted to dive into data analytics but never done it? Say no more! 🤩",
     detailedDescription:
       "We set up the Find The Key Competition just for you! You don’t need to know anything, just be interested and we’ll help you unleash your data and turn it into appealing content. The twist? How you manage the data equally shapes the outcome of your storytelling. Only 40 players are allowed in each slot and you can win some fun rewards too 🤫. Learn about trading and you may end up winning something exciting!",
     image: "/dsw_FindKey.png",
@@ -65,8 +61,6 @@ const games: Game[] = [
   {
     id: 2,
     title: "Dataverse Explorers",
-    description:
-      "Still trying to get into Data Analytics in a more exciting, engaging way? Buckle up your curiosity and skills as we're going on a Data Adventure!",
     detailedDescription:
       "On our journey, we'll be diving into the fundamentals of data science in a low-pressure, hands-on setting where learning is powered by fun, teamwork, and creativity. Discover the new side of Data Analytics where it involves beyond than just coding.",
     image: "/dsw_DataverseExplorers.png",
@@ -79,8 +73,6 @@ const games: Game[] = [
   {
     id: 3,
     title: "DataHack: Code & Solve",
-    description: 
-      "Are you ready to solve tough problems and climb the leaderboard while coding meets competition? 🤔",
     detailedDescription:
       "In our event, you will need to take on a series of brainstorming programming and data challenges that grows harder as you rise through the ranks. Along the way, you will sharpen your coding skills, learn how to solve problems efficiently, and level-up your data science mindset - all while racing up to the top !",
     image: "/dsw_DataHack.png",
@@ -94,9 +86,7 @@ const games: Game[] = [
   {
     id: 4,
     title: "SQL Murder Mystery Showdown",
-    description: 
-      "Use SQL to follow clues and solve a murder mystery. Be the fastest detective with the right answers!",
-    detailedDescription: 
+    detailedDescription:
       "Are you an analytical detective who can solve a mysterious murder case with SQL? In this showdown, young detectives compete with each other to find the sussy imposter by implementing SQL knowledge and problem solving skills.",
     image: "/dsw_SQL.png",
     link: "https://app.youths.asia/event/hwMVhiahOK8deI1108cM",
@@ -108,8 +98,6 @@ const games: Game[] = [
   {
     id: 5,
     title: "Machine Learning Tuning Challenge",
-    description: 
-      "Think you can tune your way to the top? 👨‍💻",
     detailedDescription:
       "Join our 2-hour Machine Learning Showdown and put your skills to the test by fine-tuning an MLPClassifier on the Covertype dataset! Compete live with 60 participants and climb the leaderboard in real-time 🔥",
     image: "/dsw_MachineLearning.png",
@@ -122,8 +110,6 @@ const games: Game[] = [
   {
     id: 6,
     title: "Titanic Survivor",
-    description:
-      "Don't worry about where to start – we have got you covered with the dataset from Kaggle 🙌.",
     detailedDescription:
       "Whether you are a beginner or have some experience, this is your chance to see a real-world data science workflow! Don't miss it~😉",
     image: "/dsw_Titanic.png",
@@ -138,10 +124,10 @@ const games: Game[] = [
 const events: Event[] = [
   {
     id: 1,
-    title: "Insight of Data Science: Current Hiring Trends in the Data Science Industry",
-    description:
+    title:
+      "Insight of Data Science: Current Hiring Trends in the Data Science Industry",
+    detailedDescription:
       "🧠💼Curious on how people actually get hired in Data Science industry? Wondering what sort of skills the company really want? Or how to stand out among others? 👀📊 This session is perfect for you! Come and join us for “Insights of Data Science: Current Hiring Trends in the Data Science Industry” featuring from a Head of Data Analytics and AI at DataMicron Systems Sdn Bhd!🚀📈",
-    detailedDescription: "",
     image: "/evnt_InsightDS.png",
     link: "https://app.youths.asia/event/dMoqMkpCgeyMDsumMIC4",
     date: "2025-06-24, Tues",
@@ -152,9 +138,8 @@ const events: Event[] = [
   {
     id: 2,
     title: "GIS To Monitor Smart Cities",
-    description:
-      "Wondered how cities become “smart”? It’s about using map and location data to make decisions! Join our workshop to learn how a type of mapping technology called Esri GIS (Geographic Information Systems), helps cities monitor everything from traffic and pollution to public services. In this workshop, hosted by DLS Solution, you'll learn how advanced mapping tools can help urban managers get real-time spatial insights to make cities smarter, cleaner, safer, and more efficient. You don't need a tech background to join!",
-    detailedDescription: "",
+    detailedDescription:
+      "Wondered how cities become “smart”? It’s about using map and location data to make decisions! Join our workshop to learn how mapping technology, helps cities monitor everything from traffic and pollution to public services. In this workshop, hosted by DLS Solution, you'll learn how advanced mapping tools can help urban managers get real-time spatial insights to make cities smarter, cleaner, safer, and more efficient. You don't need a tech background to join!",
     image: "/evnt_GIS.png",
     link: "https://app.youths.asia/event/Gslgen7n95IQ9PAdC6Uh",
     date: "2025-06-24, Tues",
@@ -164,10 +149,10 @@ const events: Event[] = [
   },
   {
     id: 3,
-    title: "Autonomous Decision-Making and Optimization in Healthcare and Agriculture",
-    description:
+    title:
+      "Autonomous Decision-Making and Optimization in Healthcare and Agriculture",
+    detailedDescription:
       "🚀Ready to dive into the world of AI and Data Analytics?It’s not just about tech, but also saving lives and growing food in a smarter way? Yes, you heard that right! We are talking about Healthcare🏥 and Agriculture🌾 in the world of Artificial Intelligence and Data Analytics! Join us at APCORE - Center of Robotics for a mind-blowing session on how intelligent robotic systems can optimise in these two fields. 🤖✨",
-    detailedDescription: "",
     image: "/evnt_autonomous.png",
     link: "https://app.youths.asia/event/5KOIu8drgMREFkRvHjAi",
     date: "2025-06-24, Tues",
@@ -178,9 +163,8 @@ const events: Event[] = [
   {
     id: 4,
     title: "Smart and Adaptive AI Agents at the Edge",
-    description:
+    detailedDescription:
       "Join us in our exciting session with Ir. Naren from CREDIT Center of IoT to discover how real-time active inference is transforming IoT🕹️ and drones🚁 into intelligent and adaptive systems that are next-level cool, no cap!!👀🚀",
-    detailedDescription: "",
     image: "/evnt_AIAgent.png",
     link: "https://app.youths.asia/event/sTAe7AyazLenskHE29je",
     date: "2025-06-25, Wed",
@@ -191,9 +175,8 @@ const events: Event[] = [
   {
     id: 5,
     title: "Practical AI workshop - UM Startup Community",
-    description:
+    detailedDescription:
       "Wanna build your own smart AI system from scratch?👀🧠 Step into an exciting session where you’ll learn how to create intelligent workflows from web scraping all the way to multi-agent systems that think, decide, and act like real teammates!🤖⚙️Hosted by the UM Startup Community, this session is perfect for AI newbies and automation enthusiasts alike. Whether you’re curious or committed, we got you covered with practical skills and powerful tools that’ll level up your game💻💥.",
-    detailedDescription: "",
     image: "/evnt_PracticalAI.png",
     link: "https://app.youths.asia/event/sv4soywVZupG9Rz0va4P",
     date: "2025-06-20, Fri",
@@ -203,10 +186,10 @@ const events: Event[] = [
   },
   {
     id: 6,
-    title: "AWS Workshop: Building data pipeline to support analyzing clickstream data with AWS",
-    description:
+    title:
+      "AWS Workshop: Building data pipeline to support analyzing clickstream data with AWS",
+    detailedDescription:
       "Ready to level up your skills? Pull up to our AWS Workshop and learn how to build a data pipeline for analyzing clickstream data💥. You’ll get hands-on experience with AWS tools to click into insights that actually slap📊💡.",
-    detailedDescription: "",
     image: "/evnt_AWS.png",
     link: "https://app.youths.asia/event/6dA77OsXE4RN8Js3YZ7E",
     date: "2025-06-20, Fri",
@@ -216,10 +199,10 @@ const events: Event[] = [
   },
   {
     id: 7,
-    title: "DELL Tech Talk Series : Large Language Models and Machine Learning by DELL",
-    description:
+    title:
+      "DELL Tech Talk Series : Large Language Models and Machine Learning by DELL",
+    detailedDescription:
       "AI is not future anymore, it’s NOW‼️🤯 Don’t miss it and catch the vibes with DELL Tech Talk Series on Large Language Models and Machine Learning!🕹️🤖",
-    detailedDescription: "",
     image: "/evnt_DellTech.png",
     link: "https://app.youths.asia/event/NbEGdSz7MlnzBWqoavsx",
     date: "2025-06-26, Thur",
@@ -230,29 +213,28 @@ const events: Event[] = [
   {
     id: 8,
     title: "Using Power BI for Data Analysis",
-    description:
+    detailedDescription:
       "📊✨Wanna level up your data game and actually understand what is going on in those dashboard? Power BI here to save your analytics life with Dr. Mohammed Al-Obaydee is gonna show you how it is done! 🧠💻 This is where your glow-up in data analytics begins!",
-    detailedDescription: "",
     image: "/evnt_PowerBI.png",
-    link: "",
+    link: "https://app.youths.asia/event/dK5E8tcz9RmWC27cG4XD",
     date: "2025-06-25, Wed",
     time: "9:00 am - 11:30 am",
     venue: "APU Campus Block A, Auditorium 3",
-    tags: "To Be Confirmed",
+    tags: "Upcoming",
   },
   {
     id: 9,
-    title: "Beyond the Hype: Unpacking the Planning and Reasoning Abilities of LLMs and LRMs",
-    description:
-      "LLMs can do many things such as write poems, essays even code, but do they actually think or plan? Or just remixing the patterns? 🤖💭Come join us to go beyond the hype to unpack whether LLMs and LRMs are true reasoners or just really good guessers. ",
-    detailedDescription: "",
+    title:
+      "Beyond the Hype: Unpacking the Planning and Reasoning Abilities of LLMs and LRMs",
+    detailedDescription:
+      "LLMs can do many things such as write poems, essays even code, but do they actually think or plan? Or just remixing the patterns? 🤖💭Come join us to go beyond the hype to unpack whether LLMs and LRMs are true reasoners or just really good guessers.",
     image: "/evnt_BeyondHype.png",
-    link: "",
-    date: "To Be Confirmed",
-    time: "To Be Confirmed",
-    venue: "To Be Confirmed",
-    tags: "To Be Confirmed",
-  }
+    link: "https://app.youths.asia/event/fCbYMxMayM044cO42Ofq",
+    date: "2025-06-24, Tues",
+    time: "1:00 PM - 3:00 PM",
+    venue: "Microsoft Teams",
+    tags: "Upcoming",
+  },
 ];
 
 const placeholderImage = "/APACPythonWorkshop.png"; // Path to your placeholder image
@@ -412,37 +394,31 @@ const DswEvent = () => {
                         );
                       }}
                     />
-                    {/* Hover Overlay for games only */}
-                    {value === 0 && (
-                      <Box
-                        className="hover-overlay"
-                        sx={{
-                          position: "absolute",
-                          top: 0,
-                          left: 0,
-                          width: "100%",
-                          height: "100%",
-                          backgroundColor: "rgba(0, 0, 0, 0.6)",
-                          backdropFilter: "blur(4px)",
-                          color: "#fff",
-                          opacity: 0,
-                          transition: "opacity 0.3s ease",
-                          padding: 1,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          textAlign: "center",
-                          pointerEvents: "none",
-                        }}
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{ fontSize: "0.85rem" }}
-                        >
-                          {item.detailedDescription || item.description}
-                        </Typography>
-                      </Box>
-                    )}
+                    <Box
+                      className="hover-overlay"
+                      sx={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: "rgba(0, 0, 0, 0.6)",
+                        backdropFilter: "blur(4px)",
+                        color: "#fff",
+                        opacity: 0,
+                        transition: "opacity 0.3s ease",
+                        padding: 1,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        textAlign: "center",
+                        pointerEvents: "none",
+                      }}
+                    >
+                      <Typography variant="body2" sx={{ fontSize: "0.85rem" }}>
+                        {item.detailedDescription}
+                      </Typography>
+                    </Box>
                   </Box>
                   <CardContent
                     sx={{
@@ -518,13 +494,6 @@ const DswEvent = () => {
                         }}
                       />
                       {item.venue}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      fontSize="0.9rem"
-                    >
-                      {item.description}
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
                     <Button
