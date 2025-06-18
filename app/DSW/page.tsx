@@ -97,6 +97,18 @@ const games: Game[] = [
   },
   {
     id: 5,
+    title: "Live Demo with Drone Health AI Demo and Meta Data",
+    detailedDescription:
+      "Get ready for a live demo like no other! Join us on 25 June 2025, from 3 PM to 5 PM at D-6-3 for an exclusive showcase featuring cutting-edge drone tech, Health AI, and exciting Meta AI Games.🚀 Don’t miss this incredible opportunity to experience the future—live and in action!.",
+    image: "/dsw_Drones.png",
+    link: "https://app.youths.asia/event/3GSlAi5dexBH5MCkAZlG",
+    date: "2025-06-25, Wed",
+    time: "3:00 PM - 5:00 PM",
+    venue: "APU Campus Block D-06-03",
+    tags: "Upcoming",
+  },
+  {
+    id: 6,
     title: "Machine Learning Tuning Challenge",
     detailedDescription:
       "Join our 2-hour Machine Learning Showdown and put your skills to the test by fine-tuning an MLPClassifier on the Covertype dataset! Compete live with 60 participants and climb the leaderboard in real-time 🔥",
@@ -108,7 +120,7 @@ const games: Game[] = [
     tags: "Upcoming",
   },
   {
-    id: 6,
+    id: 7,
     title: "Titanic Survivor",
     detailedDescription:
       "Whether you are a beginner or have some experience, this is your chance to see a real-world data science workflow! Don't miss it~😉",
