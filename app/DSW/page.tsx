@@ -200,18 +200,6 @@ const events: Event[] = [
   },
   {
     id: 7,
-    title: "Live Demo with Drone Health AI Demo and Meta Data Game",
-    detailedDescription:
-      "Get ready for a live demo like no other! Join us on 25 June 2025, from 3 PM to 5 PM at D-6-3 for an exclusive showcase featuring cutting-edge drone tech, Health AI, and exciting Meta AI Games.🚀 Don’t miss this incredible opportunity to experience the future—live and in action!.",
-    image: "/dsw_Drones.png",
-    link: "https://app.youths.asia/event/3GSlAi5dexBH5MCkAZlG",
-    date: "2025-06-25, Wed",
-    time: "3:00 PM - 5:00 PM",
-    venue: "APU Campus Block D-06-03",
-    tags: "Upcoming",
-  },
-  {
-    id: 8,
     title: "Smart and Adaptive AI Agents at the Edge",
     detailedDescription:
       "Join us in our exciting session with Ir. Naren from CREDIT Center of IoT to discover how real-time active inference is transforming IoT🕹️ and drones🚁 into intelligent and adaptive systems that are next-level cool, no cap!!👀🚀",
@@ -223,7 +211,7 @@ const events: Event[] = [
     tags: "Upcoming",
   },
   {
-    id: 9,
+    id: 8,
     title: "Practical AI workshop - UM Startup Community",
     detailedDescription:
       "Wanna build your own smart AI system from scratch?👀🧠 Step into an exciting session where you’ll learn how to create intelligent workflows from web scraping all the way to multi-agent systems that think, decide, and act like real teammates!🤖⚙️Hosted by the UM Startup Community, this session is perfect for AI newbies and automation enthusiasts alike. Whether you’re curious or committed, we got you covered with practical skills and powerful tools that’ll level up your game💻💥.",
@@ -235,7 +223,7 @@ const events: Event[] = [
     tags: "Upcoming",
   },
   {
-    id: 10,
+    id: 9,
     title:
       "DELL Tech Talk Series : Large Language Models and Machine Learning by DELL",
     detailedDescription:
@@ -246,7 +234,7 @@ const events: Event[] = [
     time: "1:00 PM - 3:00 PM",
     venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
-  }
+  },
 ];
 
 const placeholderImage = "/APACPythonWorkshop.png"; // Path to your placeholder image
