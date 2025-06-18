@@ -97,6 +97,18 @@ const games: Game[] = [
   },
   {
     id: 5,
+    title: "Live Demo with Drone Health AI Demo and Meta Data",
+    detailedDescription:
+      "Get ready for a live demo like no other! Join us on 25 June 2025, from 3 PM to 5 PM at D-6-3 for an exclusive showcase featuring cutting-edge drone tech, Health AI, and exciting Meta AI Games.🚀 Don’t miss this incredible opportunity to experience the future—live and in action!.",
+    image: "/dsw_Drones.png",
+    link: "https://app.youths.asia/event/3GSlAi5dexBH5MCkAZlG",
+    date: "2025-06-25, Wed",
+    time: "3:00 PM - 5:00 PM",
+    venue: "APU Campus Block D-06-03",
+    tags: "Upcoming",
+  },
+  {
+    id: 6,
     title: "Machine Learning Tuning Challenge",
     detailedDescription:
       "Join our 2-hour Machine Learning Showdown and put your skills to the test by fine-tuning an MLPClassifier on the Covertype dataset! Compete live with 60 participants and climb the leaderboard in real-time 🔥",
@@ -108,7 +120,7 @@ const games: Game[] = [
     tags: "Upcoming",
   },
   {
-    id: 6,
+    id: 7,
     title: "Titanic Survivor",
     detailedDescription:
       "Whether you are a beginner or have some experience, this is your chance to see a real-world data science workflow! Don't miss it~😉",
@@ -125,31 +137,6 @@ const events: Event[] = [
   {
     id: 1,
     title:
-      "Insight of Data Science: Current Hiring Trends in the Data Science Industry",
-    detailedDescription:
-      "🧠💼Curious on how people actually get hired in Data Science industry? Wondering what sort of skills the company really want? Or how to stand out among others? 👀📊 This session is perfect for you! Come and join us for “Insights of Data Science: Current Hiring Trends in the Data Science Industry” featuring from a Head of Data Analytics and AI at DataMicron Systems Sdn Bhd!🚀📈",
-    image: "/evnt_InsightDS.png",
-    link: "https://app.youths.asia/event/dMoqMkpCgeyMDsumMIC4",
-    date: "2025-06-24, Tues",
-    time: "1:00 PM - 3:00 PM",
-    venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
-  },
-  {
-    id: 2,
-    title: "GIS To Monitor Smart Cities",
-    detailedDescription:
-      "Wondered how cities become “smart”? It’s about using map and location data to make decisions! Join our workshop to learn how mapping technology, helps cities monitor everything from traffic and pollution to public services. In this workshop, hosted by DLS Solution, you'll learn how advanced mapping tools can help urban managers get real-time spatial insights to make cities smarter, cleaner, safer, and more efficient. You don't need a tech background to join!",
-    image: "/evnt_GIS.png",
-    link: "https://app.youths.asia/event/Gslgen7n95IQ9PAdC6Uh",
-    date: "2025-06-24, Tues",
-    time: "3:00 PM - 5:00 PM",
-    venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
-  },
-  {
-    id: 3,
-    title:
       "Autonomous Decision-Making and Optimization in Healthcare and Agriculture",
     detailedDescription:
       "🚀Ready to dive into the world of AI and Data Analytics?It’s not just about tech, but also saving lives and growing food in a smarter way? Yes, you heard that right! We are talking about Healthcare🏥 and Agriculture🌾 in the world of Artificial Intelligence and Data Analytics! Join us at APCORE - Center of Robotics for a mind-blowing session on how intelligent robotic systems can optimise in these two fields. 🤖✨",
@@ -161,69 +148,20 @@ const events: Event[] = [
     tags: "Upcoming",
   },
   {
-    id: 4,
-    title: "Smart and Adaptive AI Agents at the Edge",
-    detailedDescription:
-      "Join us in our exciting session with Ir. Naren from CREDIT Center of IoT to discover how real-time active inference is transforming IoT🕹️ and drones🚁 into intelligent and adaptive systems that are next-level cool, no cap!!👀🚀",
-    image: "/evnt_AIAgent.png",
-    link: "https://app.youths.asia/event/sTAe7AyazLenskHE29je",
-    date: "2025-06-25, Wed",
-    time: "3:00 PM - 5:00 PM",
-    venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
-  },
-  {
-    id: 5,
-    title: "Practical AI workshop - UM Startup Community",
-    detailedDescription:
-      "Wanna build your own smart AI system from scratch?👀🧠 Step into an exciting session where you’ll learn how to create intelligent workflows from web scraping all the way to multi-agent systems that think, decide, and act like real teammates!🤖⚙️Hosted by the UM Startup Community, this session is perfect for AI newbies and automation enthusiasts alike. Whether you’re curious or committed, we got you covered with practical skills and powerful tools that’ll level up your game💻💥.",
-    image: "/evnt_PracticalAI.png",
-    link: "https://app.youths.asia/event/sv4soywVZupG9Rz0va4P",
-    date: "2025-06-20, Fri",
-    time: "9:30 AM - 11:30 AM",
-    venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
-  },
-  {
-    id: 6,
+    id: 2,
     title:
-      "AWS Workshop: Building data pipeline to support analyzing clickstream data with AWS",
+      "Insight of Data Science: Current Hiring Trends in the Data Science Industry",
     detailedDescription:
-      "Ready to level up your skills? Pull up to our AWS Workshop and learn how to build a data pipeline for analyzing clickstream data💥. You’ll get hands-on experience with AWS tools to click into insights that actually slap📊💡.",
-    image: "/evnt_AWS.png",
-    link: "https://app.youths.asia/event/6dA77OsXE4RN8Js3YZ7E",
-    date: "2025-06-20, Fri",
-    time: "9:30 AM - 11:30 AM",
-    venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
-  },
-  {
-    id: 7,
-    title:
-      "DELL Tech Talk Series : Large Language Models and Machine Learning by DELL",
-    detailedDescription:
-      "AI is not future anymore, it’s NOW‼️🤯 Don’t miss it and catch the vibes with DELL Tech Talk Series on Large Language Models and Machine Learning!🕹️🤖",
-    image: "/evnt_DellTech.png",
-    link: "https://app.youths.asia/event/NbEGdSz7MlnzBWqoavsx",
-    date: "2025-06-26, Thur",
+      "🧠💼Curious on how people actually get hired in Data Science industry? Wondering what sort of skills the company really want? Or how to stand out among others? 👀📊 This session is perfect for you! Come and join us for “Insights of Data Science: Current Hiring Trends in the Data Science Industry” featuring from a Head of Data Analytics and AI at DataMicron Systems Sdn Bhd!🚀📈",
+    image: "/evnt_InsightDS.png",
+    link: "https://app.youths.asia/event/dMoqMkpCgeyMDsumMIC4",
+    date: "2025-06-24, Tues",
     time: "1:00 PM - 3:00 PM",
-    venue: "APU Campus, D-06-03",
-    tags: "Upcoming",
-  },
-  {
-    id: 8,
-    title: "Using Power BI for Data Analysis",
-    detailedDescription:
-      "📊✨Wanna level up your data game and actually understand what is going on in those dashboard? Power BI here to save your analytics life with Dr. Mohammed Al-Obaydee is gonna show you how it is done! 🧠💻 This is where your glow-up in data analytics begins!",
-    image: "/evnt_PowerBI.png",
-    link: "https://app.youths.asia/event/dK5E8tcz9RmWC27cG4XD",
-    date: "2025-06-25, Wed",
-    time: "9:00 am - 11:30 am",
     venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
   },
   {
-    id: 9,
+    id: 3,
     title:
       "Beyond the Hype: Unpacking the Planning and Reasoning Abilities of LLMs and LRMs",
     detailedDescription:
@@ -235,6 +173,80 @@ const events: Event[] = [
     venue: "Microsoft Teams",
     tags: "Upcoming",
   },
+  {
+    id: 4,
+    title: "GIS To Monitor Smart Cities",
+    detailedDescription:
+      "Wondered how cities become “smart”? It’s about using map and location data to make decisions! Join our workshop to learn how mapping technology, helps cities monitor everything from traffic and pollution to public services. In this workshop, hosted by DLS Solution, you'll learn how advanced mapping tools can help urban managers get real-time spatial insights to make cities smarter, cleaner, safer, and more efficient. You don't need a tech background to join!",
+    image: "/evnt_GIS.png",
+    link: "https://app.youths.asia/event/Gslgen7n95IQ9PAdC6Uh",
+    date: "2025-06-24, Tues",
+    time: "3:00 PM - 5:00 PM",
+    venue: "APU Campus Block A, Auditorium 3",
+    tags: "Upcoming",
+  },
+  {
+    id: 5,
+    title: "Using Power BI for Data Analysis",
+    detailedDescription:
+      "📊✨Wanna level up your data game and actually understand what is going on in those dashboard? Power BI here to save your analytics life with Dr. Mohammed Al-Obaydee is gonna show you how it is done! 🧠💻 This is where your glow-up in data analytics begins!",
+    image: "/evnt_PowerBI.png",
+    link: "https://app.youths.asia/event/dK5E8tcz9RmWC27cG4XD",
+    date: "2025-06-25, Wed",
+    time: "9:00 am - 11:30 am",
+    venue: "APU Campus Block A, Auditorium 3",
+    tags: "Upcoming",
+  },
+  {
+    id: 6,
+    title:
+      "AWS Workshop: Building data pipeline to support analyzing clickstream data with AWS",
+    detailedDescription:
+      "Ready to level up your skills? Pull up to our AWS Workshop and learn how to build a data pipeline for analyzing clickstream data💥. You’ll get hands-on experience with AWS tools to click into insights that actually slap📊💡.",
+    image: "/evnt_AWS.png",
+    link: "https://app.youths.asia/event/6dA77OsXE4RN8Js3YZ7E",
+    date: "2025-06-25, Wed",
+    time: "1:00 PM - 3:00 PM",
+    venue: "APU Campus Block A, Auditorium 3",
+    tags: "Upcoming",
+  },
+  {
+    id: 7,
+    title: "Smart and Adaptive AI Agents at the Edge",
+    detailedDescription:
+      "Join us in our exciting session with Ir. Naren from CREDIT Center of IoT to discover how real-time active inference is transforming IoT🕹️ and drones🚁 into intelligent and adaptive systems that are next-level cool, no cap!!👀🚀",
+    image: "/evnt_AIAgent.png",
+    link: "https://app.youths.asia/event/sTAe7AyazLenskHE29je",
+    date: "2025-06-25, Wed",
+    time: "3:00 PM - 5:00 PM",
+    venue: "APU Campus Block A, Auditorium 3",
+    tags: "Upcoming",
+  },
+  {
+    id: 8,
+    title: "Practical AI workshop - UM Startup Community",
+    detailedDescription:
+      "Wanna build your own smart AI system from scratch?👀🧠 Step into an exciting session where you’ll learn how to create intelligent workflows from web scraping all the way to multi-agent systems that think, decide, and act like real teammates!🤖⚙️Hosted by the UM Startup Community, this session is perfect for AI newbies and automation enthusiasts alike. Whether you’re curious or committed, we got you covered with practical skills and powerful tools that’ll level up your game💻💥.",
+    image: "/evnt_PracticalAI.png",
+    link: "https://app.youths.asia/event/sv4soywVZupG9Rz0va4P",
+    date: "2025-06-26, Thurs",
+    time: "9:30 AM - 11:30 AM",
+    venue: "APU Campus Block A, Auditorium 3",
+    tags: "Upcoming",
+  },
+  {
+    id: 9,
+    title:
+      "DELL Tech Talk Series : Large Language Models and Machine Learning by DELL",
+    detailedDescription:
+      "AI is not future anymore, it’s NOW‼️🤯 Don’t miss it and catch the vibes with DELL Tech Talk Series on Large Language Models and Machine Learning!🕹️🤖",
+    image: "/evnt_DellTech.png",
+    link: "https://app.youths.asia/event/NbEGdSz7MlnzBWqoavsx",
+    date: "2025-06-26, Thur",
+    time: "1:00 PM - 3:00 PM",
+    venue: "APU Campus Block A, Auditorium 3",
+    tags: "Upcoming",
+  }
 ];
 
 const placeholderImage = "/APACPythonWorkshop.png"; // Path to your placeholder image
@@ -264,6 +276,13 @@ const DswEvent = () => {
             ? "No upcoming activities"
             : "Join us in our upcoming activities."}
         </p>
+        {content.length !== 0 && (
+          <p className="text-center text-gray-600">
+            {value === 0
+              ? "Free E-cert for all games!"
+              : "Free E-cert for all events except 'Insights of Data Science'"}
+          </p>
+        )}
       </div>
 
       {/* enlarge poster when click */}
