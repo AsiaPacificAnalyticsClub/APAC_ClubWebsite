@@ -208,7 +208,7 @@ const events: Event[] = [
     date: "2025-06-25, Wed",
     time: "1:00 PM - 3:00 PM",
     venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
+    tags: "Closed",
   },
   {
     id: 7,
@@ -522,7 +522,7 @@ const DswEvent = () => {
                       href={item.link}
                       target="_blank"
                       className="w-full"
-                      disabled={!item.link || item.tags !== "Upcoming"}
+                      disabled={item.tags === "Closed" || !item.link || item.tags !== "Upcoming"}
                       sx={{
                         mt: 2,
                         borderRadius: 1,
@@ -532,7 +532,7 @@ const DswEvent = () => {
                         },
                       }}
                     >
-                      Learn More
+                      {item.tags === "Closed" ? "Full" : "Learn More"}
                     </Button>
                   </CardContent>
                 </Card>
