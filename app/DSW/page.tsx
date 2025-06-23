@@ -29,6 +29,7 @@ type Game = {
   time: string;
   venue: string; // Added venue for games
   tags: string;
+  regStatus: string;
 };
 
 type Event = {
@@ -42,6 +43,7 @@ type Event = {
   time: string;
   venue: string; // Added venue for events
   tags: string;
+  regStatus: string;
 };
 // Add your games and events here
 // Uncomment to enabled the games and events section
@@ -57,6 +59,7 @@ const games: Game[] = [
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block D-06-03",
     tags: "Upcoming",
+    regStatus: "Open",
   },
   {
     id: 2,
@@ -69,6 +72,7 @@ const games: Game[] = [
     time: "1:00 PM - 3:00 PM",
     venue: "APU Campus Block D-06-03",
     tags: "Upcoming",
+    regStatus: "Open",
   },
   {
     id: 3,
@@ -82,6 +86,7 @@ const games: Game[] = [
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block D-06-03",
     tags: "Upcoming",
+    regStatus: "Open",
   },
   {
     id: 4,
@@ -94,6 +99,7 @@ const games: Game[] = [
     time: "1:00 PM - 3:00 PM",
     venue: "APU Campus Block D-06-03",
     tags: "Upcoming",
+    regStatus: "Open",
   },
   {
     id: 5,
@@ -106,6 +112,7 @@ const games: Game[] = [
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block D-06-03",
     tags: "Upcoming",
+    regStatus: "Open",
   },
   {
     id: 6,
@@ -118,6 +125,7 @@ const games: Game[] = [
     time: "3:00 PM - 5:00 PM",
     venue: "APU Campus Block D-06-03",
     tags: "Upcoming",
+    regStatus: "Open",
   },
 ];
 
@@ -134,6 +142,7 @@ const events: Event[] = [
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
+    regStatus: "Open",
   },
   {
     id: 2,
@@ -147,6 +156,7 @@ const events: Event[] = [
     time: "1:00 PM - 3:00 PM",
     venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
+    regStatus: "Open",
   },
   {
     id: 3,
@@ -160,6 +170,7 @@ const events: Event[] = [
     time: "1:00 PM - 3:00 PM",
     venue: "Microsoft Teams",
     tags: "Upcoming",
+    regStatus: "Open",
   },
   {
     id: 4,
@@ -172,6 +183,7 @@ const events: Event[] = [
     time: "3:00 PM - 5:00 PM",
     venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
+    regStatus: "Open",
   },
   {
     id: 5,
@@ -184,6 +196,7 @@ const events: Event[] = [
     time: "9:00 am - 11:30 am",
     venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
+    regStatus: "Open",
   },
   {
     id: 6,
@@ -197,6 +210,7 @@ const events: Event[] = [
     time: "1:00 PM - 3:00 PM",
     venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
+    regStatus: "Full",
   },
   {
     id: 7,
@@ -209,6 +223,7 @@ const events: Event[] = [
     time: "3:00 PM - 5:00 PM",
     venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
+    regStatus: "Open",
   },
   {
     id: 8,
@@ -221,6 +236,7 @@ const events: Event[] = [
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
+    regStatus: "Open",
   },
   {
     id: 9,
@@ -234,6 +250,7 @@ const events: Event[] = [
     time: "1:00 PM - 3:00 PM",
     venue: "APU Campus Block A, Auditorium 3",
     tags: "Upcoming",
+    regStatus: "Open",
   },
 ];
 
@@ -510,7 +527,11 @@ const DswEvent = () => {
                       href={item.link}
                       target="_blank"
                       className="w-full"
-                      disabled={!item.link || item.tags !== "Upcoming"}
+                      disabled={
+                        !item.link ||
+                        item.tags !== "Upcoming" ||
+                        item.regStatus !== "Open"
+                      }
                       sx={{
                         mt: 2,
                         borderRadius: 1,
@@ -520,7 +541,11 @@ const DswEvent = () => {
                         },
                       }}
                     >
-                      Learn More
+                      {item.regStatus === "Open"
+                        ? "Learn More"
+                        : item.regStatus === "Full"
+                          ? "Registration Full"
+                          : "Closed"}
                     </Button>
                   </CardContent>
                 </Card>
