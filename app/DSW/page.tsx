@@ -170,7 +170,7 @@ const events: Event[] = [
     time: "1:00 PM - 3:00 PM",
     venue: "Microsoft Teams",
     tags: "Upcoming",
-    regStatus: "Full",
+    regStatus: "Open",
   },
   {
     id: 4,
