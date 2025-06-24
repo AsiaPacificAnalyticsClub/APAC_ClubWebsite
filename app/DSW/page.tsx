@@ -518,7 +518,7 @@ const DswEvent = () => {
                           mb: 1,
                         }}
                       />
-                      {item.id === 3 ? (
+                      {item.id === 3 && value === 1 ? (
                         <Link
                           href={
                             "https://teams.microsoft.com/l/meetup-join/19%3Ameeting_Y2E4MzU0MmUtNTA2Yy00MmU1LWJlZjYtNmUzODM1Mjk3ZjQw%40thread.v2/0?context=%7B%22Tid%22%3A%220fed03a3-402d-4633-a8cd-8b308822253e%22%2C%22Oid%22%3A%22ec6f4e5a-5af1-41dc-aec1-af41ee38aa6e%22%7D"
