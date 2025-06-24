@@ -58,8 +58,8 @@ const games: Game[] = [
     date: "2025-06-24, Tues",
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block D-06-03",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Ongoing",
+    regStatus: "Closed",
   },
   {
     id: 2,
@@ -141,8 +141,8 @@ const events: Event[] = [
     date: "2025-06-24, Tues",
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Ongoing",
+    regStatus: "Closed",
   },
   {
     id: 2,
