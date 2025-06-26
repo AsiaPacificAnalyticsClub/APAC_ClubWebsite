@@ -59,7 +59,7 @@ const games: Game[] = [
     date: "2025-06-24, Tues",
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block D-06-03",
-    tags: "Ongoing",
+    tags: "Past",
     regStatus: "Closed",
   },
   {
@@ -72,8 +72,8 @@ const games: Game[] = [
     date: "2025-06-24, Tues",
     time: "1:00 PM - 3:00 PM",
     venue: "APU Campus Block D-06-03",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Past",
+    regStatus: "Closed",
   },
   {
     id: 3,
@@ -86,8 +86,8 @@ const games: Game[] = [
     date: "2025-06-25, Wed",
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block D-06-03",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Past",
+    regStatus: "Closed",
   },
   {
     id: 4,
@@ -99,8 +99,8 @@ const games: Game[] = [
     date: "2025-06-25, Wed",
     time: "1:00 PM - 3:00 PM",
     venue: "APU Campus Block D-06-03",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Past",
+    regStatus: "Closed",
   },
   {
     id: 5,
@@ -142,7 +142,7 @@ const events: Event[] = [
     date: "2025-06-24, Tues",
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block A, Auditorium 3",
-    tags: "Ongoing",
+    tags: "Past",
     regStatus: "Closed",
   },
   {
@@ -156,8 +156,8 @@ const events: Event[] = [
     date: "2025-06-24, Tues",
     time: "1:00 PM - 3:00 PM",
     venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Past",
+    regStatus: "Closed",
   },
   {
     id: 3,
@@ -170,8 +170,8 @@ const events: Event[] = [
     date: "2025-06-24, Tues",
     time: "1:00 PM - 3:00 PM",
     venue: "Microsoft Teams",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Past",
+    regStatus: "Closed",
   },
   {
     id: 4,
@@ -183,8 +183,8 @@ const events: Event[] = [
     date: "2025-06-24, Tues",
     time: "3:00 PM - 5:00 PM",
     venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Past",
+    regStatus: "Closed",
   },
   {
     id: 5,
@@ -196,8 +196,8 @@ const events: Event[] = [
     date: "2025-06-25, Wed",
     time: "9:00 am - 11:30 am",
     venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Past",
+    regStatus: "Closed",
   },
   {
     id: 6,
@@ -210,8 +210,8 @@ const events: Event[] = [
     date: "2025-06-25, Wed",
     time: "1:00 PM - 3:00 PM",
     venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
-    regStatus: "Full",
+    tags: "Past",
+    regStatus: "Closed",
   },
   {
     id: 7,
@@ -223,8 +223,8 @@ const events: Event[] = [
     date: "2025-06-25, Wed",
     time: "3:00 PM - 5:00 PM",
     venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Past",
+    regStatus: "Closed",
   },
   {
     id: 8,
@@ -236,7 +236,7 @@ const events: Event[] = [
     date: "2025-06-26, Thurs",
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
+    tags: "Ongoing",
     regStatus: "Open",
   },
   {
@@ -518,19 +518,7 @@ const DswEvent = () => {
                           mb: 1,
                         }}
                       />
-                      {item.id === 3 && value === 1 ? (
-                        <Link
-                          href={
-                            "https://teams.microsoft.com/l/meetup-join/19%3Ameeting_Y2E4MzU0MmUtNTA2Yy00MmU1LWJlZjYtNmUzODM1Mjk3ZjQw%40thread.v2/0?context=%7B%22Tid%22%3A%220fed03a3-402d-4633-a8cd-8b308822253e%22%2C%22Oid%22%3A%22ec6f4e5a-5af1-41dc-aec1-af41ee38aa6e%22%7D"
-                          }
-                          target="_blank"
-                          className="underline color-blue-500"
-                        >
-                          {item.venue}
-                        </Link>
-                      ) : (
-                        item.venue
-                      )}
+                      {item.venue}
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
                     <Button
