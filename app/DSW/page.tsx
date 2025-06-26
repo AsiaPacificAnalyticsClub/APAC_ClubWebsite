@@ -17,7 +17,6 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Modal } from "@mui/material";
 import Image from "next/image";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Link from "next/link";
 
 type Game = {
   id: number;
