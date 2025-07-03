@@ -111,8 +111,8 @@ const games: Game[] = [
     date: "2025-06-26, Thur",
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block D-06-03",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Past",
+    regStatus: "Closed",
   },
   {
     id: 6,
@@ -124,8 +124,8 @@ const games: Game[] = [
     date: "2025-06-26, Thur",
     time: "3:00 PM - 5:00 PM",
     venue: "APU Campus Block D-06-03",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Past",
+    regStatus: "Closed",
   },
 ];
 
@@ -235,8 +235,8 @@ const events: Event[] = [
     date: "2025-06-26, Thurs",
     time: "9:30 AM - 11:30 AM",
     venue: "APU Campus Block A, Auditorium 3",
-    tags: "Ongoing",
-    regStatus: "Open",
+    tags: "Past",
+    regStatus: "Closed",
   },
   {
     id: 9,
@@ -249,8 +249,8 @@ const events: Event[] = [
     date: "2025-06-26, Thur",
     time: "1:00 PM - 3:00 PM",
     venue: "APU Campus Block A, Auditorium 3",
-    tags: "Upcoming",
-    regStatus: "Open",
+    tags: "Past",
+    regStatus: "Closed",
   },
 ];
 
@@ -276,18 +276,17 @@ const DswEvent = () => {
         <p className="text-center text-lg font-semibold text-indigo-700 mb-1">
           24 June - 26 June
         </p>
-        <p className="text-center text-gray-600">
-          {content.length === 0
-            ? "No upcoming activities"
-            : "Join us in our upcoming activities."}
-        </p>
-        {content.length !== 0 && (
-          <p className="text-center text-gray-600">
-            {value === 0
-              ? "Free E-cert for all games!"
-              : "Free E-cert for all events except 'Insights of Data Science'"}
+         <p className="text-center text-gray-600 mb-4">
+            📸 View all events & games photos here:{" "}
+            <a 
+              href=" https://cloudmails-my.sharepoint.com/:f:/g/personal/beyondmedia_apu_edu_my/ErpizYVAAnxNvVbp1rfQUM0BtCsYG0Fx5hY-zlbruw29Lg?e=otztwe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline hover:text-blue-800"
+            >
+              Data Science Week Photo Folder
+            </a>
           </p>
-        )}
       </div>
 
       {/* enlarge poster when click */}
