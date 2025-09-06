@@ -104,5 +104,9 @@ export const images: Image[] = [
     title: "IQC Workshop 2025",
     image: "/IQC_workshop_2025.png",
   },
+  {
+    title: "APAC Design Competition",
+    image: "/lanyard_poster.png",
+  },
   // Add more entries as needed...
 ];
