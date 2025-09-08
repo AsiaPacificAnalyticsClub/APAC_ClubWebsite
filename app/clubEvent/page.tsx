@@ -163,7 +163,7 @@ const ClubEvent = () => {
             <p className="text-gray-700">{event.description}</p>
             {(event.date > new Date().toISOString().slice(0, 10) ||
               (event.endDate &&
-                event.endDate <= new Date().toISOString().slice(0, 10) &&
+                event.date <= new Date().toISOString().slice(0, 10) &&
                 event.endDate > new Date().toISOString().slice(0, 10))) && (
               <Link href={event.link} target="_blank">
                 <button className="btn-event mt-2 uppercase font-semibold">
