@@ -31,12 +31,12 @@ const Collaborators = () => {
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-white dark:from-background z-10"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-white dark:from-background z-10"></div>
 
-            <div className="w-full flex justify-center items-center [perspective:300px]">
+            <div className="w-full flex justify-center items-center px-8[perspective:300px]">
               <Marquee
                 className="justify-center overflow-hidden [--duration:80s] [--gap:4rem]"
                 style={{
                   transform:
-                    "translateX(0px) translateY(0px) translateZ(-50px) scale(1.5)",
+                    "translateX(0px) translateY(0px) translateZ(-50px) scale(1.2)",
                 }}
               >
                 {duplicatedLogos.map((data, idx) => (
@@ -47,7 +47,7 @@ const Collaborators = () => {
                       alt={data.alt}
                       width={50}
                       height={50}
-                      className="h-10 mx-auto w-auto rounded-xl transition-all duration-100"
+                      className="h-10 mx-auto w-auto rounded-xl transition-all duration-100 box-content"
                     />
                   </div>
                 ))}

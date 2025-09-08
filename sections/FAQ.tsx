@@ -42,7 +42,7 @@ const FAQ = () => {
         {/*Title*/}
         <div className="h-[300px] flex items-center">
           <div className="sticky min-w-[300px] mt-5  ">
-            <h2 className=" section-intro section-title text-5xl max-w-[600px] mb-7 font-robert-medium">
+            <h2 className="section-intro section-title text-5xl max-w-[600px] mb-7 font-robert-medium leading-snug">
               Curiousity didn't kill the cat 😸, it gave it answers
             </h2>
             <p className="text-xl font-semibold font-robert-regular tracking-wider">
