@@ -3,5 +3,6 @@ export interface ApiEvent {
   title: string;
   description: string;
   start_date: string;
+  end_date: string;
   link: string;
 }
