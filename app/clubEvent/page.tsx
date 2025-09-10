@@ -125,55 +125,55 @@ const ClubEvent = () => {
 
   const renderMobileTimeline = (events: Event[]) => (
     <div className="md:hidden space-y-8 px-4">
-      {events.map((event) => (
-        <div
-          key={event.id}
-          className="bg-white rounded-lg overflow-hidden shadow-sm"
-        >
+      {events.map((event) => {
+        const imgObj = images.find((img) => img.title === event.title);
+        const imageSrc = imgObj?.imageMobile || imgObj?.image || event.image;
+        return (
           <div
-            className="relative w-full aspect-video cursor-pointer"
-            onClick={() => handleImageClick(event.image, event.title)}
+            key={event.id}
+            className="bg-white rounded-lg overflow-hidden shadow-sm"
           >
-            <Image
-              src={event.image}
-              alt={event.title}
-              fill
-              className="object-cover"
-              sizes="100vw"
-              priority
-            />
-          </div>
-          <div className="p-4">
-            <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
-            {event.date > new Date().toISOString().slice(0, 10) && (
-              <Chip label="Upcoming" color="primary" size="small" />
-            )}
-            {event.endDate &&
-              event.endDate <= new Date().toISOString().slice(0, 10) && (
+
+            <div
+              className="relative w-full aspect-video cursor-pointer"
+              onClick={() => handleImageClick(imageSrc, event.title)}
+            >
+              <Image
+                src={imageSrc}
+                alt={event.title}
+                fill
+                className="object-cover"
+                sizes="100vw"
+                priority
+              />
+            </div>
+            <div className="p-4">
+              <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
+              {event.date > new Date().toISOString().slice(0, 10) && (
+                <Chip label="Upcoming" color="primary" size="small" />
+              )}
+              {event.date < new Date().toISOString().slice(0, 10) && (
                 <Chip label="Past" color="error" size="small" />
               )}
-            {event.date <= new Date().toISOString().slice(0, 10) &&
-              event.endDate &&
-              event.endDate > new Date().toISOString().slice(0, 10) && (
+              {event.date === new Date().toISOString().slice(0, 10) && (
                 <Chip label="Ongoing" color="success" size="small" />
               )}
-            <p className="text-gray-500 text-sm mb-2 mt-2">
-              {event.displayDate}
-            </p>
-            <p className="text-gray-700">{event.description}</p>
-            {(event.date > new Date().toISOString().slice(0, 10) ||
-              (event.endDate &&
-                event.date <= new Date().toISOString().slice(0, 10) &&
-                event.endDate > new Date().toISOString().slice(0, 10))) && (
-              <Link href={event.link} target="_blank">
-                <button className="btn-event mt-2 uppercase font-semibold">
-                  Sign Up
-                </button>
-              </Link>
-            )}
+              <p className="text-gray-500 text-sm mb-2 mt-2">
+                {event.displayDate}
+              </p>
+              <p className="text-gray-700">{event.description}</p>
+              {event.date > new Date().toISOString().slice(0, 10) && (
+                <Link href={event.link} target="_blank">
+                  <button className="btn-event mt-2 uppercase font-semibold">
+                    Sign Up
+                  </button>
+                </Link>
+              )}
+            </div>
+
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 
@@ -203,19 +203,25 @@ const ClubEvent = () => {
                   justifyContent: "flex-end",
                 }}
               >
-                <div
-                  className="relative w-full max-w-md aspect-video overflow-hidden rounded-lg cursor-pointer"
-                  onClick={() => handleImageClick(event.image, event.title)}
-                >
-                  <Image
-                    src={event.image}
-                    alt={event.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1280px) 50vw, 33vw"
-                    priority
-                  />
-                </div>
+                {(() => {
+                  const imgObj = images.find((img) => img.title === event.title);
+                  const imageSrc = imgObj?.imageDesktop || imgObj?.image || event.image;
+                  return (
+                    <div
+                      className="relative w-full max-w-md aspect-video overflow-hidden rounded-lg cursor-pointer"
+                      onClick={() => handleImageClick(imageSrc, event.title)}
+                    >
+                      <Image
+                        src={imageSrc}
+                        alt={event.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1280px) 50vw, 33vw"
+                        priority
+                      />
+                    </div>
+                  );
+                })()}
               </TimelineOppositeContent>
 
               <TimelineSeparator
