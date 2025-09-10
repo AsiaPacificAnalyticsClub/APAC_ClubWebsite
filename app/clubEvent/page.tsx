@@ -50,6 +50,7 @@ const ClubEvent = () => {
           id: event._id,
           title: event.title,
           date: event.start_date,
+          endDate: event.end_date,
           displayDate: formatDate(event.start_date),
           description: event.description,
           image: images.find((img) => img.title === event.title)?.image || "",
@@ -132,6 +133,7 @@ const ClubEvent = () => {
             key={event.id}
             className="bg-white rounded-lg overflow-hidden shadow-sm"
           >
+
             <div
               className="relative w-full aspect-video cursor-pointer"
               onClick={() => handleImageClick(imageSrc, event.title)}
@@ -168,6 +170,7 @@ const ClubEvent = () => {
                 </Link>
               )}
             </div>
+
           </div>
         );
       })}
@@ -284,34 +287,42 @@ const ClubEvent = () => {
                         className="ml-2"
                       />
                     )}
-                    {event.date < new Date().toISOString().slice(0, 10) && (
-                      <Chip
-                        label="Past"
-                        color="error"
-                        size="small"
-                        className="ml-2"
-                      />
-                    )}
-                    {event.date === new Date().toISOString().slice(0, 10) && (
-                      <Chip
-                        label="Ongoing"
-                        color="success"
-                        size="small"
-                        className="ml-2"
-                      />
-                    )}
+                    {event.endDate &&
+                      event.endDate <=
+                        new Date().toISOString().slice(0, 10) && (
+                        <Chip
+                          label="Past"
+                          color="error"
+                          size="small"
+                          className="ml-2"
+                        />
+                      )}
+                    {event.date <= new Date().toISOString().slice(0, 10) &&
+                      event.endDate &&
+                      event.endDate > new Date().toISOString().slice(0, 10) && (
+                        <Chip
+                          label="Ongoing"
+                          color="success"
+                          size="small"
+                          className="ml-2"
+                        />
+                      )}
                   </h3>
                   <p className="text-gray-500 text-sm mb-2">
                     {event.displayDate}
                   </p>
                   <p className="text-gray-700">{event.description}</p>
-                  {event.date > new Date().toISOString().slice(0, 10) && (
-                    <Link href={event.link} target="_blank">
-                      <button className="btn-event mt-2 uppercase font-semibold">
-                        Sign Up
-                      </button>
-                    </Link>
-                  )}
+                  {(event.date > new Date().toISOString().slice(0, 10) ||
+                    (event.endDate &&
+                      event.date <= new Date().toISOString().slice(0, 10) &&
+                      event.endDate > new Date().toISOString().slice(0, 10))) &&
+                    event.link && (
+                      <Link href={event.link} target="_blank">
+                        <button className="btn-event mt-2 uppercase font-semibold">
+                          Sign Up
+                        </button>
+                      </Link>
+                    )}
                 </div>
               </TimelineContent>
             </TimelineItem>
