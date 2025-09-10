@@ -1,6 +1,8 @@
 interface Image {
   title: string;
   image: string;
+  imageMobile?: string; // optional
+  imageDesktop?: string; // optional
 }
 
 export const images: Image[] = [
@@ -107,6 +109,12 @@ export const images: Image[] = [
   {
     title: "APAC Design Competition",
     image: "/lanyard_poster.png",
+  },
+  {
+    title: "Maxis Industrial Visit",
+    image: "/MIV_PC.png",
+    imageMobile: "/MIV_Mobile.png",
+    imageDesktop: "/MIV_PC.png"
   },
   // Add more entries as needed...
 ];
