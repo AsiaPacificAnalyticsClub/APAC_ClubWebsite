@@ -6,4 +6,6 @@ export interface Event {
   description: string;
   image: string;
   link: string;
+  registrationStartDate: string;
+  registrationEndDate: string;
 }

@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState, useMemo, useEffect } from "react";
 import Timeline from "@mui/lab/Timeline";
@@ -24,6 +25,9 @@ const ClubEvent = () => {
   const [zoomImage, setZoomImage] = useState<string | null>(null);
   const [zoomTitle, setZoomTitle] = useState<string>("");
   const [modalOpen, setModalOpen] = useState(false);
+
+  const [naturalWidth, setNaturalWidth] = useState<number | null>(null);
+  const [naturalHeight, setNaturalHeight] = useState<number | null>(null);
 
   const formatDate = (date: string): string => {
     const options: Intl.DateTimeFormatOptions = {
@@ -54,6 +58,8 @@ const ClubEvent = () => {
           description: event.description,
           image: images.find((img) => img.title === event.title)?.image || "",
           link: event.link,
+          registrationStartDate: event.registration_start_date,
+          registrationEndDate: event.registration_end_date,
         }));
 
         setEvents(processedEvents);
@@ -122,57 +128,67 @@ const ClubEvent = () => {
     setModalOpen(false);
   };
 
-  const renderMobileTimeline = (events: Event[]) => (
-    <div className="md:hidden space-y-8 px-4">
-      {events.map((event) => {
-        const imgObj = images.find((img) => img.title === event.title);
-        const imageSrc = imgObj?.imageMobile || imgObj?.image || event.image;
-        return (
-          <div
-            key={event.id}
-            className="bg-white rounded-lg overflow-hidden shadow-sm"
-          >
+  const renderMobileTimeline = (events: Event[]) => {
+    const today = new Date().toISOString().slice(0, 10);
+    return (
+      <div className="md:hidden space-y-8 px-4">
+        {events.map((event) => {
+          const imgObj = images.find((img) => img.title === event.title);
+          const imageSrc = imgObj?.imageMobile || imgObj?.image || event.image;
+          // Find end_date if available (from event or data)
+          // For now, try to get it from event.end_date if present, else fallback to event.date
+          // If your Event type does not have end_date, you may need to extend it
+          const endDate = (event as any).end_date || event.date;
+          let label = null;
+          if (event.date > today) {
+            label = <Chip label="Upcoming" color="primary" size="small" />;
+          } else if (endDate < today) {
+            label = <Chip label="Past" color="error" size="small" />;
+          } else {
+            label = <Chip label="Ongoing" color="success" size="small" />;
+          }
+          return (
             <div
-              className="relative w-full aspect-video cursor-pointer"
-              onClick={() => handleImageClick(imageSrc, event.title)}
+              key={event.id}
+              className="bg-white rounded-lg overflow-hidden shadow-sm"
             >
-              <Image
-                src={imageSrc}
-                alt={event.title}
-                fill
-                className="object-cover"
-                sizes="100vw"
-                priority
-              />
+              <div
+                className="relative w-full aspect-video cursor-pointer"
+                onClick={() => handleImageClick(imageSrc, event.title)}
+              >
+                <Image
+                  src={imageSrc}
+                  alt={event.title}
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
+                {label}
+                <p className="text-gray-500 text-sm mb-2 mt-2">
+                  {event.displayDate}
+                </p>
+                <p className="text-gray-600 text-xs mb-2">
+                  Registration: {formatDate(event.registrationStartDate)} - {formatDate(event.registrationEndDate)}
+                </p>
+                <p className="text-gray-700">{event.description}</p>                
+                {event.date > today && (
+                  <Link href={event.link} target="_blank">
+                    <button className="btn-event mt-2 uppercase font-semibold">
+                      Sign Up
+                    </button>
+                  </Link>
+                )}
+              </div>
             </div>
-            <div className="p-4">
-              <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
-              {event.date > new Date().toISOString().slice(0, 10) && (
-                <Chip label="Upcoming" color="primary" size="small" />
-              )}
-              {event.date < new Date().toISOString().slice(0, 10) && (
-                <Chip label="Past" color="error" size="small" />
-              )}
-              {event.date === new Date().toISOString().slice(0, 10) && (
-                <Chip label="Ongoing" color="success" size="small" />
-              )}
-              <p className="text-gray-500 text-sm mb-2 mt-2">
-                {event.displayDate}
-              </p>
-              <p className="text-gray-700">{event.description}</p>
-              {event.date > new Date().toISOString().slice(0, 10) && (
-                <Link href={event.link} target="_blank">
-                  <button className="btn-event mt-2 uppercase font-semibold">
-                    Sign Up
-                  </button>
-                </Link>
-              )}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
+          );
+        })}
+      </div>
+    );
+  };
 
   const renderDesktopTimeline = (events: Event[]) => (
     <div className="hidden md:block">
@@ -304,7 +320,10 @@ const ClubEvent = () => {
                   <p className="text-gray-500 text-sm mb-2">
                     {event.displayDate}
                   </p>
-                  <p className="text-gray-700">{event.description}</p>
+                  <p className="text-gray-600 text-xs mb-2">
+                    Registration: {formatDate(event.registrationStartDate)} - {formatDate(event.registrationEndDate)}
+                  </p>
+                  <p className="text-gray-700">{event.description}</p>                  
                   {event.date > new Date().toISOString().slice(0, 10) && (
                     <Link href={event.link} target="_blank">
                       <button className="btn-event mt-2 uppercase font-semibold">
@@ -369,48 +388,47 @@ const ClubEvent = () => {
           </Button>
         </div>
       )}
-
-      <Modal
-        open={modalOpen}
-        onClose={handleCloseModal}
-        aria-labelledby="image-zoom-modal"
-        aria-describedby="enlarges event image"
-        className="flex"
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "60%",
-            aspectRatio: "16 / 9",
-            bgcolor: "background.paper",
-            borderRadius: "16px",
-            borderColor: "#4f4f4f",
-            borderWidth: "2px",
-            boxShadow: 24,
-            p: 0,
-            outline: "none",
-            overflow: "hidden",
-          }}
-        >
-          <div className="relative w-full h-full">
-            {zoomImage && (
-              <div className="relative w-full h-full">
-                <Image
+           <Modal
+            open={modalOpen}
+            onClose={handleCloseModal}
+            className="flex"
+          >
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                bgcolor: "background.paper",
+                borderRadius: "16px",
+                border: "2px solid #4f4f4f",
+                boxShadow: 24,
+                outline: "none",
+                overflow: "hidden",
+                maxWidth: "90vw",
+                maxHeight: "90vh",
+              }}
+            >
+              {zoomImage && (
+                <img
                   src={zoomImage}
                   alt={zoomTitle}
-                  fill
-                  className="object-contain"
-                  sizes="100vw"
-                  priority
+                  style={{
+                    maxWidth: "90vw",
+                    maxHeight: "90vh",
+                    width: "auto",
+                    height: "auto",
+                    objectFit: "contain",
+                  }}
+                  onLoad={(e) => {
+                    const img = e.currentTarget;
+                    setNaturalWidth(img.naturalWidth);
+                    setNaturalHeight(img.naturalHeight);
+                  }}
                 />
-              </div>
-            )}
-          </div>
-        </Box>
-      </Modal>
+              )}
+            </Box>
+          </Modal>
     </div>
   );
 };
