@@ -54,6 +54,7 @@ const ClubEvent = () => {
           id: event._id,
           title: event.title,
           date: event.start_date,
+          endDate: event.end_date,
           displayDate: formatDate(event.start_date),
           description: event.description,
           image: images.find((img) => img.title === event.title)?.image || "",
@@ -300,22 +301,26 @@ const ClubEvent = () => {
                         className="ml-2"
                       />
                     )}
-                    {event.date < new Date().toISOString().slice(0, 10) && (
-                      <Chip
-                        label="Past"
-                        color="error"
-                        size="small"
-                        className="ml-2"
-                      />
-                    )}
-                    {event.date === new Date().toISOString().slice(0, 10) && (
-                      <Chip
-                        label="Ongoing"
-                        color="success"
-                        size="small"
-                        className="ml-2"
-                      />
-                    )}
+                    {event.endDate &&
+                      event.endDate <=
+                        new Date().toISOString().slice(0, 10) && (
+                        <Chip
+                          label="Past"
+                          color="error"
+                          size="small"
+                          className="ml-2"
+                        />
+                      )}
+                    {event.date <= new Date().toISOString().slice(0, 10) &&
+                      event.endDate &&
+                      event.endDate > new Date().toISOString().slice(0, 10) && (
+                        <Chip
+                          label="Ongoing"
+                          color="success"
+                          size="small"
+                          className="ml-2"
+                        />
+                      )}
                   </h3>
                   <p className="text-gray-500 text-sm mb-2">
                     {event.displayDate}

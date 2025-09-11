@@ -2,6 +2,7 @@ export interface Event {
   id: string;
   title: string;
   date: string;
+  endDate: string;
   displayDate: string;
   description: string;
   image: string;
