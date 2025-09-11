@@ -112,9 +112,9 @@ export const images: Image[] = [
   },
   {
     title: "Maxis Industrial Visit",
-    image: "/MIV_PC.png",
-    imageMobile: "/MIV_Mobile.png",
-    imageDesktop: "/MIV_PC.png"
+    image: "/MIV PC.png",
+    imageMobile: "/MIV Social Media.png",
+    imageDesktop: "/MIV PC.png"
   },
   // Add more entries as needed...
 ];
