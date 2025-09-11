@@ -26,8 +26,6 @@ const ClubEvent = () => {
   const [zoomTitle, setZoomTitle] = useState<string>("");
   const [modalOpen, setModalOpen] = useState(false);
 
-  const [naturalWidth, setNaturalWidth] = useState<number | null>(null);
-  const [naturalHeight, setNaturalHeight] = useState<number | null>(null);
 
   const formatDate = (date: string): string => {
     const options: Intl.DateTimeFormatOptions = {
@@ -139,7 +137,7 @@ const ClubEvent = () => {
           // Find end_date if available (from event or data)
           // For now, try to get it from event.end_date if present, else fallback to event.date
           // If your Event type does not have end_date, you may need to extend it
-          const endDate = (event as any).end_date || event.date;
+          const endDate = event.endDate || event.date;
           let label = null;
           if (event.date > today) {
             label = <Chip label="Upcoming" color="primary" size="small" />;
@@ -394,46 +392,44 @@ const ClubEvent = () => {
         </div>
       )}
            <Modal
-            open={modalOpen}
-            onClose={handleCloseModal}
-            className="flex"
+          open={modalOpen}
+          onClose={handleCloseModal}
+          className="flex"
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              bgcolor: "background.paper",
+              borderRadius: "16px",
+              border: "2px solid #4f4f4f",
+              boxShadow: 24,
+              outline: "none",
+              overflow: "hidden",
+              maxWidth: "90vw",
+              maxHeight: "90vh",
+            }}
           >
-            <Box
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                bgcolor: "background.paper",
-                borderRadius: "16px",
-                border: "2px solid #4f4f4f",
-                boxShadow: 24,
-                outline: "none",
-                overflow: "hidden",
-                maxWidth: "90vw",
-                maxHeight: "90vh",
-              }}
-            >
-              {zoomImage && (
-                <img
-                  src={zoomImage}
-                  alt={zoomTitle}
-                  style={{
-                    maxWidth: "90vw",
-                    maxHeight: "90vh",
-                    width: "auto",
-                    height: "auto",
-                    objectFit: "contain",
-                  }}
-                  onLoad={(e) => {
-                    const img = e.currentTarget;
-                    setNaturalWidth(img.naturalWidth);
-                    setNaturalHeight(img.naturalHeight);
-                  }}
-                />
-              )}
-            </Box>
-          </Modal>
+            {zoomImage && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={zoomImage}
+                alt={zoomTitle}
+                style={{
+                  maxWidth: "90vw",
+                  maxHeight: "90vh",
+                  width: "auto",
+                  height: "auto",
+                  objectFit: "contain",
+                }}
+              />
+            )}
+          </Box>
+        </Modal>
+
+
     </div>
   );
 };
