@@ -15,8 +15,6 @@ import Image from "next/image";
 import { Event } from "@/constants/Events";
 import { ApiEvent } from "@/constants/ApiEvent";
 import { images } from "@/constants/Images";
-//temporary winner banner
-import WinnerBanner from "@/components/WinnerBanner";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -355,13 +353,6 @@ const ClubEvent = () => {
             : "Join us in our upcoming events"}
         </p>
       </div>
-
-          {/* Banner strip */}
-    <WinnerBanner
-      title="APAC Design Competition Winner Announced"
-      desktopPoster="/lanyard-winner-desktop.png"
-      mobilePoster="/lanyard-winner-mobile.png"
-    />
 
       <div className="max-w-6xl mx-auto px-4 mb-8">
         <Tabs
