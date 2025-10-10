@@ -11,27 +11,17 @@ type Career = {
 
 const Resources = () => {
   // Career opportunities data
-  // add the career opportunities you want to display here
-  const careers: Career[] = [
-    {
-      position: "Intern",
-      department: "Data Office",
-      company: "Allianz",
-      contact: "mailto:koh.kayxin@allianz.com.my",
-      details: "Accpeting applications",
-      moreDetails:
-        "Work on real-world data analysis and support the Data Office team.",
-    },
-    // {
-    //   position: "Internship / Part-time Positions",
-    //   department: "Research and Development",
-    //   company: "Asia Pacific University",
-    //   contact: "mailto:hema.krishna@apu.edu.my",
-    //   details: "Application closed",
-    //   moreDetails:
-    //     "Involved in R&D projects such as machine learning, simulations, and 3D imaging.",
-    // },
-  ];
+  // 👉 Add the career opportunities you want to display here
+  // Example:
+  // {
+  //   position: "Internship / Part-time Positions",
+  //   department: "Research and Development",
+  //   company: "Asia Pacific University",
+  //   contact: "mailto:someone@example.com",
+  //   details: "Accepting applications",
+  //   moreDetails: "Short description about the position or responsibilities.",
+  // },
+  const careers: Career[] = [];
 
   return (
     <div className="p-8 min-h-screen">
