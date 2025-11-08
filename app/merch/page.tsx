@@ -14,7 +14,7 @@ interface Product {
   price: string;
   image: string;
   images?: string[];
-  isFeatured: boolean;
+  isFeatured?: boolean;
 }
 
 const Merch = () => {
@@ -33,15 +33,17 @@ const Merch = () => {
   // Navigate between images (if multiple exist) then button appears
   const nextImage = () => {
     if (!selectedProduct?.images) return;
+    const images = selectedProduct.images;  // store in a local const
     setCurrentIndex((prev) =>
-      prev === selectedProduct.images.length - 1 ? 0 : prev + 1
+      prev === images.length - 1 ? 0 : prev + 1
     );
   };
 
   const prevImage = () => {
     if (!selectedProduct?.images) return;
+    const images = selectedProduct.images;  // store in a local const
     setCurrentIndex((prev) =>
-      prev === 0 ? selectedProduct.images.length - 1 : prev - 1
+      prev === 0 ? images.length - 1 : prev - 1
     );
   };
 
