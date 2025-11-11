@@ -1,32 +1,49 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingCart, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { products } from "@/constants/Merch";
 
+interface Product {
+  id: number | string;
+  name: string;
+  description: string;
+  price: string;
+  image: string;
+  images?: string[];
+  isFeatured?: boolean;
+}
+
 const Merch = () => {
   const preOrderLink = "https://form.jotform.com/252723875780467";
 
   //product type
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const modalRef = useRef<HTMLDivElement | null>(null);
+
+  // Reset currentIndex when selectedProduct changes
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [selectedProduct]);
 
   // Navigate between images (if multiple exist) then button appears
   const nextImage = () => {
     if (!selectedProduct?.images) return;
+    const images = selectedProduct.images;  // store in a local const
     setCurrentIndex((prev) =>
-      prev === selectedProduct.images.length - 1 ? 0 : prev + 1
+      prev === images.length - 1 ? 0 : prev + 1
     );
   };
 
   const prevImage = () => {
     if (!selectedProduct?.images) return;
+    const images = selectedProduct.images;  // store in a local const
     setCurrentIndex((prev) =>
-      prev === 0 ? selectedProduct.images.length - 1 : prev - 1
+      prev === 0 ? images.length - 1 : prev - 1
     );
   };
 
@@ -36,6 +53,10 @@ const Merch = () => {
       setSelectedProduct(null);
     }
   };
+
+  // Safely get the current image URL for the modal
+  const currentImage =
+    selectedProduct?.images?.[currentIndex] ?? selectedProduct?.image ?? "";
 
   return (
     <section className="container mx-auto px-4 py-12">
@@ -51,7 +72,8 @@ const Merch = () => {
         </h1>
         <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-lg">
           Represent our community with exclusive club merchandise.
-          <br />High-quality, stylish, and made for every member.
+          <br />
+          High-quality, stylish, and made for every member.
         </p>
       </motion.div>
 
@@ -103,9 +125,7 @@ const Merch = () => {
                 <h2 className="text-xl font-bold text-gray-800 mb-2">
                   {product.name}
                 </h2>
-                <p className="text-gray-600 text-sm mb-3">
-                  {product.description}
-                </p>
+                <p className="text-gray-600 text-sm mb-3">{product.description}</p>
                 <p className="text-lg font-semibold text-violet-600 mb-4">
                   {product.price}
                 </p>
@@ -131,7 +151,8 @@ const Merch = () => {
         className="mt-16 text-center"
       >
         <p className="text-sm text-gray-500 italic">
-          * All pre-orders are processed through Google Forms. Delivery times may vary.
+          * All pre-orders are processed through Google Forms. Delivery times may
+          vary.
         </p>
       </motion.div>
 
@@ -166,11 +187,7 @@ const Merch = () => {
               {/* Image */}
               <div className="relative w-full h-[70vh] flex items-center justify-center bg-gray-50">
                 <Image
-                  src={
-                    selectedProduct.images
-                      ? selectedProduct.images[currentIndex]
-                      : selectedProduct.image
-                  }
+                  src={currentImage}
                   alt={selectedProduct.name}
                   fill
                   className="object-contain p-4"

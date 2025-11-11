@@ -5,22 +5,22 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    text: "Joining the Asia Pacific Analytics Club was a game-changer. The workshops and mentorship programs are innovative and practical, helping me develop essential data analytics skills.",
+    text: "Being a part of the APAC event team is an amazing experience! It' is awesome to be a part of bringing fresh, new ideas to life and organizing events that help members grow and network!",
     imageSrc: "/man.png",
-    name: "Sau Kang",
-    username: "@saukang",
+    name: "Ammar Ibrahim ",
+    username: "@ammaribrahim",
   },
   {
-    text: "Our productivity in handling data projects has skyrocketed since becoming members of the club. The collaborative environment prepares us to tackle real-world challenges with confidence.",
+    text: "After joining APAC as an committee, I learned alot on how the workflow is like in an organization. Active communication, coordination, and teamwork are required to create a enforced team. All of the committees are very friendly and helpful. I've done and learned a lot of new activities that I never though I can do, of course with the help of others.",
     imageSrc: "/man.png",
-    name: "Jonas",
-    username: "@jonas",
+    name: "Gregorius Brian Tedjo",
+    username: "@gregoriusbriantedjo",
   },
   {
-    text: "This club has completely transformed how I approach data analysis and project management. The hands-on sessions make complex concepts easy to understand.",
+    text: "APAC is a great club 😀.",
     imageSrc: "/man.png",
-    name: "Zhe Shing",
-    username: "@zheshing",
+    name: "Aiden Ashvor Antoney ",
+    username: "@aidenashvorantoney ",
   },
   {
     text: "I was amazed at how seamlessly the Asia Pacific Analytics Club integrates industry-level tools and techniques into their events and workshops.",
@@ -29,40 +29,95 @@ const testimonials = [
     username: "@yenkuan",
   },
   {
-    text: "The club’s events have helped me understand and apply advanced analytics techniques. It’s a perfect platform to enhance both technical and soft skills.",
+    text: "Grateful to be part of APAC’s Tech Team —it’s been a journey full of learning, growth, and great memories! Hehe :)",
     imageSrc: "/woman.png",
-    name: "Alexandria",
-    username: "@alexandria",
+    name: "Bowie Chong",
+    username: "@bowie",
   },
   {
-    text: "The variety of resources and projects offered by the Asia Pacific Analytics Club are top-notch. It’s helped me gain hands-on experience in data analytics.",
+    text: "Best and only option to stay in the loop on anything happening related to Data Analysis and similar topics at APU.",
     imageSrc: "/man.png",
-    name: "Kylane",
-    username: "@kylane",
+    name: "Ivans",
+    username: "@ivans",
   },
   {
-    text: "Adopting data analytics through this club has streamlined my approach to research and teamwork. The guidance from seniors and mentors is invaluable.",
+    text: "Where insights spark innovation, and innovation drives progress.",
     imageSrc: "/woman.png",
-    name: "Cindy",
-    username: "@cindy",
+    name: "Kong Yi Wen",
+    username: "@kongyiwen",
   },
   {
-    text: "With the Asia Pacific Analytics Club, I can work on real-world data problems, collaborate with peers, and learn new tools like Python and Tableau.",
+    text: "I really value about the supportive culture in APAC club is capable to provide . The seniors are always willing to guide us juniors with patience and share their time to expose us to new experiences and knowledge. Their mentorship creates a welcoming space where we can learn, grow, and feel more confident in contributing.",
+    imageSrc: "/woman.png",
+    name: "Suen Tung",
+    username: "@chansuentung",
+  },
+  {
+    text: "Turning analytics into action, and action into impact.",
+    imageSrc: "/woman.png",
+    name: "Angelina Liew",
+    username: "@liewjiaxin",
+  },
+  {
+    text: "I’ve been in APAC for about two years now, starting from the bottom and working my way up. Along the way, I’ve gained incredible experiences and exposure that have really shaped my journey here.If you’re looking to expand your network, share some good vibes, and pick up new experiences along the way, come join us!😉.",
     imageSrc: "/man.png",
-    name: "Desmond",
-    username: "@desmond",
+    name: "Kylan",
+    username: "@kylan",
   },
   {
-    text: "Its user-friendly and collaborative environment makes complex analytics concepts easier to grasp. This club has been a crucial part of my university journey.",
+    text: "Having the opportunity to meet students and professionals in the data industry through this club has been amazing. ",
+    imageSrc: "/man.png",
+    name: "Amir Zuhaily Zaily",
+    username: "@amir",
+  },
+  {
+    text: "APAC gives me the chance to explore new experiences and step out of my comfort, whether through workshops, hackathons, or meeting new people.",
     imageSrc: "/woman.png",
-    name: "Xin Ru",
-    username: "@xinru",
+    name: "Jennifer Colleen",
+    username: "@jennifer",
+  },
+  {
+    text: "For me, APAC feels like a chill club where you can learn new skills, gain variety of experience, meet a lot of cool people, and teamwork that's solid and dependable.",
+    imageSrc: "/man.png",
+    name: "Bill Davidson",
+    username: "@billdavidson",
+  },
+  {
+    text: "Analyze today, shape tomorrow. ",
+    imageSrc: "/woman.png",
+    name: "Xiu Xiang",
+    username: "@lokexiuxiang",
+  },
+  {
+    text: "APAC could organize more hands-on workshops and projects where members committee can join to gain more knowledge.",
+    imageSrc: "/man.png",
+    name: "Juan Andrew Djajadi",
+    username: "@juanandrewdjajadi",
+  },
+  {
+    text: "Very friendly hardworking environment that makes things possible. ",
+    imageSrc: "/woman.png",
+    name: "Aley",
+    username: "@aleyelboraie",
+  },
+  {
+    text: "APAC became a window to the real world for me—opening doors to opportunities, challenges, and growth I never expected.",
+    imageSrc: "/man.png",
+    name: "Gehad Abdelrazik ",
+    username: "@gehadabdelrazik",
+  },
+  {
+    text: "Very friendly hardworking environment that makes things possible. ",
+    imageSrc: "/woman.png",
+    name: "Aley",
+    username: "@aleyelboraie",
   },
 ];
 
-const firstColumn = testimonials.slice(0, 3);
-const secondColumn = testimonials.slice(3, 6);
-const thirdColumn = testimonials.slice(6, 9);
+const firstColumn = testimonials.slice(0, 5);
+const secondColumn = testimonials.slice(5, 9);
+const thirdColumn = testimonials.slice(9, 12);
+const fourthColumn = testimonials.slice(12, 18);
 
 const TestimonialsColumn = (props: {
   className?: string;
@@ -129,7 +184,7 @@ const Testimonials = () => {
         </div>
         <div className="flex items-center justify-center">
           <div className="max-w-[900px] max-h-[600px] flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]  overflow-hidden">
-            <TestimonialsColumn testimonials={firstColumn} duration={15} />
+            <TestimonialsColumn testimonials={firstColumn} duration={16} />
             <TestimonialsColumn
               testimonials={secondColumn}
               className="hidden md:block"
@@ -139,6 +194,11 @@ const Testimonials = () => {
               testimonials={thirdColumn}
               className="hidden lg:block"
               duration={17}
+            />
+            <TestimonialsColumn
+              testimonials={fourthColumn}
+              className="hidden md:block"
+              duration={19}
             />
           </div>
         </div>
