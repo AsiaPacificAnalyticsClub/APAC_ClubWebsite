@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ShoppingCart,
+  // ShoppingCart,
   Frown,
   X,
   ChevronLeft,
@@ -24,7 +24,8 @@ interface Product {
 }
 
 const Merch = () => {
-  const preOrderLink = "https://form.jotform.com/252723875780467";
+  // uncomment and change link to your pre-order form
+  // const preOrderLink = "https://form.jotform.com/252723875780467";
 
   //product type
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -142,8 +143,8 @@ const Merch = () => {
                 {/*   Pre-order Now */}
                 {/* </Link> */}
                 <Link
-                  href={preOrderLink}
-                  target="_blank"
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
                   className="inline-flex items-center justify-center gap-2 bg-gray-200 text-gray-700 border-gray-700 border-2 px-6 py-3 rounded-xl font-medium cursor-default"
                 >
                   <Frown className="h-5 w-5" />
