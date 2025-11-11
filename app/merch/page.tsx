@@ -4,7 +4,13 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingCart, X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ShoppingCart,
+  Frown,
+  X,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { products } from "@/constants/Merch";
 
 interface Product {
@@ -33,18 +39,14 @@ const Merch = () => {
   // Navigate between images (if multiple exist) then button appears
   const nextImage = () => {
     if (!selectedProduct?.images) return;
-    const images = selectedProduct.images;  // store in a local const
-    setCurrentIndex((prev) =>
-      prev === images.length - 1 ? 0 : prev + 1
-    );
+    const images = selectedProduct.images; // store in a local const
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
   const prevImage = () => {
     if (!selectedProduct?.images) return;
-    const images = selectedProduct.images;  // store in a local const
-    setCurrentIndex((prev) =>
-      prev === 0 ? images.length - 1 : prev - 1
-    );
+    const images = selectedProduct.images; // store in a local const
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
   // Handle outside click to close modal
@@ -125,17 +127,27 @@ const Merch = () => {
                 <h2 className="text-xl font-bold text-gray-800 mb-2">
                   {product.name}
                 </h2>
-                <p className="text-gray-600 text-sm mb-3">{product.description}</p>
+                <p className="text-gray-600 text-sm mb-3">
+                  {product.description}
+                </p>
                 <p className="text-lg font-semibold text-violet-600 mb-4">
                   {product.price}
                 </p>
+                {/* <Link */}
+                {/*   href={preOrderLink} */}
+                {/*   target="_blank" */}
+                {/*   className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-blue-600 text-white px-6 py-3 rounded-xl font-medium hover:scale-105 hover:shadow-md transition-all duration-300" */}
+                {/* > */}
+                {/*   <ShoppingCart className="h-5 w-5" /> */}
+                {/*   Pre-order Now */}
+                {/* </Link> */}
                 <Link
                   href={preOrderLink}
                   target="_blank"
-                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-blue-600 text-white px-6 py-3 rounded-xl font-medium hover:scale-105 hover:shadow-md transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2 bg-gray-200 text-gray-700 border-gray-700 border-2 px-6 py-3 rounded-xl font-medium cursor-default"
                 >
-                  <ShoppingCart className="h-5 w-5" />
-                  Pre-order Now
+                  <Frown className="h-5 w-5" />
+                  Out of Stock
                 </Link>
               </div>
             </div>
@@ -151,8 +163,8 @@ const Merch = () => {
         className="mt-16 text-center"
       >
         <p className="text-sm text-gray-500 italic">
-          * All pre-orders are processed through Google Forms. Delivery times may
-          vary.
+          * All pre-orders are processed through Google Forms. Delivery times
+          may vary.
         </p>
       </motion.div>
 
@@ -194,33 +206,35 @@ const Merch = () => {
                 />
 
                 {/* Navigation Buttons (only show if multiple images) */}
-                {selectedProduct.images && selectedProduct.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={prevImage}
-                      className="absolute left-4 bg-white/70 hover:bg-white rounded-full p-2 shadow-md"
-                    >
-                      <ChevronLeft className="w-6 h-6 text-gray-800" />
-                    </button>
+                {selectedProduct.images &&
+                  selectedProduct.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={prevImage}
+                        className="absolute left-4 bg-white/70 hover:bg-white rounded-full p-2 shadow-md"
+                      >
+                        <ChevronLeft className="w-6 h-6 text-gray-800" />
+                      </button>
 
-                    <button
-                      onClick={nextImage}
-                      className="absolute right-4 bg-white/70 hover:bg-white rounded-full p-2 shadow-md"
-                    >
-                      <ChevronRight className="w-6 h-6 text-gray-800" />
-                    </button>
-                  </>
-                )}
+                      <button
+                        onClick={nextImage}
+                        className="absolute right-4 bg-white/70 hover:bg-white rounded-full p-2 shadow-md"
+                      >
+                        <ChevronRight className="w-6 h-6 text-gray-800" />
+                      </button>
+                    </>
+                  )}
               </div>
 
               {/* Caption */}
               <div className="p-4 text-center text-gray-700">
                 <p className="font-semibold">{selectedProduct.name}</p>
-                {selectedProduct.images && selectedProduct.images.length > 1 && (
-                  <p className="text-sm text-gray-500">
-                    {currentIndex + 1} / {selectedProduct.images.length}
-                  </p>
-                )}
+                {selectedProduct.images &&
+                  selectedProduct.images.length > 1 && (
+                    <p className="text-sm text-gray-500">
+                      {currentIndex + 1} / {selectedProduct.images.length}
+                    </p>
+                  )}
               </div>
             </motion.div>
           </motion.div>
