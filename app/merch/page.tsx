@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  // ShoppingCart,
-  Frown,
+  ShoppingCart,
+  // Frown,
   X,
   ChevronLeft,
   ChevronRight,
@@ -25,12 +25,36 @@ interface Product {
 
 const Merch = () => {
   // uncomment and change link to your pre-order form
-  // const preOrderLink = "https://form.jotform.com/252723875780467";
+  const preOrderLink = "https://form.jotform.com/252370715971460";
 
   //product type
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [maxHeight, setMaxHeight] = useState(0);
   const modalRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const calculateMaxHeight = () => {
+      const heights = cardRefs.current
+        .filter((ref) => ref !== null)
+        .map((ref) => ref!.offsetHeight);
+
+      if (heights.length > 0) {
+        setMaxHeight(Math.max(...heights));
+      }
+    };
+
+    calculateMaxHeight();
+    window.addEventListener("resize", calculateMaxHeight);
+
+    const timer = setTimeout(calculateMaxHeight, 100);
+
+    return () => {
+      window.removeEventListener("resize", calculateMaxHeight);
+      clearTimeout(timer);
+    };
+  }, [products]);
 
   // Reset currentIndex when selectedProduct changes
   useEffect(() => {
@@ -76,7 +100,10 @@ const Merch = () => {
         <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-lg">
           Represent our community with exclusive club merchandise.
           <br />
-          High-quality, stylish, and made for every member.
+          High-quality, stylish, and made for every member.{" "}
+          <i>
+            <b>Order button below.</b>
+          </i>
         </p>
       </motion.div>
 
@@ -90,9 +117,13 @@ const Merch = () => {
             transition={{ duration: 0.6, delay: index * 0.1 }}
           >
             <div
+              ref={(el) => {
+                if (el) cardRefs.current[index] = el;
+              }}
               className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col border border-gray-100 ${
                 product.isFeatured ? "ring-2 ring-violet-400" : ""
               }`}
+              style={{ minHeight: maxHeight > 0 ? `${maxHeight}px` : "auto" }}
             >
               {/* ============================ IMAGE SECTION ============================ */}
               <div
@@ -134,22 +165,6 @@ const Merch = () => {
                 <p className="text-lg font-semibold text-violet-600 mb-4">
                   {product.price}
                 </p>
-                {/* <Link */}
-                {/*   href={preOrderLink} */}
-                {/*   target="_blank" */}
-                {/*   className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-blue-600 text-white px-6 py-3 rounded-xl font-medium hover:scale-105 hover:shadow-md transition-all duration-300" */}
-                {/* > */}
-                {/*   <ShoppingCart className="h-5 w-5" /> */}
-                {/*   Pre-order Now */}
-                {/* </Link> */}
-                <Link
-                  href="#"
-                  onClick={(e) => e.preventDefault()}
-                  className="inline-flex items-center justify-center gap-2 bg-gray-200 text-gray-700 border-gray-700 border-2 px-6 py-3 rounded-xl font-medium cursor-default"
-                >
-                  <Frown className="h-5 w-5" />
-                  Out of Stock
-                </Link>
               </div>
             </div>
           </motion.div>
@@ -163,9 +178,25 @@ const Merch = () => {
         transition={{ duration: 0.5, delay: 0.6 }}
         className="mt-16 text-center"
       >
-        <p className="text-sm text-gray-500 italic">
-          * All pre-orders are processed through Google Forms. Delivery times
-          may vary.
+        <Link
+          href={preOrderLink}
+          target="_blank"
+          className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-blue-600 text-white px-6 py-3 rounded-xl font-medium hover:scale-105 hover:shadow-md transition-all duration-300 w-full"
+        >
+          <ShoppingCart className="h-5 w-5" />
+          Order Now
+        </Link>
+        {/* <Link */}
+        {/*   href="#" */}
+        {/*   onClick={(e) => e.preventDefault()} */}
+        {/*   className="inline-flex items-center justify-center gap-2 bg-gray-200 text-gray-700 border-gray-700 border-2 px-6 py-3 rounded-xl font-medium cursor-default" */}
+        {/* > */}
+        {/*   <Frown className="h-5 w-5" /> */}
+        {/*   Out of Stock */}
+        {/* </Link> */}
+        <p className="text-sm text-gray-500 italic mt-4">
+          * All pre-orders are processed through Jot Forms. Delivery times may
+          vary.
         </p>
       </motion.div>
 
