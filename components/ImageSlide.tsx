@@ -6,23 +6,39 @@ import { RxDotFilled } from "react-icons/rx";
 
 const slides = [
   {
-    url: "/boss.png",
+    url: "/committee_club_structure_tile.png",
     alt: "Scenic mountain landscape",
   },
   {
-    url: "/tech.png",
+    url: "/committee_club_structure_BOD.png",
     alt: "Underwater scene with fish",
   },
   {
-    url: "/media.png",
+    url: "/committee_club_structure_media_team.png",
     alt: "Person standing on a cliff",
   },
   {
-    url: "/marketing.png",
+    url: "/committee_club_structure_marketing_team.png",
     alt: "Aerial view of a coastline",
   },
   {
-    url: "/event.png",
+    url: "/committee_club_structure_event_team.png",
+    alt: "Desert landscape with rock formations",
+  },
+  {
+    url: "/committee_club_structure_tech_team.png",
+    alt: "Desert landscape with rock formations",
+  },
+  {
+    url: "/group_pic_segment1.png",
+    alt: "Desert landscape with rock formations",
+  },
+  {
+    url: "/group_pic_segment2.png",
+    alt: "Desert landscape with rock formations",
+  },
+  {
+    url: "/group_pic_segment3.png",
     alt: "Desert landscape with rock formations",
   },
 ];
