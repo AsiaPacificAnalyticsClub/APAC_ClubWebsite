@@ -8,7 +8,7 @@ const Committees = () => {
       <div className="flex flex-col">
         <div className="w-full flex flex-col items-center justify-center">
           <div className="tag max-w-[300px]">
-            <p className="text-center">Our Club's Committees </p>
+            <p className="text-center">Our Club&apos;s Committees </p>
           </div>
           <div className="max-w-[640px]">
             <h2 className="mt-5 section-title">
@@ -16,7 +16,7 @@ const Committees = () => {
             </h2>
             <p className="text-center text-[22px] leading-[30px] tracking-tight text-[#010D3E] mt-5 ">
               Discover the passionate individuals who dedicate their time,
-              skills, and energy to ensure the club's success.{" "}
+              skills, and energy to ensure the club&apos;s success.{" "}
             </p>
           </div>
         </div>
