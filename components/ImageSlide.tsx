@@ -2,33 +2,42 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-import { RxDotFilled } from "react-icons/rx";
+import { RxDotFilled, RxCross2 } from "react-icons/rx";
 
 const slides = [
   {
-    url: "/boss.png",
+    url: "/committee_club_structure_tile.png",
     alt: "Scenic mountain landscape",
   },
   {
-    url: "/tech.png",
+    url: "/committee_club_structure_BOD.png",
     alt: "Underwater scene with fish",
   },
   {
-    url: "/media.png",
+    url: "/committee_club_structure_media_team.png",
     alt: "Person standing on a cliff",
   },
   {
-    url: "/marketing.png",
+    url: "/committee_club_structure_marketing_team.png",
     alt: "Aerial view of a coastline",
   },
   {
-    url: "/event.png",
+    url: "/committee_club_structure_event_team.png",
+    alt: "Desert landscape with rock formations",
+  },
+  {
+    url: "/committee_club_structure_tech_team.png",
+    alt: "Desert landscape with rock formations",
+  },
+  {
+    url: "/fullGroup.png",
     alt: "Desert landscape with rock formations",
   },
 ];
 
 const ImageSlide: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const prevSlide = useCallback(() => {
     const isFirstSlide = currentIndex === 0;
@@ -47,11 +56,13 @@ const ImageSlide: React.FC = () => {
   };
 
   useEffect(() => {
+    if (isModalOpen) return;
+
     const slideInterval = setInterval(() => {
       nextSlide();
     }, 5000);
     return () => clearInterval(slideInterval);
-  }, [nextSlide]);
+  }, [nextSlide, isModalOpen]);
 
   return (
     <div className="md:max-w-[780px] w-full m-auto py-16 relative md:mb-16 flex items-center">
@@ -68,13 +79,16 @@ const ImageSlide: React.FC = () => {
 
       <div className="flex-grow px-4">
         {/* Main image container */}
-        <div className="w-full rounded-2xl overflow-hidden">
+        <div
+          className="w-full rounded-2xl overflow-hidden cursor-zoom-in shadow-lg"
+          onClick={() => setIsModalOpen(true)}
+        >
           <Image
             src={slides[currentIndex].url}
             alt={slides[currentIndex].alt}
             width={1200}
             height={1200}
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
           />
         </div>
 
@@ -106,8 +120,38 @@ const ImageSlide: React.FC = () => {
           <BsChevronCompactRight size={30} />
         </button>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <button
+            className="absolute top-5 right-5 text-white bg-white/10 rounded-full p-2 hover:bg-white/20 z-50"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsModalOpen(false);
+            }}
+          >
+            <RxCross2 size={30} />
+          </button>
+
+          <div className="relative w-full h-full max-w-7xl max-h-[90vh]">
+            <Image
+              src={slides[currentIndex].url}
+              alt={slides[currentIndex].alt}
+              fill
+              className="object-contain"
+              priority
+              sizes="100vw"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default ImageSlide;
+
