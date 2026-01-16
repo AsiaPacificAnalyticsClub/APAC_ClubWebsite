@@ -114,7 +114,18 @@ export const images: Image[] = [
     title: "Maxis Industrial Visit",
     image: "/MIV PC.png",
     imageMobile: "/MIV Social Media.png",
-    imageDesktop: "/MIV PC.png"
+    imageDesktop: "/MIV PC.png",
   },
-  // Add more entries as needed...
+  {
+    title: "Great Malaysia AI Hackathon 2025",
+    image: "/greatMalaysiaAIHackathon.jpg",
+  },
+  {
+    title: "Coffee Talk - Breaking the Tech Myths",
+    image: "/coffeeTalk.jpeg",
+  },
+  {
+    title: "WORLDQUANT Brain Alphathon - Competition",
+    image: "/Alphathon2025.png",
+  },
 ];

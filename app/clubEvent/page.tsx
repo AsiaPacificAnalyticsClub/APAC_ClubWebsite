@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useMemo, useEffect } from "react";
 import Timeline from "@mui/lab/Timeline";
@@ -27,7 +26,6 @@ const ClubEvent = () => {
   const [zoomImage, setZoomImage] = useState<string | null>(null);
   const [zoomTitle, setZoomTitle] = useState<string>("");
   const [modalOpen, setModalOpen] = useState(false);
-
 
   const formatDate = (date: string): string => {
     const options: Intl.DateTimeFormatOptions = {
@@ -173,9 +171,10 @@ const ClubEvent = () => {
                   {event.displayDate}
                 </p>
                 <p className="text-gray-600 text-xs mb-2">
-                  Registration: {formatDate(event.registrationStartDate)} - {formatDate(event.registrationEndDate)}
+                  Registration: {formatDate(event.registrationStartDate)} -{" "}
+                  {formatDate(event.registrationEndDate)}
                 </p>
-                <p className="text-gray-700">{event.description}</p>                
+                <p className="text-gray-700">{event.description}</p>
                 {event.date > today && (
                   <Link href={event.link} target="_blank">
                     <button className="btn-event mt-2 uppercase font-semibold">
@@ -218,8 +217,11 @@ const ClubEvent = () => {
                 }}
               >
                 {(() => {
-                  const imgObj = images.find((img) => img.title === event.title);
-                  const imageSrc = imgObj?.imageDesktop || imgObj?.image || event.image;
+                  const imgObj = images.find(
+                    (img) => img.title === event.title,
+                  );
+                  const imageSrc =
+                    imgObj?.imageDesktop || imgObj?.image || event.image;
                   return (
                     <div
                       className="relative w-full max-w-md aspect-video overflow-hidden rounded-lg cursor-pointer"
@@ -326,9 +328,10 @@ const ClubEvent = () => {
                     {event.displayDate}
                   </p>
                   <p className="text-gray-600 text-xs mb-2">
-                    Registration: {formatDate(event.registrationStartDate)} - {formatDate(event.registrationEndDate)}
+                    Registration: {formatDate(event.registrationStartDate)} -{" "}
+                    {formatDate(event.registrationEndDate)}
                   </p>
-                  <p className="text-gray-700">{event.description}</p>                  
+                  <p className="text-gray-700">{event.description}</p>
                   {event.date > new Date().toISOString().slice(0, 10) && (
                     <Link href={event.link} target="_blank">
                       <button className="btn-event mt-2 uppercase font-semibold">
@@ -356,12 +359,12 @@ const ClubEvent = () => {
         </p>
       </div>
 
-          {/* Banner strip */}
-    <WinnerBanner
-      title="APAC Design Competition Winner Announced"
-      desktopPoster="/lanyard-winner-desktop.png"
-      mobilePoster="/lanyard-winner-mobile.png"
-    />
+      {/* Banner strip */}
+      <WinnerBanner
+        title="APAC Design Competition Winner Announced"
+        desktopPoster="/lanyard-winner-desktop.png"
+        mobilePoster="/lanyard-winner-mobile.png"
+      />
 
       <div className="max-w-6xl mx-auto px-4 mb-8">
         <Tabs
@@ -400,45 +403,39 @@ const ClubEvent = () => {
           </Button>
         </div>
       )}
-           <Modal
-          open={modalOpen}
-          onClose={handleCloseModal}
-          className="flex"
+      <Modal open={modalOpen} onClose={handleCloseModal} className="flex">
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            bgcolor: "background.paper",
+            borderRadius: "16px",
+            border: "2px solid #4f4f4f",
+            boxShadow: 24,
+            outline: "none",
+            overflow: "hidden",
+            maxWidth: "90vw",
+            maxHeight: "90vh",
+          }}
         >
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              bgcolor: "background.paper",
-              borderRadius: "16px",
-              border: "2px solid #4f4f4f",
-              boxShadow: 24,
-              outline: "none",
-              overflow: "hidden",
-              maxWidth: "90vw",
-              maxHeight: "90vh",
-            }}
-          >
-            {zoomImage && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={zoomImage}
-                alt={zoomTitle}
-                style={{
-                  maxWidth: "90vw",
-                  maxHeight: "90vh",
-                  width: "auto",
-                  height: "auto",
-                  objectFit: "contain",
-                }}
-              />
-            )}
-          </Box>
-        </Modal>
-
-
+          {zoomImage && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={zoomImage}
+              alt={zoomTitle}
+              style={{
+                maxWidth: "90vw",
+                maxHeight: "90vh",
+                width: "auto",
+                height: "auto",
+                objectFit: "contain",
+              }}
+            />
+          )}
+        </Box>
+      </Modal>
     </div>
   );
 };
