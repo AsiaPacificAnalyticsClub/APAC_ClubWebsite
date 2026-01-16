@@ -127,5 +127,7 @@ export const images: Image[] = [
   {
     title: "WORLDQUANT Brain Alphathon - Competition",
     image: "/Alphathon2025.png",
+    imageMobile: "/Alphathon2025Mobile.png",
+    imageDesktop: "/Alphathon2025.png",
   },
 ];
