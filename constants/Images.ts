@@ -129,5 +129,10 @@ export const images: Image[] = [
     image: "/Alphathon2025.png",
     imageMobile: "/Alphathon2025Mobile.png",
     imageDesktop: "/Alphathon2025.png",
+  },{
+    title: "Building The future with Agentic AI",
+    image: "/Snowflake-desktop.png",
+    imageMobile: "/Snowflake-mobile.png",
+    imageDesktop: "/Snowflake-desktop.png",
   },
 ];
