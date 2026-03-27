@@ -135,4 +135,10 @@ export const images: Image[] = [
     imageMobile: "/Snowflake-mobile.png",
     imageDesktop: "/Snowflake-desktop.png",
   },
+  {
+    title: "IQC Workshop 2026",
+    image: "/IQC_workshop_2026_desktop.png",
+    imageMobile: "/IQC_workshop_2026_mobile.jpg",
+    imageDesktop: "/IQC_workshop_2026_desktop.png",
+  }
 ];
