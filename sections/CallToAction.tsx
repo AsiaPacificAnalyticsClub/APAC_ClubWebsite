@@ -13,20 +13,6 @@ const CallToAction = () => {
             who are passionate about leveraging technology to make informed
             decisions and drive impactful change
           </p>
-          <Image
-            src={"/star.png"}
-            alt="star"
-            width={360}
-            height={360}
-            className="absolute -left-[350px] -top-[137px]"
-          />
-          <Image
-            src={"/spring.png"}
-            alt="spring"
-            width={360}
-            height={360}
-            className="absolute -right-[331px] -top-[19px]"
-          />
           <div className="flex gap-8 mt-10 justify-center">
             <Link
               href={

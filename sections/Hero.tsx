@@ -55,20 +55,6 @@ const Hero = () => {
             height={1200}
             className="md:absolute md:h-full md:w-auto md:max-w-none md:-left-6 lg:left-0 "
           />
-          <Image
-            src={"/cylinder.png"}
-            alt="Cylinder Image"
-            width={220}
-            height={220}
-            className="md:absolute -top-8 -left-32 md:block hidden"
-          />
-          <Image
-            src={"/noodle.png"}
-            alt="Noodle Image"
-            width={220}
-            height={220}
-            className=" md:block hidden absolute top-[450px] left-[448px] rotate-[30deg]"
-          />
         </div>
       </div>
     </section>
