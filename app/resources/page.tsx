@@ -7,6 +7,7 @@ type Career = {
   contact: string;
   details: string;
   moreDetails: string;
+  image: string;
 };
 
 const Resources = () => {
@@ -20,6 +21,7 @@ const Resources = () => {
   //   contact: "mailto:someone@example.com",
   //   details: "Accepting applications",
   //   moreDetails: "Short description about the position or responsibilities.",
+  //   image: "path/to/image.jpg",
   // },
   const careers: Career[] = [];
 
