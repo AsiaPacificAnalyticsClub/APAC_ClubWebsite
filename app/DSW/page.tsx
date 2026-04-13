@@ -37,7 +37,7 @@ const DSW_DETAILS: Record<Year, DswDetails> = {
     photoLink: "https://cloudmails-my.sharepoint.com/:f:/g/personal/beyondmedia_apu_edu_my/ErpizYVAAnxNvVbp1rfQUM0BtCsYG0Fx5hY-zlbruw29Lg?e=otztwe",
   },
   2026: {
-    date: "TBD",
+    date: "Coming Soon",
     photoLink: null,
   },
 };
@@ -50,7 +50,7 @@ const DswEvent = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<DswItem[]>([]);
   const [type, setType] = useState<EventType>(EventType.GAME);
-  const [year, setYear] = useState<Year>(2025);
+  const [year, setYear] = useState<Year>(2026);
 
   const handleTypeChange = (event: SyntheticEvent, type: EventType) => {
     setType(type);
