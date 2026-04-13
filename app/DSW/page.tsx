@@ -20,6 +20,7 @@ import {
   Button,
   Chip,
 } from "@mui/material";
+import { Spinner } from "@/components/ui/spinner"
 import { CalendarToday as CalendarTodayIcon } from "@mui/icons-material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Modal } from "@mui/material";
@@ -46,10 +47,11 @@ const PLACEHOLDER_IMAGE = "/APACPythonWorkshop.png"; // Path to your placeholder
 const DswEvent = () => {
   const [openImage, setOpenImage] = useState<string[] | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0); //track datahack state
+  const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<DswItem[]>([]);
   const [type, setType] = useState<EventType>(EventType.GAME);
   const [year, setYear] = useState<Year>(2025);
-  
+
   const handleTypeChange = (event: SyntheticEvent, type: EventType) => {
     setType(type);
   }
@@ -59,10 +61,13 @@ const DswEvent = () => {
   }
 
   useEffect(() => {
+    setLoading(true);
+
     fetch(`/api/DSW?year=${year}&type=${type}`)
       .then((res) => res.json())
       .then((data) => setData(data))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   }, [year, type]);
 
   const dwsDetails: DswDetails = DSW_DETAILS[year];
@@ -78,15 +83,15 @@ const DswEvent = () => {
         </p>
         {dwsDetails.photoLink ? (
           <p className="text-center text-gray-600 mb-4">
-              📸 View all events & games photos here:{" "}
-              <a 
-                href={dwsDetails.photoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 underline hover:text-blue-800"
-              >
-                Data Science Week Photo Folder
-              </a>
+            📸 View all events & games photos here:{" "}
+            <a
+              href={dwsDetails.photoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline hover:text-blue-800"
+            >
+              Data Science Week Photo Folder
+            </a>
           </p>
         ) : (
           <p className="text-center text-gray-600 mb-4">
@@ -206,7 +211,7 @@ const DswEvent = () => {
         </div>
 
         <Grid container spacing={4}>
-          {data.length > 0 ? (
+          {!loading ? data.length > 0 ? (
             data.map((item) => (
               <Grid item xs={12} sm={6} md={4} key={item._id}>
                 <Card
@@ -379,19 +384,31 @@ const DswEvent = () => {
               </Grid>
             ))
           ) : (
-              <div className="m-auto">
-                <Empty className="h-full">
-                  <EmptyHeader>
-                    <EmptyMedia>
-                      <SearchX size={48} />
-                    </EmptyMedia>
-                    <EmptyTitle className="text-2xl font-bold">No {type}s available for {year}.</EmptyTitle>
-                    <EmptyDescription className="text-md max-w-xs text-pretty">
-                      Nothing here yet — check back soon!
-                    </EmptyDescription>
-                  </EmptyHeader>
-                </Empty>
-              </div>
+            <div className="m-auto">
+              <Empty className="h-full">
+                <EmptyHeader>
+                  <EmptyMedia>
+                    <SearchX size={48} />
+                  </EmptyMedia>
+                  <EmptyTitle className="text-2xl font-bold">No {type}s available for {year}.</EmptyTitle>
+                  <EmptyDescription className="text-md max-w-xs text-pretty">
+                    Nothing here yet — check back soon!
+                  </EmptyDescription>
+                </EmptyHeader>
+              </Empty>
+            </div>
+          ) : (
+            <Empty className="w-full">
+              <EmptyHeader>
+                <EmptyMedia>
+                  <Spinner className="size-8" />
+                </EmptyMedia>
+                <EmptyTitle className="text-2xl font-bold">Loading {type}s...</EmptyTitle>
+                <EmptyDescription className="text-md max-w-xs text-pretty">
+                  Fetching the latest Data Science Week activities.
+                </EmptyDescription>
+              </EmptyHeader>
+            </Empty>
           )}
         </Grid>
       </div>
