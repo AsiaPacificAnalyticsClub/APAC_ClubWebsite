@@ -29,10 +29,15 @@ export async function GET(req: Request) {
       },
     });
   } catch (error) {
-    console.error(error);
-    return Response.json(
-      { message: "Something went wrong!" },
-      { status: 500 }
-    );
-  }
+  console.error("DSW API ERROR FULL:", error);
+
+  return Response.json(
+    {
+      message: "Something went wrong!",
+      error: error instanceof Error ? error.message : error,
+      stack: error instanceof Error ? error.stack : undefined,
+    },
+    { status: 500 }
+  );
+}
 }
