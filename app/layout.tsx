@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "APAC",
   description: "Asia Pacific Analytics Club Website",
   icons: "/apaclogo.png",
+  verification: {
+    google: "i1aubWiItRKhg9Y4R6qSIXm2dgzpGDpYyCXuRx5NXz4", 
+  },
 };
 
 export default function RootLayout({

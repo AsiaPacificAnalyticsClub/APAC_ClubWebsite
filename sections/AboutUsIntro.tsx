@@ -6,8 +6,16 @@ import { motion } from "framer-motion";
 
 const AboutUsIntro = () => {
   return (
-    <section className="min-h-[700px] w-screen bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#183EC2,#EAEEFE_100%)] overflow-x-clip">
-      <div className="relative fixed-container flex flex-col items-center gap-5">
+    <section
+      className="
+        h-screen min-h-[700px] w-screen
+        bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#183EC2,#EAEEFE_100%)] overflow-x-clip
+      ">
+      <div 
+        className="
+          relative h-full w-full fixed-container
+          flex flex-col gap-5 justify-center items-center
+        ">
         {/* Title */}
         <div className="mt-5 relative min-w-[600px]">
           <motion.h1
