@@ -140,5 +140,9 @@ export const images: Image[] = [
     image: "/IQC_workshop_2026_desktop.png",
     imageMobile: "/IQC_workshop_2026_mobile.jpg",
     imageDesktop: "/IQC_workshop_2026_desktop.png",
+  },
+  {
+    title: "Introduction to Data Analytics with Xsolla",
+    image: "/IntrotoDA-xsolla.png",
   }
 ];
