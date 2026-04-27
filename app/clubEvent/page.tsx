@@ -175,7 +175,7 @@ const ClubEvent = () => {
                   {formatDate(event.registrationEndDate)}
                 </p>
                 <p className="text-gray-700">{event.description}</p>
-                {event.date > today && (
+                {(event.date > today || (endDate > today && event.date <= today)) && (
                   <Link href={event.link} target="_blank">
                     <button className="btn-event mt-2 uppercase font-semibold">
                       Sign Up
@@ -332,7 +332,10 @@ const ClubEvent = () => {
                     {formatDate(event.registrationEndDate)}
                   </p>
                   <p className="text-gray-700">{event.description}</p>
-                  {event.date > new Date().toISOString().slice(0, 10) && (
+                  {(event.date > new Date().toISOString().slice(0, 10) ||
+                    (event.endDate &&
+                      event.endDate > new Date().toISOString().slice(0, 10) &&
+                      event.date <= new Date().toISOString().slice(0, 10))) && (
                     <Link href={event.link} target="_blank">
                       <button className="btn-event mt-2 uppercase font-semibold">
                         Sign Up
