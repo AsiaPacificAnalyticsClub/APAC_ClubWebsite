@@ -135,4 +135,8 @@ export const images: Image[] = [
     imageMobile: "/Snowflake-mobile.png",
     imageDesktop: "/Snowflake-desktop.png",
   },
+  {
+    title: "Introduction to Data Analytics with Xsolla",
+    image: "/IntrotoDA-xsolla.png",
+  }
 ];
