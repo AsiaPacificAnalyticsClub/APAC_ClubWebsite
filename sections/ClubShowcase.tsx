@@ -1,95 +1,94 @@
 "use client";
-import React, { useRef, useState, MouseEvent, ReactNode } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
-interface BentoTiltProps {
-  children: ReactNode;
-  className?: string;
+function useCountUp(target: number, duration = 1800, inView: boolean) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const startTime = performance.now();
+    const update = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(update);
+      else setCount(target);
+    };
+    requestAnimationFrame(update);
+  }, [inView, target, duration]);
+
+  return count;
 }
 
-const BentoTilt: React.FC<BentoTiltProps> = ({ children, className = "" }) => {
-  const [transformStyle, setTransformStyle] = useState<string>("");
-  const itemRef = useRef<HTMLDivElement | null>(null);
+function useInView(threshold = 0.3) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
 
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!itemRef.current) return;
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setInView(true); },
+      { threshold }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [threshold]);
 
-    const { left, top, width, height } = itemRef.current.getBoundingClientRect();
-    const relativeX = (e.clientX - left) / width;
-    const relativeY = (e.clientY - top) / height;
-
-    const tiltX = (relativeY - 0.5) * 5;
-    const tiltY = (relativeX - 0.5) * -5;
-
-    const newTransform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(0.98, 0.98, 0.98)`;
-    setTransformStyle(newTransform);
-  };
-
-  const handleMouseLeave = () => {
-    setTransformStyle("");
-  };
-
-  return (
-    <div
-      className={`transition-transform duration-300 ${className}`}
-      ref={itemRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ transform: transformStyle }}
-    >
-      {children}
-    </div>
-  );
-};
-
-interface BentoCardProps {
-  title: string;
-  gradientStyle: 'light1' | 'light2' | 'dark1' | 'dark2';
+  return { ref, inView };
 }
 
-const BentoCard: React.FC<BentoCardProps> = ({ title, gradientStyle }) => {
-  const gradients = {
-    light1: "bg-gradient-to-br from-blue-200 to-blue-400",
-    light2: "bg-gradient-to-br from-blue-300 to-blue-500",
-    dark1: "bg-gradient-to-br from-blue-600 to-blue-800",
-    dark2: "bg-gradient-to-br from-blue-700 to-blue-900",
-  };
+interface StatCardProps {
+  icon: string;
+  target: number;
+  label: string;
+  inView: boolean;
+  accentClass: string;
+  iconBg: string;
+}
 
-  const textColors = {
-    light1: "text-black",
-    light2: "text-black",
-    dark1: "text-white",
-    dark2: "text-white",
-  };
-
+const StatCard: React.FC<StatCardProps> = ({ icon, target, label, inView, accentClass, iconBg }) => {
+  const count = useCountUp(target, 1800, inView);
   return (
-    <div className={`relative w-full h-full ${gradients[gradientStyle]} rounded-xl opacity-90 group-hover:opacity-100 transition-opacity duration-300 py-[80px]`}>
-      <div className="flex flex-row gap-8 justify-center items-center">
-        <h3 className={`text-4xl font-bold ${textColors[gradientStyle]}`}>{title}</h3>
+    <div className="relative bg-[#f8faff] rounded-2xl p-8 flex flex-col items-center gap-2 border border-blue-100 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:shadow-blue-100 transition-all duration-300 cursor-default overflow-hidden">
+      <div className={`absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl ${accentClass}`} />
+      <div className={`w-13 h-13 w-[52px] h-[52px] rounded-[14px] flex items-center justify-center text-2xl mb-1 ${iconBg}`}>
+        {icon}
       </div>
+      <div className="font-['Sora',sans-serif] text-4xl font-extrabold text-gray-900 tracking-tight leading-none">
+        {count}<span className="text-blue-600">+</span>
+      </div>
+      <div className="text-[11px] font-semibold tracking-widest text-gray-400 uppercase">{label}</div>
     </div>
   );
 };
 
 const ClubShowcase: React.FC = () => {
+  const { ref, inView } = useInView();
+
+  const stats = [
+    { icon: "🫂", target: 300, label: "Members",    accentClass: "bg-gradient-to-r from-blue-500 to-indigo-400", iconBg: "bg-indigo-50" },
+    { icon: "🤝", target: 5,   label: "Partners",   accentClass: "bg-gradient-to-r from-blue-600 to-blue-400",   iconBg: "bg-blue-50"   },
+    { icon: "🎉", target: 20,  label: "Events",     accentClass: "bg-gradient-to-r from-indigo-400 to-violet-400", iconBg: "bg-violet-50" },
+    { icon: "⚡", target: 15,  label: "Committees", accentClass: "bg-gradient-to-r from-blue-500 to-cyan-400",   iconBg: "bg-cyan-50"   },
+  ];
+
   return (
-    <section className="fixed-container bg-gray-100">
-      <div className=" mx-auto">
-        <h2 className=" mt-7 font-circular-web text-3xl text-blue-800 text-center font-bold mb-8">
-          Our Club is Freaking Awesome 😎
+    <section className="bg-white py-20 px-6">
+      <div className="max-w-5xl mx-auto text-center">
+        <h2 className="font-['Sora',sans-serif] text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-3">
+          Our Club is{" "}
+          <span className="text-blue-600">
+            Freaking Awesome
+          </span>{" "}
+          😎
         </h2>
-        <div className="md:grid flex flex-col  md:grid-cols-3 gap-4">
-          <BentoTilt className="col-span-2">
-            <BentoCard title="300+ Members" gradientStyle="light1" />
-          </BentoTilt>
-          <BentoTilt className="col-span-1">
-            <BentoCard title="5+ Partners" gradientStyle="dark1" />
-          </BentoTilt>
-          <BentoTilt className="col-span-1">
-            <BentoCard title="20+ Events" gradientStyle="light2" />
-          </BentoTilt>
-          <BentoTilt className="col-span-2">
-            <BentoCard title="15+ Committees" gradientStyle="dark2" />
-          </BentoTilt>
+        <p className="text-gray-400 text-sm mb-12">
+          Join a thriving community of driven individuals making an impact every day.
+        </p>
+        <div ref={ref} className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {stats.map((s) => (
+            <StatCard key={s.label} {...s} inView={inView} />
+          ))}
         </div>
       </div>
     </section>
