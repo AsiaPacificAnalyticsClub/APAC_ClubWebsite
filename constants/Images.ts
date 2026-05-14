@@ -143,8 +143,8 @@ export const images: Image[] = [
   },
   {
     title: "Introduction to Data Analytics with Xsolla",
-    image: "XsollaWorkshop-desktop.png",
-    imageMobile: "XsollaWorkshop-mobile.png",
-    imageDesktop: "XsollaWorkshop-desktop.png"
+    image: "/XsollaWorkshop-desktop.png",
+    imageMobile: "/XsollaWorkshop-mobile.png",
+    imageDesktop: "/XsollaWorkshop-desktop.png"
   }
 ];
