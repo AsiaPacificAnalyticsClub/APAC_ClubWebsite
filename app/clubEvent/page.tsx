@@ -14,8 +14,6 @@ import Image from "next/image";
 import { Event } from "@/constants/Events";
 import { ApiEvent } from "@/constants/ApiEvent";
 import { images } from "@/constants/Images";
-//temporary winner banner
-import WinnerBanner from "@/components/WinnerBanner";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -175,7 +173,7 @@ const ClubEvent = () => {
                   {formatDate(event.registrationEndDate)}
                 </p>
                 <p className="text-gray-700">{event.description}</p>
-                {(event.date > today || (endDate > today && event.date <= today)) && (
+                {event.date > today && (
                   <Link href={event.link} target="_blank">
                     <button className="btn-event mt-2 uppercase font-semibold">
                       Sign Up
@@ -332,10 +330,7 @@ const ClubEvent = () => {
                     {formatDate(event.registrationEndDate)}
                   </p>
                   <p className="text-gray-700">{event.description}</p>
-                  {(event.date > new Date().toISOString().slice(0, 10) ||
-                    (event.endDate &&
-                      event.endDate > new Date().toISOString().slice(0, 10) &&
-                      event.date <= new Date().toISOString().slice(0, 10))) && (
+                  {event.date > new Date().toISOString().slice(0, 10) && (
                     <Link href={event.link} target="_blank">
                       <button className="btn-event mt-2 uppercase font-semibold">
                         Sign Up
@@ -361,13 +356,6 @@ const ClubEvent = () => {
             : "Join us in our upcoming events"}
         </p>
       </div>
-
-      {/* Banner strip */}
-      <WinnerBanner
-        title="APAC Design Competition Winner Announced"
-        desktopPoster="/lanyard-winner-desktop.png"
-        mobilePoster="/lanyard-winner-mobile.png"
-      />
 
       <div className="max-w-6xl mx-auto px-4 mb-8">
         <Tabs
