@@ -14,6 +14,7 @@ import Image from "next/image";
 import { Event } from "@/constants/Events";
 import { ApiEvent } from "@/constants/ApiEvent";
 import { images } from "@/constants/Images";
+import EventCountdown from "./eventCountdown";
 //temporary winner banner
 import WinnerBanner from "@/components/WinnerBanner";
 
@@ -350,6 +351,7 @@ const ClubEvent = () => {
 
   return (
     <div className="min-h-screen w-full">
+      <EventCountdown />
       <div className="mb-8 pt-8">
         <h1 className="text-3xl font-bold text-center mb-2">Club Events</h1>
         <p className="text-center text-gray-600">
