@@ -4,16 +4,24 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+interface WinnerBannerProps {
+  title: string; // this is the text shown on the banner strip
+  bannerBackground?: string; // this is the background shown on the banner strip
+  desktopPoster: string; // this is the image shown in the modal on desktop
+  mobilePoster: string; // this is the image shown in the modal on mobile
+  expiryDate: string; // PROP MUST BE IN ISO FORMAT (e.g. "2024-12-31T23:59:59Z")
+}
+
 export default function WinnerBanner({
-  title = "APAC Design Competition Winner Announced",
-  desktopPoster = "/lanyard-winner-desktop.png",
-  mobilePoster = "/lanyard-winner-mobile.png",
-  bannerBackground = "/banner-bg.png", // <--- put your uploaded file in /public
-  durationDays = 10,
-}) {
+  title,
+  desktopPoster,
+  mobilePoster,
+  bannerBackground = "/banner-bg.png",
+  expiryDate,
+}: WinnerBannerProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [open, setOpen] = useState(false);
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   // Detect screen size
   useEffect(() => {
@@ -23,22 +31,10 @@ export default function WinnerBanner({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // LocalStorage expiry logic
   useEffect(() => {
-    const key = "winnerBannerExpiry";
-    const now = Date.now();
-    const expiry = localStorage.getItem(key);
-
-    if (expiry && now > parseInt(expiry, 10)) {
-      setVisible(false);
-      return;
-    }
-
-    if (!expiry) {
-      const newExpiry = now + durationDays * 24 * 60 * 60 * 1000;
-      localStorage.setItem(key, newExpiry.toString());
-    }
-  }, [durationDays]);
+    const expiry = new Date(expiryDate).getTime();
+    setVisible(Date.now() < expiry);
+  }, [expiryDate]);
 
   return (
     <div className="w-full mb-8">

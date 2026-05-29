@@ -149,7 +149,18 @@ const EventCountdown = () => {
           zIndex: 2,
         }}
       >
-        We Are Coming Back Soon
+        Data Science Week 2026
+        <br />
+        <span
+          style={{
+            background: "linear-gradient(90deg, #4fa3ff, #a78bfa)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          Coming Back Soon
+        </span>
       </h2>
       <p
         style={{

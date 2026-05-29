@@ -50,7 +50,7 @@ const Header = () => {
           {/*Burger Menu*/}
           <button
             onClick={toggleMenu}
-            className="md:hidden relative w-10 h-10 flex items-center justify-center z-50"
+            className="lg:hidden relative w-10 h-10 flex items-center justify-center z-50"
           >
             <span
               className={`absolute h-0.5 w-5 bg-black transform transition duration-300 ease-in-out ${
@@ -71,7 +71,7 @@ const Header = () => {
 
           {/*Mobile Navigation*/}
           <div
-            className={`md:hidden fixed inset-0  transition-all duration-300 ease-in-out ${
+            className={`lg:hidden fixed inset-0  transition-all duration-300 ease-in-out ${
               isOpen ? "opacity-100 visible" : "opacity-0 invisible"
             }`}
           >
@@ -138,7 +138,7 @@ const Header = () => {
                   >
                     <MenuItem onClick={handleClose}>
                       <Link
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSfLyy3a3sSqbep0Hyxx-RYmf7sgK5D-qwkPBwcqpOMlfeAx2g/viewform"
+                        href="https://youthos.org/community_home/8cdSpiDu3mrooT9dFwpF?member_invite=true"
                         target="_blank"
                         onClick={() => {
                           setIsOpen(false);
@@ -150,7 +150,7 @@ const Header = () => {
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Link
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSfLyy3a3sSqbep0Hyxx-RYmf7sgK5D-qwkPBwcqpOMlfeAx2g/viewform"
+                        href="https://docs.google.com/forms/d/e/1FAIpQLScC9OUFE-vRAecQl9BSjat0TczWYqMMLV-BUEyACB4NFzNFIA/viewform?usp=dialog"
                         target="_blank"
                         onClick={() => {
                           setIsOpen(false);
@@ -167,7 +167,7 @@ const Header = () => {
           </div>
 
           {/*Desktop Links and Button*/}
-          <div className="md:flex-row items-center gap-[50px] hidden md:flex">
+          <div className="md:flex-row items-center gap-[50px] hidden lg:flex">
             {/*Link*/}
             <div className="flex gap-2">
               {headerLinks.map((link, key) => (
@@ -199,7 +199,7 @@ const Header = () => {
               >
                 <MenuItem onClick={handleClose}>
                   <Link
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfLyy3a3sSqbep0Hyxx-RYmf7sgK5D-qwkPBwcqpOMlfeAx2g/viewform"
+                    href="https://youthos.org/community_home/8cdSpiDu3mrooT9dFwpF?member_invite=true"
                     target="_blank"
                     onClick={() => {
                       setIsOpen(false);
@@ -211,7 +211,7 @@ const Header = () => {
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                   <Link
-                    href="https://forms.gle/B9sJvL9PUntocNcx6"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLScC9OUFE-vRAecQl9BSjat0TczWYqMMLV-BUEyACB4NFzNFIA/viewform?usp=dialog"
                     target="_blank"
                     onClick={() => {
                       setIsOpen(false);

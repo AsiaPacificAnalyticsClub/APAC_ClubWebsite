@@ -136,9 +136,15 @@ export const images: Image[] = [
     imageDesktop: "/Snowflake-desktop.png",
   },
   {
+    title: "IQC Workshop 2026",
+    image: "/IQC_workshop_2026_desktop.png",
+    imageMobile: "/IQC_workshop_2026_mobile.jpg",
+    imageDesktop: "/IQC_workshop_2026_desktop.png",
+  },
+  {
     title: "Introduction to Data Analytics with Xsolla",
-    image: "XsollaWorkshop-desktop.png",
-    imageMobile: "XsollaWorkshop-mobile.png",
-    imageDesktop: "XsollaWorkshop-desktop.png"
+    image: "/XsollaWorkshop-desktop.png",
+    imageMobile: "/XsollaWorkshop-mobile.png",
+    imageDesktop: "/XsollaWorkshop-desktop.png"
   }
 ];
