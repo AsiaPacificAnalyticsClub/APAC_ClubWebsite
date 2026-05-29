@@ -138,7 +138,7 @@ const Header = () => {
                   >
                     <MenuItem onClick={handleClose}>
                       <Link
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSfLyy3a3sSqbep0Hyxx-RYmf7sgK5D-qwkPBwcqpOMlfeAx2g/viewform"
+                        href="https://youthos.org/community_home/8cdSpiDu3mrooT9dFwpF?member_invite=true"
                         target="_blank"
                         onClick={() => {
                           setIsOpen(false);
@@ -150,7 +150,7 @@ const Header = () => {
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Link
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSfLyy3a3sSqbep0Hyxx-RYmf7sgK5D-qwkPBwcqpOMlfeAx2g/viewform"
+                        href="https://docs.google.com/forms/d/e/1FAIpQLScC9OUFE-vRAecQl9BSjat0TczWYqMMLV-BUEyACB4NFzNFIA/viewform?usp=dialog"
                         target="_blank"
                         onClick={() => {
                           setIsOpen(false);
@@ -199,7 +199,7 @@ const Header = () => {
               >
                 <MenuItem onClick={handleClose}>
                   <Link
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfLyy3a3sSqbep0Hyxx-RYmf7sgK5D-qwkPBwcqpOMlfeAx2g/viewform"
+                    href="https://youthos.org/community_home/8cdSpiDu3mrooT9dFwpF?member_invite=true"
                     target="_blank"
                     onClick={() => {
                       setIsOpen(false);
@@ -211,7 +211,7 @@ const Header = () => {
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                   <Link
-                    href="https://forms.gle/B9sJvL9PUntocNcx6"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLScC9OUFE-vRAecQl9BSjat0TczWYqMMLV-BUEyACB4NFzNFIA/viewform?usp=dialog"
                     target="_blank"
                     onClick={() => {
                       setIsOpen(false);
