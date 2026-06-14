@@ -297,6 +297,15 @@ const EventCountdown = () => {
 
       {/* Scroll hint */}
       <div
+        onClick={() => {
+          const section = document.getElementById("club-events");
+          if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+          } else {
+          // Fallback: scroll by window height if id not found
+          window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+          }
+        }}
         style={{
           position: "relative",
           zIndex: 2,
@@ -309,8 +318,12 @@ const EventCountdown = () => {
           fontSize: "10px",
           letterSpacing: "2px",
           textTransform: "uppercase",
+          cursor: "pointer",
+          userSelect: "none",
         }}
-      >
+        onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(120,180,255,0.85)")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(120,180,255,0.45)")}
+>
         <span>View Events</span>
         <svg
           width="20"
@@ -322,7 +335,7 @@ const EventCountdown = () => {
         >
           <path
             d="M5 8l5 5 5-5"
-            stroke="rgba(120,180,255,0.5)"
+            stroke="currentColor"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
