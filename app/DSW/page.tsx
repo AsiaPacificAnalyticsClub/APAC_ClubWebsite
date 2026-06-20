@@ -81,23 +81,6 @@ const DswEvent = () => {
         <p className="text-center text-lg font-semibold text-indigo-700 mb-1">
           {dwsDetails.date}
         </p>
-        {dwsDetails.photoLink ? (
-          <p className="text-center text-gray-600 mb-4">
-            📸 View all events & games photos here:{" "}
-            <a
-              href={dwsDetails.photoLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 underline hover:text-blue-800"
-            >
-              Data Science Week Photo Folder
-            </a>
-          </p>
-        ) : (
-          <p className="text-center text-gray-600 mb-4">
-            📸 Photos will be available after the event. Stay tuned!
-          </p>
-        )}
       </div>
 
       {/* enlarge poster when click */}
