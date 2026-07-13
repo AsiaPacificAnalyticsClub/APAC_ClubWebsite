@@ -129,7 +129,8 @@ export const images: Image[] = [
     image: "/Alphathon2025.png",
     imageMobile: "/Alphathon2025Mobile.png",
     imageDesktop: "/Alphathon2025.png",
-  },{
+  },
+  {
     title: "Building The future with Agentic AI",
     image: "/Snowflake-desktop.png",
     imageMobile: "/Snowflake-mobile.png",
@@ -145,6 +146,11 @@ export const images: Image[] = [
     title: "Introduction to Data Analytics with Xsolla",
     image: "/XsollaWorkshop-desktop.png",
     imageMobile: "/XsollaWorkshop-mobile.png",
-    imageDesktop: "/XsollaWorkshop-desktop.png"
-  }
+    imageDesktop: "/XsollaWorkshop-desktop.png",
+  },
+  {
+    title:
+      "Prompt to Pipeline: Building Agentic Data Science Workflows with Google Cloud",
+    image: "/evnt_PromptToPipeline.png",
+  },
 ];
