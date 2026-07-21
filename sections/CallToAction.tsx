@@ -16,7 +16,7 @@ const CallToAction = () => {
           <div className="flex gap-8 mt-10 justify-center">
             <Link
               href={
-                "https://docs.google.com/forms/d/e/1FAIpQLSfLyy3a3sSqbep0Hyxx-RYmf7sgK5D-qwkPBwcqpOMlfeAx2g/viewform"
+                "https://youthos.org/community_home/8cdSpiDu3mrooT9dFwpF?initial-tab-name=member_chat&member_invite=true"
               }
               target="_blank"
             >
