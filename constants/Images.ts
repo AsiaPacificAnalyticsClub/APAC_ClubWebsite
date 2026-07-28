@@ -153,4 +153,8 @@ export const images: Image[] = [
       "Prompt to Pipeline: Building Agentic Data Science Workflows with Google Cloud",
     image: "/evnt_PromptToPipeline.png",
   },
+  {
+    title: "Introduction to PowerBI Workshop",
+    image: "/evnt_IntroductionToPowerBIWorkshop.png",
+  },
 ];
