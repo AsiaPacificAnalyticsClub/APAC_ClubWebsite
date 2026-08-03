@@ -48,18 +48,26 @@ const ClubEvent = () => {
 
         const data: ApiEvent[] = await response.json();
 
-        const processedEvents: Event[] = data.map((event) => ({
-          id: event._id,
-          title: event.title,
-          date: event.start_date,
-          endDate: event.end_date,
-          displayDate: formatDate(event.start_date),
-          description: event.description,
-          image: images.find((img) => img.title === event.title)?.image || "",
-          link: event.link,
-          registrationStartDate: event.registration_start_date,
-          registrationEndDate: event.registration_end_date,
-        }));
+        const processedEvents: Event[] = data.map((event) => {
+          const matchedImage = images.find((img) => img.title === event.title)
+            ?.image;
+          const imageValue = Array.isArray(matchedImage)
+            ? matchedImage[0]
+            : matchedImage || "";
+
+          return {
+            id: event._id,
+            title: event.title,
+            date: event.start_date,
+            endDate: event.end_date,
+            displayDate: formatDate(event.start_date),
+            description: event.description,
+            image: imageValue,
+            link: event.link,
+            registrationStartDate: event.registration_start_date,
+            registrationEndDate: event.registration_end_date,
+          };
+        });
 
         setEvents(processedEvents);
       } catch (error) {
@@ -133,7 +141,10 @@ const ClubEvent = () => {
       <div className="md:hidden space-y-8 px-4">
         {events.map((event) => {
           const imgObj = images.find((img) => img.title === event.title);
-          const imageSrc = imgObj?.imageMobile || imgObj?.image || event.image;
+          const imageSrc =
+            imgObj?.imageMobile ||
+            (typeof imgObj?.image === "string" ? imgObj.image : imgObj?.image?.[0]) ||
+            event.image;
           // Find end_date if available (from event or data)
           // For now, try to get it from event.end_date if present, else fallback to event.date
           // If your Event type does not have end_date, you may need to extend it
@@ -217,7 +228,10 @@ const ClubEvent = () => {
               >
                 {(() => {
                   const imgObj = images.find((img) => img.title === event.title);
-                  const imageSrc = imgObj?.imageDesktop || imgObj?.image || event.image;
+                  const imageSrc =
+                    imgObj?.imageDesktop ||
+                    (typeof imgObj?.image === "string" ? imgObj.image : imgObj?.image?.[0]) ||
+                    event.image;
                   return (
                     <div
                       className="relative w-full max-w-md aspect-video overflow-hidden rounded-lg cursor-pointer"

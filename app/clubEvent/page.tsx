@@ -13,8 +13,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Event } from "@/constants/Events";
 import { ApiEvent } from "@/constants/ApiEvent";
-import { images } from "@/constants/Images";
+import { images, isRecapImages } from "@/constants/Images";
 import EventCountdown from "./eventCountdown";
+import EventRecapCarousel from "./EventRecapCarousel";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -47,18 +48,26 @@ const ClubEvent = () => {
 
         const data: ApiEvent[] = await response.json();
 
-        const processedEvents: Event[] = data.map((event) => ({
-          id: event._id,
-          title: event.title,
-          date: event.start_date,
-          endDate: event.end_date,
-          displayDate: formatDate(event.start_date),
-          description: event.description,
-          image: images.find((img) => img.title === event.title)?.image || "",
-          link: event.link,
-          registrationStartDate: event.registration_start_date,
-          registrationEndDate: event.registration_end_date,
-        }));
+        const processedEvents: Event[] = data.map((event) => {
+          const matchedImage = images.find((img) => img.title === event.title)
+            ?.image;
+          const imageValue = Array.isArray(matchedImage)
+            ? matchedImage[0]
+            : matchedImage || "";
+
+          return {
+            id: event._id,
+            title: event.title,
+            date: event.start_date,
+            endDate: event.end_date,
+            displayDate: formatDate(event.start_date),
+            description: event.description,
+            image: imageValue,
+            link: event.link,
+            registrationStartDate: event.registration_start_date,
+            registrationEndDate: event.registration_end_date,
+          };
+        });
 
         setEvents(processedEvents);
       } catch (error) {
@@ -126,16 +135,74 @@ const ClubEvent = () => {
     setModalOpen(false);
   };
 
+  const getSingleImageSrc = (
+    imgObj: (typeof images)[number] | undefined,
+    event: Event,
+    variant: "mobile" | "desktop",
+  ) => {
+    if (variant === "mobile") {
+      return (
+        imgObj?.imageMobile ||
+        (typeof imgObj?.image === "string" ? imgObj.image : "") ||
+        event.image
+      );
+    }
+
+    return (
+      imgObj?.imageDesktop ||
+      (typeof imgObj?.image === "string" ? imgObj.image : "") ||
+      event.image
+    );
+  };
+
+  const renderEventImage = (
+    imgObj: (typeof images)[number] | undefined,
+    event: Event,
+    variant: "mobile" | "desktop",
+  ) => {
+    if (isRecapImages(imgObj?.image)) {
+      return (
+        <EventRecapCarousel
+          images={imgObj.image}
+          alt={event.title}
+          onImageClick={(image) => handleImageClick(image, event.title)}
+          sizes={
+            variant === "mobile" ? "100vw" : "(max-width: 1280px) 50vw, 33vw"
+          }
+          className={variant === "desktop" ? "max-w-md" : ""}
+        />
+      );
+    }
+
+    const imageSrc = getSingleImageSrc(imgObj, event, variant);
+
+    return (
+      <div
+        className={`relative w-full aspect-video overflow-hidden cursor-pointer ${
+          variant === "desktop" ? "max-w-md rounded-lg" : ""
+        }`}
+        onClick={() => handleImageClick(imageSrc, event.title)}
+      >
+        <Image
+          src={imageSrc}
+          alt={event.title}
+          fill
+          className="object-cover"
+          sizes={
+            variant === "mobile" ? "100vw" : "(max-width: 1280px) 50vw, 33vw"
+          }
+          priority
+        />
+      </div>
+    );
+  };
+
   const renderMobileTimeline = (events: Event[]) => {
     const today = new Date().toISOString().slice(0, 10);
     return (
       <div className="md:hidden space-y-8 px-4">
         {events.map((event) => {
           const imgObj = images.find((img) => img.title === event.title);
-          const imageSrc = imgObj?.imageMobile || imgObj?.image || event.image;
-          // Find end_date if available (from event or data)
-          // For now, try to get it from event.end_date if present, else fallback to event.date
-          // If your Event type does not have end_date, you may need to extend it
           const endDate = event.endDate || event.date;
           let label = null;
           if (event.date > today) {
@@ -150,19 +217,7 @@ const ClubEvent = () => {
               key={event.id}
               className="bg-white rounded-lg overflow-hidden shadow-sm"
             >
-              <div
-                className="relative w-full aspect-video cursor-pointer"
-                onClick={() => handleImageClick(imageSrc, event.title)}
-              >
-                <Image
-                  src={imageSrc}
-                  alt={event.title}
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-                  priority
-                />
-              </div>
+              {renderEventImage(imgObj, event, "mobile")}
               <div className="p-4">
                 <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
                 {label}
@@ -215,28 +270,11 @@ const ClubEvent = () => {
                   justifyContent: "flex-end",
                 }}
               >
-                {(() => {
-                  const imgObj = images.find(
-                    (img) => img.title === event.title,
-                  );
-                  const imageSrc =
-                    imgObj?.imageDesktop || imgObj?.image || event.image;
-                  return (
-                    <div
-                      className="relative w-full max-w-md aspect-video overflow-hidden rounded-lg cursor-pointer"
-                      onClick={() => handleImageClick(imageSrc, event.title)}
-                    >
-                      <Image
-                        src={imageSrc}
-                        alt={event.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 1280px) 50vw, 33vw"
-                        priority
-                      />
-                    </div>
-                  );
-                })()}
+                {renderEventImage(
+                  images.find((img) => img.title === event.title),
+                  event,
+                  "desktop",
+                )}
               </TimelineOppositeContent>
 
               <TimelineSeparator
