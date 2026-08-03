@@ -1,8 +1,14 @@
 interface Image {
   title: string;
-  image: string;
-  imageMobile?: string; // optional
-  imageDesktop?: string; // optional
+  image: string | string[];
+  imageMobile?: string;
+  imageDesktop?: string;
+}
+
+export function isRecapImages(
+  image: string | string[] | undefined,
+): image is string[] {
+  return Array.isArray(image) && image.length > 0;
 }
 
 export const images: Image[] = [
@@ -112,7 +118,7 @@ export const images: Image[] = [
   },
   {
     title: "Maxis Industrial Visit",
-    image: "/MIV PC.png",
+    image: ["/MIV PC.png", "/evntRecap/evnt_MIV.png"],
     imageMobile: "/MIV Social Media.png",
     imageDesktop: "/MIV PC.png",
   },
@@ -126,7 +132,7 @@ export const images: Image[] = [
   },
   {
     title: "WORLDQUANT Brain Alphathon - Competition",
-    image: "/Alphathon2025.png",
+    image: ["/Alphathon2025.png", "/evntRecap/evnt_Alphathon2025.png"],
     imageMobile: "/Alphathon2025Mobile.png",
     imageDesktop: "/Alphathon2025.png",
   },
@@ -151,7 +157,10 @@ export const images: Image[] = [
   {
     title:
       "Prompt to Pipeline: Building Agentic Data Science Workflows with Google Cloud",
-    image: "/evnt_PromptToPipeline.png",
+    image: [
+      "/evnt_PromptToPipeline.png",
+      "/evntRecap/evnt_PromptToPipeline.png",
+    ],
   },
   {
     title: "Introduction to PowerBI Workshop",
