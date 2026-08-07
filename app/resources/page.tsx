@@ -19,6 +19,7 @@ type Career = {
 const Resources = () => {
   const [careers, setCareers] = useState<Career[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchCareers() {
@@ -61,7 +62,8 @@ const Resources = () => {
                   <img
                     src={career.imageUrl}
                     alt={career.title}
-                    className="w-full h-48 object-cover rounded-md mb-3"
+                    onClick={() => setSelectedImage(career.imageUrl!)}
+                    className="w-full h-48 object-cover rounded-md mb-3 cursor-pointer hover:opacity-90 transition-opacity"
                   />
                 )}
                 <h2 className="text-xl font-semibold text-gray-800 mb-2">{career.title}</h2>
@@ -95,10 +97,10 @@ const Resources = () => {
                     </ul>
                   </div>
                 )}
-                <a
+                
                   href={`mailto:${career.contactEmail}?subject=Application&body=Dear ${encodeURIComponent(career.contactName)}, Please find attached my CV and cover letter. Thank you.`}
                   className="inline-block bg-blue-500 text-white font-medium py-2 px-4 rounded hover:bg-blue-600 mt-2"
-                >
+                <a>
                   Email {career.contactName}
                 </a>
               </div>
@@ -115,6 +117,25 @@ const Resources = () => {
           </div>
         )}
       </div>
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <img
+            src={selectedImage}
+            alt="Full size"
+            className="max-w-full max-h-full rounded-md"
+          />
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white text-3xl font-bold hover:text-gray-300"
+          >
+            &times;
+          </button>
+        </div>
+      )}
     </div>
   );
 };
