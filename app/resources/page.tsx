@@ -13,6 +13,7 @@ type Career = {
   contactEmail: string;
   applicationInstructions: string;
   isActive: boolean;
+  imageUrl?: string;
 };
 
 const Resources = () => {
@@ -56,6 +57,13 @@ const Resources = () => {
           careers.map((career) => (
             <div key={career._id} className="relative group w-full max-w-2xl bg-white rounded-lg shadow-lg p-6 border border-gray-200 transform transition-transform duration-700">
               <div>
+                {career.imageUrl && (
+                  <img
+                    src={career.imageUrl}
+                    alt={career.title}
+                    className="w-full h-48 object-cover rounded-md mb-3"
+                  />
+                )}
                 <h2 className="text-xl font-semibold text-gray-800 mb-2">{career.title}</h2>
                 <p className="text-gray-600 mb-1"><strong>Organization:</strong> {career.organization}</p>
                 <p className="text-gray-600 mb-3">{career.description}</p>
