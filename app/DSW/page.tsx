@@ -38,7 +38,7 @@ const DSW_DETAILS: Record<Year, DswDetails> = {
       "https://cloudmails-my.sharepoint.com/:f:/g/personal/beyondmedia_apu_edu_my/ErpizYVAAnxNvVbp1rfQUM0BtCsYG0Fx5hY-zlbruw29Lg?e=otztwe",
   },
   2026: {
-    date: "22 Sep - 25 Sep",
+    date: "22 September - 25 September",
     photoLink: null,
   },
 };
