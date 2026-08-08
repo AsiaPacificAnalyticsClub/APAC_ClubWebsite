@@ -97,10 +97,10 @@ const Resources = () => {
                     </ul>
                   </div>
                 )}
-                
+                <a
                   href={`mailto:${career.contactEmail}?subject=Application&body=Dear ${encodeURIComponent(career.contactName)}, Please find attached my CV and cover letter. Thank you.`}
                   className="inline-block bg-blue-500 text-white font-medium py-2 px-4 rounded hover:bg-blue-600 mt-2"
-                <a>
+                >
                   Email {career.contactName}
                 </a>
               </div>
