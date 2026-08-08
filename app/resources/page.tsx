@@ -13,11 +13,13 @@ type Career = {
   contactEmail: string;
   applicationInstructions: string;
   isActive: boolean;
+  imageUrl?: string;
 };
 
 const Resources = () => {
   const [careers, setCareers] = useState<Career[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchCareers() {
@@ -56,6 +58,14 @@ const Resources = () => {
           careers.map((career) => (
             <div key={career._id} className="relative group w-full max-w-2xl bg-white rounded-lg shadow-lg p-6 border border-gray-200 transform transition-transform duration-700">
               <div>
+                {career.imageUrl && (
+                  <img
+                    src={career.imageUrl}
+                    alt={career.title}
+                    onClick={() => setSelectedImage(career.imageUrl!)}
+                    className="w-full h-48 object-cover rounded-md mb-3 cursor-pointer hover:opacity-90 transition-opacity"
+                  />
+                )}
                 <h2 className="text-xl font-semibold text-gray-800 mb-2">{career.title}</h2>
                 <p className="text-gray-600 mb-1"><strong>Organization:</strong> {career.organization}</p>
                 <p className="text-gray-600 mb-3">{career.description}</p>
@@ -107,6 +117,25 @@ const Resources = () => {
           </div>
         )}
       </div>
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <img
+            src={selectedImage}
+            alt="Full size"
+            className="max-w-full max-h-full rounded-md"
+          />
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white text-3xl font-bold hover:text-gray-300"
+          >
+            &times;
+          </button>
+        </div>
+      )}
     </div>
   );
 };
