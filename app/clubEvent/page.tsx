@@ -27,6 +27,8 @@ const ClubEvent = () => {
   const [zoomTitle, setZoomTitle] = useState<string>("");
   const [modalOpen, setModalOpen] = useState(false);
 
+  const today = new Date().toISOString().slice(0, 10);
+
   const formatDate = (date: string): string => {
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -198,7 +200,6 @@ const ClubEvent = () => {
   };
 
   const renderMobileTimeline = (events: Event[]) => {
-    const today = new Date().toISOString().slice(0, 10);
     return (
       <div className="md:hidden space-y-8 px-4">
         {events.map((event) => {
@@ -332,7 +333,7 @@ const ClubEvent = () => {
                 <div className="w-full max-w-md">
                   <h3 className="text-xl font-semibold mb-2">
                     {event.title}
-                    {event.date > new Date().toISOString().slice(0, 10) && (
+                    {event.date > today && (
                       <Chip
                         label="Upcoming"
                         color="primary"
@@ -341,8 +342,7 @@ const ClubEvent = () => {
                       />
                     )}
                     {event.endDate &&
-                      event.endDate <=
-                        new Date().toISOString().slice(0, 10) && (
+                      event.endDate < today  && (
                         <Chip
                           label="Past"
                           color="error"
@@ -350,9 +350,9 @@ const ClubEvent = () => {
                           className="ml-2"
                         />
                       )}
-                    {event.date <= new Date().toISOString().slice(0, 10) &&
+                    {event.date <= today &&
                       event.endDate &&
-                      event.endDate > new Date().toISOString().slice(0, 10) && (
+                      event.endDate >= today && (
                         <Chip
                           label="Ongoing"
                           color="success"
@@ -369,7 +369,7 @@ const ClubEvent = () => {
                     {formatDate(event.registrationEndDate)}
                   </p>
                   <p className="text-gray-700">{event.description}</p>
-                  {event.date > new Date().toISOString().slice(0, 10) && (
+                  {event.registrationStartDate <= today && today <= event.registrationEndDate && (
                     <Link href={event.link} target="_blank">
                       <button className="btn-event mt-2 uppercase font-semibold">
                         Sign Up
