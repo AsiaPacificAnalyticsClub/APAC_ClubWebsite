@@ -188,8 +188,8 @@ const DswEvent = () => {
                 minHeight: 0,
               }}
             >
+              <Tab label="Tech Talk & Workshop" value={EventType.EVENTS} />
               <Tab label="Games" value={EventType.GAME} />
-              <Tab label="Events" value={EventType.EVENTS} />
             </Tabs>
           </div>
         </div>
