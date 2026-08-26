@@ -27,7 +27,7 @@ import { Modal } from "@mui/material";
 import Image from "next/image";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { DswItem, DswDetails, EventType } from "@/constants/DSW";
-import { SearchX } from "lucide-react";
+import { SearchX, Mic, BriefcaseBusiness, FileText } from "lucide-react";
 
 export type Year = 2025 | 2026;
 
@@ -76,12 +76,50 @@ const DswEvent = () => {
   return (
     <div className="min-h-screen w-full bg-white">
       <div className="mb-8 pt-8">
-        <h1 className="text-3xl font-bold text-center mb-2">
+        <h1 className="text-3xl font-bold text-center text-[var(--text)] mb-2">
           Data Science Week {year}
         </h1>
-        <p className="text-center text-lg font-semibold text-indigo-700 mb-1">
+        <p className="text-center text-lg font-bold text-[var(--text-muted)] mb-1">
           {dwsDetails.date}
         </p>
+
+        {/* DELETE AFTER DSW 2026 IS OVER */}
+        {year == 2026 && (
+          <div className="max-w-3xl mx-auto px-4 mt-4">
+            <div 
+              className="
+                flex items-center justify-center gap-2
+                px-5 py-3 mb-2
+                bg-[image:var(--gradient)] 
+                border-t border-[var(--highlight)]
+                rounded-lg shadow-custom
+              ">
+              <Mic size={20} className="shrink-0" />
+              <p 
+                className="text-center text-base font-semibold text-[var(--text)]"
+              >
+                Special Keynote by Kasatria on &quot;Why do people leave without buying something after arriving?&quot;
+              </p>
+            </div>
+
+            <div className="text-[var(--text)] bg-[image:var(--gradient)] border-t border-[var(--highlight)] rounded-lg shadow-custom">
+              <p className="flex items-center justify-center gap-2 text-center text-base font-semibold rounded-lg px-5 py-3 ">
+                <BriefcaseBusiness size={20} className="shrink-0"/>
+                Mini Career Fair with Internship & Job Opportunities
+              </p>
+
+              <a
+                href="https://forms.cloud.microsoft/r/XMKLC2SD83"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 text-center text-base text-md font-medium rounded-lg px-5 pb-4 transition-all hover:underline hover:text-[var(--secondary)] text-[var(--text-muted)]"
+              >
+                <FileText size={20} className="shrink-0" />
+                Drop your CV here
+              </a>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* enlarge poster when click */}
