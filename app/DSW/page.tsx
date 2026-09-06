@@ -28,6 +28,7 @@ import Image from "next/image";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { DswItem, DswDetails, EventType } from "@/constants/DSW";
 import { SearchX, Mic, BriefcaseBusiness, FileText } from "lucide-react";
+import DswHeroCarousel from "./DswHeroCarousel";
 
 export type Year = 2025 | 2026;
 
@@ -75,7 +76,9 @@ const DswEvent = () => {
 
   return (
     <div className="min-h-screen w-full bg-white">
-      <div className="mb-8 pt-8">
+      <DswHeroCarousel />
+
+      <div id="dsw-content" className="scroll-mt-16 mb-8 pt-8">
         <h1 className="text-3xl font-bold text-center text-[var(--text)] mb-2">
           Data Science Week {year}
         </h1>
