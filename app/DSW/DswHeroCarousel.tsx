@@ -4,35 +4,46 @@ import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 
-// All 16 past DSW images across 3 columns
+// All 25 past DSW images across 3 columns
 const COLUMN_1_IMAGES = [
   "/dsw-past-img/04.jpg",
   "/dsw-past-img/05.jpg",
+  "/dsw-past-img/17.jpg",
   "/dsw-past-img/03.jpg",
   "/dsw-past-img/13.jpg",
+  "/dsw-past-img/18.jpg",
   "/dsw-past-img/16.jpg",
   "/dsw-past-img/01.jpg",
+  "/dsw-past-img/19.jpg",
 ];
 
 const COLUMN_2_IMAGES = [
   "/dsw-past-img/08.jpg",
+  "/dsw-past-img/20.jpg",
   "/dsw-past-img/11.jpg",
   "/dsw-past-img/02.jpg",
+  "/dsw-past-img/21.jpg",
   "/dsw-past-img/14.jpg",
   "/dsw-past-img/09.jpg",
+  "/dsw-past-img/22.jpg",
 ];
 
 const COLUMN_3_IMAGES = [
   "/dsw-past-img/06.jpg",
+  "/dsw-past-img/23.jpg",
   "/dsw-past-img/07.jpg",
   "/dsw-past-img/10.jpg",
+  "/dsw-past-img/24.jpg",
   "/dsw-past-img/12.jpg",
   "/dsw-past-img/15.jpg",
+  "/dsw-past-img/25.jpg",
 ];
 
 const DswHeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [carouselHeight, setCarouselHeight] = useState<string>("calc(100dvh - 58px)");
+  const [carouselHeight, setCarouselHeight] = useState<string>(
+    "calc(100dvh - 58px)",
+  );
   const [isHovered, setIsHovered] = useState(false);
 
   // Guarantee navbar + carousel = exactly 100% of the visible viewport
@@ -40,7 +51,10 @@ const DswHeroCarousel = () => {
     const updateDimensions = () => {
       const header = document.querySelector("header");
       const headerH = header ? header.getBoundingClientRect().height : 58;
-      document.documentElement.style.setProperty("--header-height", `${headerH}px`);
+      document.documentElement.style.setProperty(
+        "--header-height",
+        `${headerH}px`,
+      );
 
       const exactHeight = window.innerHeight - headerH;
       if (exactHeight > 0) {
@@ -109,13 +123,13 @@ const DswHeroCarousel = () => {
           100% { transform: translateY(-50%); }
         }
         .animate-scroll-up-1 {
-          animation: dswScrollUp1 42s linear infinite;
+          animation: dswScrollUp1 58s linear infinite;
         }
         .animate-scroll-down {
-          animation: dswScrollDown 46s linear infinite;
+          animation: dswScrollDown 64s linear infinite;
         }
         .animate-scroll-up-2 {
-          animation: dswScrollUp2 40s linear infinite;
+          animation: dswScrollUp2 55s linear infinite;
         }
         .animate-scroll-up-1:hover,
         .animate-scroll-down:hover,
@@ -138,7 +152,7 @@ const DswHeroCarousel = () => {
 
         <div className="relative z-10 w-full h-full flex flex-col lg:flex-row items-center justify-between">
           {/* Left Content Area */}
-          <div className="w-full lg:w-[48%] h-full flex flex-col justify-center px-6 sm:px-12 lg:pl-16 xl:pl-20 z-20 py-8 lg:py-0">
+          <div className="w-full lg:w-[55%] h-full flex flex-col justify-center px-6 sm:px-12 lg:pl-16 xl:pl-20 z-20 py-8 lg:py-0">
             {/* Badge */}
             <div className="mb-4 sm:mb-6">
               <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-semibold tracking-wider text-teal-400 border border-teal-500/40 bg-teal-950/40 backdrop-blur-md uppercase">
@@ -148,9 +162,12 @@ const DswHeroCarousel = () => {
 
             {/* Main Title */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.04] mb-4">
-              DATA<br />
-              SCIENCE WEEK<br />
-              2026<br />
+              DATA
+              <br />
+              SCIENCE WEEK
+              <br />
+              2026
+              <br />
               <span className="text-teal-300">IS COMING.</span>
             </h1>
 
@@ -159,12 +176,14 @@ const DswHeroCarousel = () => {
 
             {/* Date */}
             <p className="text-amber-400 font-bold text-lg sm:text-xl tracking-tight mb-3">
-              22 – 25 September 2026
+              22 - 25 September 2026
             </p>
 
             {/* Description */}
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-lg mb-6 sm:mb-8 font-light">
-              Get ready for four days of talks, workshops, industry sharing, student activities and opportunities to connect with the data community.
+              Get ready for four days of talks, workshops, industry sharing,
+              student activities and opportunities to connect with the data
+              community.
             </p>
 
             {/* CTA Button */}
@@ -179,8 +198,8 @@ const DswHeroCarousel = () => {
             </div>
           </div>
 
-          {/* Right Side - Uniform Aspect Ratio Collage (All 16 Images) */}
-          <div className="w-full lg:w-[52%] h-full relative overflow-hidden flex items-center justify-center pointer-events-auto">
+          {/* Right Side - Uniform Aspect Ratio Collage (All 25 Images) */}
+          <div className="w-full lg:w-[45%] h-full relative overflow-hidden flex items-center justify-center pointer-events-auto">
             {/* Gradient masks for seamless edge fading */}
             <div className="hidden lg:block absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-[#06151a] via-[#06151a]/80 to-transparent z-20 pointer-events-none" />
             <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#06151a] to-transparent z-20 pointer-events-none" />
@@ -247,28 +266,219 @@ const DswHeroCarousel = () => {
         </div>
       </div>
 
-      {/* ===================== SLIDE 2 ===================== */}
+      {/* ===================== SLIDE 2 (Mini Career Fair) ===================== */}
       <div
-        className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-sky-950 to-blue-950 text-white px-6 ${
+        className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out bg-[#06151a] overflow-hidden flex items-center ${
           currentIndex === 1
             ? "opacity-100 translate-x-0 pointer-events-auto z-10 visible"
             : "opacity-0 translate-x-full pointer-events-none z-0 invisible"
         }`}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.18)_0%,transparent_70%)] pointer-events-none" />
+        {/* Subtle background glow */}
+        <div className="absolute top-1/4 left-10 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Upward trending line chart graph behind heading (matching prototype) */}
+        <div className="absolute top-10 sm:top-16 left-1/4 sm:left-1/3 w-[400px] sm:w-[500px] h-[280px] sm:h-[320px] pointer-events-none z-0 opacity-35 sm:opacity-45">
+          <svg
+            className="w-full h-full"
+            viewBox="0 0 500 320"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {/* Background Grid Lines */}
+            <line
+              x1="80"
+              y1="20"
+              x2="80"
+              y2="280"
+              stroke="#0ea5e9"
+              strokeWidth="0.75"
+              strokeDasharray="4 4"
+              opacity="0.25"
+            />
+            <line
+              x1="160"
+              y1="20"
+              x2="160"
+              y2="280"
+              stroke="#0ea5e9"
+              strokeWidth="0.75"
+              strokeDasharray="4 4"
+              opacity="0.25"
+            />
+            <line
+              x1="240"
+              y1="20"
+              x2="240"
+              y2="280"
+              stroke="#0ea5e9"
+              strokeWidth="0.75"
+              strokeDasharray="4 4"
+              opacity="0.25"
+            />
+            <line
+              x1="320"
+              y1="20"
+              x2="320"
+              y2="280"
+              stroke="#0ea5e9"
+              strokeWidth="0.75"
+              strokeDasharray="4 4"
+              opacity="0.25"
+            />
+            <line
+              x1="400"
+              y1="20"
+              x2="400"
+              y2="280"
+              stroke="#0ea5e9"
+              strokeWidth="0.75"
+              strokeDasharray="4 4"
+              opacity="0.25"
+            />
+            <line
+              x1="30"
+              y1="70"
+              x2="450"
+              y2="70"
+              stroke="#0ea5e9"
+              strokeWidth="0.75"
+              strokeDasharray="4 4"
+              opacity="0.25"
+            />
+            <line
+              x1="30"
+              y1="140"
+              x2="450"
+              y2="140"
+              stroke="#0ea5e9"
+              strokeWidth="0.75"
+              strokeDasharray="4 4"
+              opacity="0.25"
+            />
+            <line
+              x1="30"
+              y1="210"
+              x2="450"
+              y2="210"
+              stroke="#0ea5e9"
+              strokeWidth="0.75"
+              strokeDasharray="4 4"
+              opacity="0.25"
+            />
 
-        <div className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto">
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wider uppercase bg-white/10 backdrop-blur-md border border-white/20 text-blue-200 mb-4 shadow-sm">
-            Draft Slide 2
-          </span>
+            {/* Glowing trend line with nodes */}
+            <path
+              d="M 40 240 L 120 200 L 190 235 L 260 145 L 340 180 L 430 65"
+              stroke="url(#trendGradient)"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            {/* Area under trend line */}
+            <path
+              d="M 40 240 L 120 200 L 190 235 L 260 145 L 340 180 L 430 65 L 430 280 L 40 280 Z"
+              fill="url(#trendAreaGradient)"
+              opacity="0.18"
+            />
 
-          <h2 className="text-5xl md:text-8xl font-extrabold tracking-tight mb-4 drop-shadow-md">
-            Slide 2
-          </h2>
+            {/* Nodes / Dots on trend line */}
+            <circle cx="120" cy="200" r="4.5" fill="#38bdf8" />
+            <circle cx="190" cy="235" r="4.5" fill="#38bdf8" />
+            <circle cx="260" cy="145" r="4.5" fill="#38bdf8" />
+            <circle cx="340" cy="180" r="4.5" fill="#38bdf8" />
+            <circle cx="430" cy="65" r="6" fill="#38bdf8" />
 
-          <p className="text-base md:text-xl text-slate-300 font-light max-w-lg">
-            Placeholder for your second banner / slide content
-          </p>
+            <defs>
+              <linearGradient
+                id="trendGradient"
+                x1="40"
+                y1="240"
+                x2="430"
+                y2="65"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#0284c7" stopOpacity="0.4" />
+                <stop offset="0.6" stopColor="#38bdf8" />
+                <stop offset="1" stopColor="#2dd4bf" />
+              </linearGradient>
+              <linearGradient
+                id="trendAreaGradient"
+                x1="240"
+                y1="65"
+                x2="240"
+                y2="280"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stopColor="#38bdf8" stopOpacity="0.35" />
+                <stop offset="1" stopColor="#06151a" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div className="relative z-10 w-full h-full flex flex-col lg:flex-row items-center justify-between">
+          {/* Left Content Area */}
+          <div className="w-full lg:w-[55%] h-full flex flex-col justify-center px-6 sm:px-12 lg:pl-16 xl:pl-20 z-20 py-8 lg:py-0">
+            {/* Badge */}
+            <div className="mb-4 sm:mb-6">
+              <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-semibold tracking-wider text-teal-400 border border-teal-500/40 bg-teal-950/40 backdrop-blur-md uppercase">
+                MINI CAREER FAIR
+              </span>
+            </div>
+
+            {/* Main Title */}
+            <h2 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.04] mb-4">
+              YOUR NEXT
+              <br />
+              OPPORTUNITY
+              <br />
+              STARTS HERE.
+            </h2>
+
+            {/* Subtitle */}
+            <p className="text-amber-400 font-bold text-lg sm:text-xl tracking-tight mb-3">
+              Internship & Career Opportunities
+            </p>
+
+            {/* Description */}
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-lg mb-6 sm:mb-8 font-light">
+              Meet companies, explore internship opportunities and discover
+              potential career paths.
+            </p>
+
+            {/* CTA Button */}
+            <div>
+              <a
+                href="https://forms.cloud.microsoft/r/XMKLC2SD83"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-7 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:scale-[1.02] cursor-pointer"
+              >
+                Drop Your CV
+              </a>
+            </div>
+          </div>
+
+          {/* Right Side - Presentation / Career Fair Image */}
+          <div className="w-full lg:w-[45%] h-full relative overflow-hidden flex items-center justify-center pointer-events-auto">
+            {/* Gradient masks for seamless edge fading */}
+            <div className="hidden lg:block absolute inset-y-0 left-0 w-32 md:w-44 bg-gradient-to-r from-[#06151a] via-[#06151a]/85 to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#06151a] to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#06151a] to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#06151a] to-transparent z-20 pointer-events-none" />
+
+            <div className="relative w-full h-full min-h-[300px] lg:min-h-full">
+              <Image
+                src="/dsw-past-img/20.jpg"
+                alt="Mini Career Fair presentation and networking"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover object-center"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
