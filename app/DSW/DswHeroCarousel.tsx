@@ -79,11 +79,11 @@ const DswHeroCarousel = () => {
   }, []);
 
   const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev === 0 ? 1 : 0));
+    setCurrentIndex((prev) => (prev === 0 ? 2 : prev - 1));
   }, []);
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev === 0 ? 1 : 0));
+    setCurrentIndex((prev) => (prev === 2 ? 0 : prev + 1));
   }, []);
 
   // Autoplay every 7s unless hovered
@@ -171,7 +171,9 @@ const DswHeroCarousel = () => {
         className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out bg-[#06151a] overflow-hidden flex items-center ${
           currentIndex === 0
             ? "opacity-100 translate-x-0 pointer-events-auto z-10 visible"
-            : "opacity-0 -translate-x-full pointer-events-none z-0 invisible"
+            : currentIndex > 0
+              ? "opacity-0 -translate-x-full pointer-events-none z-0 invisible"
+              : "opacity-0 translate-x-full pointer-events-none z-0 invisible"
         }`}
       >
         {/* Subtle background glow */}
@@ -308,7 +310,9 @@ const DswHeroCarousel = () => {
         className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out bg-[#06151a] overflow-hidden flex items-center ${
           currentIndex === 1
             ? "opacity-100 translate-x-0 pointer-events-auto z-10 visible"
-            : "opacity-0 translate-x-full pointer-events-none z-0 invisible"
+            : currentIndex > 1
+              ? "opacity-0 -translate-x-full pointer-events-none z-0 invisible"
+              : "opacity-0 translate-x-full pointer-events-none z-0 invisible"
         }`}
       >
         {/* Subtle background glow */}
@@ -519,6 +523,44 @@ const DswHeroCarousel = () => {
         </div>
       </div>
 
+      {/* ===================== SLIDE 3 (Official Main Poster) ===================== */}
+      <div
+        className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out bg-[#9cccdf] overflow-hidden flex items-center justify-center ${
+          currentIndex === 2
+            ? "opacity-100 translate-x-0 pointer-events-auto z-10 visible"
+            : "opacity-0 translate-x-full pointer-events-none z-0 invisible"
+        }`}
+      >
+        <div
+          className="relative w-full h-full flex items-center justify-center cursor-pointer group"
+          onClick={scrollToContent}
+        >
+          {/* Mobile & iPad View (< 1280px) */}
+          <div className="relative w-full h-full block xl:hidden">
+            <Image
+              src="/dsw-2026-main-poster-mobile.png"
+              alt="Data Science Week 2026 Official Main Poster"
+              fill
+              priority
+              sizes="(max-width: 1280px) 100vw, 0vw"
+              className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.01]"
+            />
+          </div>
+
+          {/* Desktop View (>= 1280px) */}
+          <div className="relative w-full h-full hidden xl:block">
+            <Image
+              src="/dsw-2026-main-poster.png"
+              alt="Data Science Week 2026 Official Main Poster"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.01]"
+            />
+          </div>
+        </div>
+      </div>
+
       {/* Navigation Arrows */}
       <button
         type="button"
@@ -527,7 +569,7 @@ const DswHeroCarousel = () => {
           prevSlide();
         }}
         aria-label="Previous slide"
-        className="absolute left-1.5 sm:left-3 md:left-6 top-1/2 -translate-y-1/2 z-50 w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-black/20 hover:bg-black/80 active:bg-black/90 xl:bg-black/60 xl:hover:bg-black/90 opacity-40 hover:opacity-100 active:opacity-100 xl:opacity-100 text-white/75 hover:text-white xl:text-white backdrop-blur-none xl:backdrop-blur-md border border-white/15 hover:border-white/30 xl:border-white/25 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-md xl:shadow-2xl"
+        className="absolute left-1.5 sm:left-3 md:left-6 top-1/2 -translate-y-1/2 z-50 w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/80 active:bg-black/90 xl:bg-black/60 xl:hover:bg-black/90 opacity-60 hover:opacity-100 active:opacity-100 xl:opacity-100 text-white hover:text-white xl:text-white backdrop-blur-none xl:backdrop-blur-md border border-white/20 hover:border-white/40 xl:border-white/25 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-md xl:shadow-2xl"
       >
         <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
       </button>
@@ -539,7 +581,7 @@ const DswHeroCarousel = () => {
           nextSlide();
         }}
         aria-label="Next slide"
-        className="absolute right-1.5 sm:right-3 md:right-6 top-1/2 -translate-y-1/2 z-50 w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-black/20 hover:bg-black/80 active:bg-black/90 xl:bg-black/60 xl:hover:bg-black/90 opacity-40 hover:opacity-100 active:opacity-100 xl:opacity-100 text-white/75 hover:text-white xl:text-white backdrop-blur-none xl:backdrop-blur-md border border-white/15 hover:border-white/30 xl:border-white/25 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-md xl:shadow-2xl"
+        className="absolute right-1.5 sm:right-3 md:right-6 top-1/2 -translate-y-1/2 z-50 w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/80 active:bg-black/90 xl:bg-black/60 xl:hover:bg-black/90 opacity-60 hover:opacity-100 active:opacity-100 xl:opacity-100 text-white hover:text-white xl:text-white backdrop-blur-none xl:backdrop-blur-md border border-white/20 hover:border-white/40 xl:border-white/25 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-md xl:shadow-2xl"
       >
         <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
       </button>
@@ -559,7 +601,7 @@ const DswHeroCarousel = () => {
             className={`block transition-all duration-300 rounded-full ${
               currentIndex === 0
                 ? "w-8 h-2 bg-teal-400 shadow-md ring-2 ring-teal-400/40"
-                : "w-2.5 h-2 bg-white/40 group-hover:bg-white/80"
+                : "w-2.5 h-2 bg-white/40 group-hover:bg-white/80 shadow-sm"
             }`}
           />
         </button>
@@ -577,7 +619,25 @@ const DswHeroCarousel = () => {
             className={`block transition-all duration-300 rounded-full ${
               currentIndex === 1
                 ? "w-8 h-2 bg-teal-400 shadow-md ring-2 ring-teal-400/40"
-                : "w-2.5 h-2 bg-white/40 group-hover:bg-white/80"
+                : "w-2.5 h-2 bg-white/40 group-hover:bg-white/80 shadow-sm"
+            }`}
+          />
+        </button>
+
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setCurrentIndex(2);
+          }}
+          aria-label="Go to slide 3"
+          className="p-2 sm:p-3 flex items-center justify-center cursor-pointer group"
+        >
+          <span
+            className={`block transition-all duration-300 rounded-full ${
+              currentIndex === 2
+                ? "w-8 h-2 bg-teal-400 shadow-md ring-2 ring-teal-400/40"
+                : "w-2.5 h-2 bg-white/40 group-hover:bg-white/80 shadow-sm"
             }`}
           />
         </button>
@@ -593,10 +653,10 @@ const DswHeroCarousel = () => {
         aria-label="Scroll to DSW content"
         className="absolute bottom-1.5 sm:bottom-2.5 md:bottom-3 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center text-white/80 hover:text-white transition-colors cursor-pointer group"
       >
-        <span className="text-[10px] sm:text-[11px] font-medium tracking-wide mb-0.5 opacity-80 group-hover:opacity-100">
+        <span className="text-[10px] sm:text-[11px] font-medium tracking-wide mb-0.5 opacity-80 group-hover:opacity-100 drop-shadow-sm">
           Scroll to explore
         </span>
-        <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-bounce" />
+        <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-bounce drop-shadow-sm" />
       </button>
     </div>
   );

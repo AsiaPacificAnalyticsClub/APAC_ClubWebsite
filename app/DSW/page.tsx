@@ -79,22 +79,6 @@ const DswEvent = () => {
     <div className="min-h-screen w-full bg-white">
       <DswHeroCarousel />
 
-      {/* main poster - full screen size */}
-      <div
-        id="dsw-content"
-        className="relative w-full scroll-mt-14 overflow-hidden cursor-pointer group"
-      >
-        <Image
-          src="/dsw-2026-main-poster.png"
-          alt="Data Science Week 2026 Main Poster"
-          width={6250}
-          height={3516}
-          priority
-          sizes="100vw"
-          className="w-full h-auto block object-cover transition-transform duration-300"
-        />
-      </div>
-
       <div className="mb-8 pt-8">
         {/* <h1 className="text-3xl font-bold text-center text-[var(--text)] mb-2">
           Data Science Week {year}
