@@ -216,13 +216,22 @@ const DswHeroCarousel = () => {
 
             {/* CTA Button */}
             <div>
-              <button
+              {/* <button
                 type="button"
                 onClick={scrollToContent}
                 className="inline-flex items-center justify-center px-5 sm:px-7 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs sm:text-sm md:text-base transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:scale-[1.02] cursor-pointer"
               >
                 Explore Event Week
-              </button>
+              </button> */}
+
+              <a
+                href="https://apca.sites.apiit.edu.my/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-5 sm:px-7 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs sm:text-sm md:text-base transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:scale-[1.02] cursor-pointer"
+              >
+                Explore more about APCA
+              </a>
             </div>
           </div>
 
@@ -483,7 +492,7 @@ const DswHeroCarousel = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-5 sm:px-7 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs sm:text-sm md:text-base transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:scale-[1.02] cursor-pointer"
               >
-                Drop Your CV
+                Drop your CV
               </a>
             </div>
           </div>
