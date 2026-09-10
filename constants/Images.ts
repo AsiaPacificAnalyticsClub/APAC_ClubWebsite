@@ -166,4 +166,8 @@ export const images: Image[] = [
     title: "Introduction to PowerBI Workshop",
     image: "/evnt_IntroductionToPowerBIWorkshop.png",
   },
+  {
+    title: "Inside Data Science & Al at Zurich An Industry Panel Talk with Zurich's Data Science Team",
+    image: "/ZurishIndustryPanelTalk2026.jpg",
+  },
 ];
