@@ -26,23 +26,24 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Modal } from "@mui/material";
 import Image from "next/image";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { DswItem, DswDetails, EventType } from "@/constants/DSW";
+// import { DswDetails } from "@/constants/DSW";
+import { DswItem, EventType } from "@/constants/DSW";
 import { SearchX, Mic, BriefcaseBusiness, FileText } from "lucide-react";
 import DswHeroCarousel from "./DswHeroCarousel";
 
 export type Year = 2025 | 2026;
 
-const DSW_DETAILS: Record<Year, DswDetails> = {
-  2025: {
-    date: "24 June - 26 June",
-    photoLink:
-      "https://cloudmails-my.sharepoint.com/:f:/g/personal/beyondmedia_apu_edu_my/ErpizYVAAnxNvVbp1rfQUM0BtCsYG0Fx5hY-zlbruw29Lg?e=otztwe",
-  },
-  2026: {
-    date: "22 September - 25 September",
-    photoLink: null,
-  },
-};
+// const DSW_DETAILS: Record<Year, DswDetails> = {
+//   2025: {
+//     date: "24 June - 26 June",
+//     photoLink:
+//       "https://cloudmails-my.sharepoint.com/:f:/g/personal/beyondmedia_apu_edu_my/ErpizYVAAnxNvVbp1rfQUM0BtCsYG0Fx5hY-zlbruw29Lg?e=otztwe",
+//   },
+//   2026: {
+//     date: "22 September - 25 September",
+//     photoLink: null,
+//   },
+// };
 
 const PLACEHOLDER_IMAGE = "/APACPythonWorkshop.png"; // Path to your placeholder image
 
@@ -72,42 +73,58 @@ const DswEvent = () => {
       .finally(() => setLoading(false));
   }, [year, type]);
 
-  const dwsDetails: DswDetails = DSW_DETAILS[year];
+  // const dwsDetails: DswDetails = DSW_DETAILS[year];
 
   return (
     <div className="min-h-screen w-full bg-white">
       <DswHeroCarousel />
 
-      <div id="dsw-content" className="scroll-mt-16 mb-8 pt-8">
-        <h1 className="text-3xl font-bold text-center text-[var(--text)] mb-2">
+      {/* main poster - full screen size */}
+      <div
+        id="dsw-content"
+        className="relative w-full scroll-mt-14 overflow-hidden cursor-pointer group"
+      >
+        <Image
+          src="/dsw-2026-main-poster.png"
+          alt="Data Science Week 2026 Main Poster"
+          width={6250}
+          height={3516}
+          priority
+          sizes="100vw"
+          className="w-full h-auto block object-cover transition-transform duration-300"
+        />
+      </div>
+
+      <div className="mb-8 pt-8">
+        {/* <h1 className="text-3xl font-bold text-center text-[var(--text)] mb-2">
           Data Science Week {year}
         </h1>
         <p className="text-center text-lg font-bold text-[var(--text-muted)] mb-1">
           {dwsDetails.date}
-        </p>
+        </p> */}
 
         {/* DELETE AFTER DSW 2026 IS OVER */}
         {year == 2026 && (
           <div className="max-w-3xl mx-auto px-4 mt-4">
-            <div 
+            <div
               className="
                 flex items-center justify-center gap-2
                 px-5 py-3 mb-2
                 bg-[image:var(--gradient)] 
                 border-t border-[var(--highlight)]
                 rounded-lg shadow-custom
-              ">
+              "
+            >
               <Mic size={20} className="shrink-0" />
-              <p 
-                className="text-center text-base font-semibold text-[var(--text)]"
-              >
-                Special Keynote by Kasatria on &quot;Why do people leave without buying something after arriving?&quot;
+              <p className="text-center text-base font-semibold text-[var(--text)]">
+                Special Keynote by Kasatria on &quot;Why do people leave without
+                buying something after arriving?&quot;
               </p>
             </div>
 
             <div className="text-[var(--text)] bg-[image:var(--gradient)] border-t border-[var(--highlight)] rounded-lg shadow-custom">
               <p className="flex items-center justify-center gap-2 text-center text-base font-semibold rounded-lg px-5 py-3 ">
-                <BriefcaseBusiness size={20} className="shrink-0"/>
+                <BriefcaseBusiness size={20} className="shrink-0" />
                 Mini Career Fair with Internship & Job Opportunities
               </p>
 
