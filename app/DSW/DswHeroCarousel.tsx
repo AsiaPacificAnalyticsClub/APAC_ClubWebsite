@@ -102,12 +102,40 @@ const DswHeroCarousel = () => {
     }
   };
 
+  // Touch swipe handling for mobile & iPad
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+    setTouchStartY(e.touches[0].clientY);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null || touchStartY === null) return;
+    const diffX = touchStartX - e.changedTouches[0].clientX;
+    const diffY = touchStartY - e.changedTouches[0].clientY;
+
+    // Trigger only on horizontal swipes > 45px
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+      if (diffX > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+    setTouchStartX(null);
+    setTouchStartY(null);
+  };
+
   return (
     <div
-      className="relative w-full overflow-hidden bg-[#06151a]"
+      className="relative w-full overflow-hidden bg-[#06151a] min-h-[500px] sm:min-h-[540px] md:min-h-[580px]"
       style={{ height: carouselHeight }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <style>{`
         @keyframes dswScrollUp1 {
@@ -150,18 +178,18 @@ const DswHeroCarousel = () => {
         <div className="absolute top-1/4 left-10 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 w-full h-full flex flex-col lg:flex-row items-center justify-between">
+        <div className="relative z-10 w-full h-full flex flex-col xl:flex-row items-center justify-between">
           {/* Left Content Area */}
-          <div className="w-full lg:w-[55%] h-full flex flex-col justify-center px-6 sm:px-12 lg:pl-16 xl:pl-20 z-20 py-8 lg:py-0">
+          <div className="w-full xl:w-[55%] flex-1 xl:flex-initial xl:h-full flex flex-col justify-center px-7 sm:px-10 md:px-14 xl:pl-16 2xl:pl-20 z-20 pt-6 sm:pt-8 md:pt-10 pb-2 xl:py-0">
             {/* Badge */}
-            <div className="mb-4 sm:mb-6">
-              <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-semibold tracking-wider text-teal-400 border border-teal-500/40 bg-teal-950/40 backdrop-blur-md uppercase">
+            <div className="mb-2.5 sm:mb-4 md:mb-6">
+              <span className="inline-flex items-center px-3 sm:px-3.5 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider text-teal-400 border border-teal-500/40 bg-teal-950/40 backdrop-blur-md uppercase">
                 DATA SCIENCE WEEK
               </span>
             </div>
 
             {/* Main Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.04] mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold tracking-tight text-white leading-[1.04] mb-2.5 sm:mb-4">
               DATA
               <br />
               SCIENCE WEEK
@@ -172,15 +200,15 @@ const DswHeroCarousel = () => {
             </h1>
 
             {/* Accent Line */}
-            <div className="w-16 h-1 rounded-full bg-gradient-to-r from-amber-400 to-teal-400 mb-4" />
+            <div className="w-12 sm:w-16 h-1 rounded-full bg-gradient-to-r from-amber-400 to-teal-400 mb-2.5 sm:mb-4" />
 
             {/* Date */}
-            <p className="text-amber-400 font-bold text-lg sm:text-xl tracking-tight mb-3">
+            <p className="text-amber-400 font-bold text-base sm:text-lg md:text-xl tracking-tight mb-2 sm:mb-3">
               22 - 25 September 2026
             </p>
 
             {/* Description */}
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-lg mb-6 sm:mb-8 font-light">
+            <p className="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed max-w-[90%] sm:max-w-md md:max-w-xl xl:max-w-lg mb-4 sm:mb-6 md:mb-8 font-light line-clamp-3 sm:line-clamp-none">
               Get ready for four days of talks, workshops, industry sharing,
               student activities and opportunities to connect with the data
               community.
@@ -191,7 +219,7 @@ const DswHeroCarousel = () => {
               <button
                 type="button"
                 onClick={scrollToContent}
-                className="inline-flex items-center justify-center px-7 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:scale-[1.02] cursor-pointer"
+                className="inline-flex items-center justify-center px-5 sm:px-7 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs sm:text-sm md:text-base transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:scale-[1.02] cursor-pointer"
               >
                 Explore Event Week
               </button>
@@ -199,27 +227,27 @@ const DswHeroCarousel = () => {
           </div>
 
           {/* Right Side - Uniform Aspect Ratio Collage (All 25 Images) */}
-          <div className="w-full lg:w-[45%] h-full relative overflow-hidden flex items-center justify-center pointer-events-auto">
+          <div className="w-full xl:w-[45%] h-[38%] sm:h-[40%] md:h-[42%] xl:h-full relative overflow-hidden flex items-center justify-center pointer-events-auto">
             {/* Gradient masks for seamless edge fading */}
-            <div className="hidden lg:block absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-[#06151a] via-[#06151a]/80 to-transparent z-20 pointer-events-none" />
-            <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#06151a] to-transparent z-20 pointer-events-none" />
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#06151a] to-transparent z-20 pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#06151a] to-transparent z-20 pointer-events-none" />
+            <div className="hidden xl:block absolute inset-y-0 left-0 w-24 xl:w-28 bg-gradient-to-r from-[#06151a] via-[#06151a]/80 to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-20 bg-gradient-to-b from-[#06151a] to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 md:h-24 bg-gradient-to-t from-[#06151a] to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-4 sm:w-8 bg-gradient-to-l from-[#06151a] to-transparent z-20 pointer-events-none" />
 
             {/* 3-Column Vertical Scrolling Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 w-full h-[125%] px-4 sm:px-6 lg:pr-8">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 w-full h-[130%] px-3 sm:px-6 md:px-8 xl:pr-8">
               {/* Column 1 - Scrolling Up */}
-              <div className="flex flex-col gap-3 md:gap-4 animate-scroll-up-1">
+              <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 animate-scroll-up-1">
                 {[...COLUMN_1_IMAGES, ...COLUMN_1_IMAGES].map((src, i) => (
                   <div
                     key={`c1-${i}`}
-                    className="relative w-full aspect-[4/3] rounded-lg md:rounded-xl overflow-hidden shadow-md group cursor-pointer"
+                    className="relative w-full aspect-[4/3] rounded-md sm:rounded-lg md:rounded-xl overflow-hidden shadow-md group cursor-pointer"
                   >
                     <Image
                       src={src}
                       alt="DSW event moment"
                       fill
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+                      sizes="(max-width: 1280px) 33vw, 15vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
@@ -227,17 +255,17 @@ const DswHeroCarousel = () => {
               </div>
 
               {/* Column 2 - Scrolling Down */}
-              <div className="flex flex-col gap-3 md:gap-4 animate-scroll-down">
+              <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 animate-scroll-down">
                 {[...COLUMN_2_IMAGES, ...COLUMN_2_IMAGES].map((src, i) => (
                   <div
                     key={`c2-${i}`}
-                    className="relative w-full aspect-[4/3] rounded-lg md:rounded-xl overflow-hidden shadow-md group cursor-pointer"
+                    className="relative w-full aspect-[4/3] rounded-md sm:rounded-lg md:rounded-xl overflow-hidden shadow-md group cursor-pointer"
                   >
                     <Image
                       src={src}
                       alt="DSW event moment"
                       fill
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+                      sizes="(max-width: 1280px) 33vw, 15vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
@@ -245,17 +273,17 @@ const DswHeroCarousel = () => {
               </div>
 
               {/* Column 3 - Scrolling Up */}
-              <div className="hidden sm:flex flex-col gap-3 md:gap-4 animate-scroll-up-2">
+              <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 animate-scroll-up-2">
                 {[...COLUMN_3_IMAGES, ...COLUMN_3_IMAGES].map((src, i) => (
                   <div
                     key={`c3-${i}`}
-                    className="relative w-full aspect-[4/3] rounded-lg md:rounded-xl overflow-hidden shadow-md group cursor-pointer"
+                    className="relative w-full aspect-[4/3] rounded-md sm:rounded-lg md:rounded-xl overflow-hidden shadow-md group cursor-pointer"
                   >
                     <Image
                       src={src}
                       alt="DSW event moment"
                       fill
-                      sizes="(max-width: 1200px) 25vw, 20vw"
+                      sizes="(max-width: 1280px) 33vw, 15vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
@@ -278,7 +306,7 @@ const DswHeroCarousel = () => {
         <div className="absolute top-1/4 left-10 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
         {/* Upward trending line chart graph behind heading (matching prototype) */}
-        <div className="absolute top-10 sm:top-16 left-1/4 sm:left-1/3 w-[400px] sm:w-[500px] h-[280px] sm:h-[320px] pointer-events-none z-0 opacity-35 sm:opacity-45">
+        <div className="absolute top-6 sm:top-10 md:top-12 xl:top-16 left-6 sm:left-1/4 md:left-1/4 xl:left-1/3 w-[260px] sm:w-[380px] md:w-[440px] xl:w-[500px] h-[180px] sm:h-[240px] md:h-[280px] xl:h-[320px] pointer-events-none z-0 opacity-25 sm:opacity-35 md:opacity-40 xl:opacity-45">
           <svg
             className="w-full h-full"
             viewBox="0 0 500 320"
@@ -417,18 +445,18 @@ const DswHeroCarousel = () => {
           </svg>
         </div>
 
-        <div className="relative z-10 w-full h-full flex flex-col lg:flex-row items-center justify-between">
+        <div className="relative z-10 w-full h-full flex flex-col xl:flex-row items-center justify-between">
           {/* Left Content Area */}
-          <div className="w-full lg:w-[55%] h-full flex flex-col justify-center px-6 sm:px-12 lg:pl-16 xl:pl-20 z-20 py-8 lg:py-0">
+          <div className="w-full xl:w-[55%] flex-1 xl:flex-initial xl:h-full flex flex-col justify-center px-7 sm:px-10 md:px-14 xl:pl-16 2xl:pl-20 z-20 pt-6 sm:pt-8 md:pt-10 pb-2 xl:py-0">
             {/* Badge */}
-            <div className="mb-4 sm:mb-6">
-              <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-semibold tracking-wider text-teal-400 border border-teal-500/40 bg-teal-950/40 backdrop-blur-md uppercase">
+            <div className="mb-2.5 sm:mb-4 md:mb-6">
+              <span className="inline-flex items-center px-3 sm:px-3.5 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider text-teal-400 border border-teal-500/40 bg-teal-950/40 backdrop-blur-md uppercase">
                 MINI CAREER FAIR
               </span>
             </div>
 
             {/* Main Title */}
-            <h2 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.04] mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold tracking-tight text-white leading-[1.04] mb-2.5 sm:mb-4">
               YOUR NEXT
               <br />
               OPPORTUNITY
@@ -437,12 +465,12 @@ const DswHeroCarousel = () => {
             </h2>
 
             {/* Subtitle */}
-            <p className="text-amber-400 font-bold text-lg sm:text-xl tracking-tight mb-3">
+            <p className="text-amber-400 font-bold text-base sm:text-lg md:text-xl tracking-tight mb-2 sm:mb-3">
               Internship & Career Opportunities
             </p>
 
             {/* Description */}
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-lg mb-6 sm:mb-8 font-light">
+            <p className="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed max-w-[90%] sm:max-w-md md:max-w-xl xl:max-w-lg mb-4 sm:mb-6 md:mb-8 font-light line-clamp-3 sm:line-clamp-none">
               Meet companies, explore internship opportunities and discover
               potential career paths.
             </p>
@@ -453,7 +481,7 @@ const DswHeroCarousel = () => {
                 href="https://forms.cloud.microsoft/r/XMKLC2SD83"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-7 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:scale-[1.02] cursor-pointer"
+                className="inline-flex items-center justify-center px-5 sm:px-7 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs sm:text-sm md:text-base transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:scale-[1.02] cursor-pointer"
               >
                 Drop Your CV
               </a>
@@ -461,20 +489,20 @@ const DswHeroCarousel = () => {
           </div>
 
           {/* Right Side - Presentation / Career Fair Image */}
-          <div className="w-full lg:w-[45%] h-full relative overflow-hidden flex items-center justify-center pointer-events-auto">
+          <div className="w-full xl:w-[45%] h-[38%] sm:h-[40%] md:h-[42%] xl:h-full relative overflow-hidden flex items-center justify-center pointer-events-auto">
             {/* Gradient masks for seamless edge fading */}
-            <div className="hidden lg:block absolute inset-y-0 left-0 w-32 md:w-44 bg-gradient-to-r from-[#06151a] via-[#06151a]/85 to-transparent z-20 pointer-events-none" />
-            <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#06151a] to-transparent z-20 pointer-events-none" />
-            <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#06151a] to-transparent z-20 pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#06151a] to-transparent z-20 pointer-events-none" />
+            <div className="hidden xl:block absolute inset-y-0 left-0 w-24 md:w-36 lg:w-44 bg-gradient-to-r from-[#06151a] via-[#06151a]/85 to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-20 bg-gradient-to-b from-[#06151a] to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 md:h-24 bg-gradient-to-t from-[#06151a] to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-4 sm:w-8 bg-gradient-to-l from-[#06151a] to-transparent z-20 pointer-events-none" />
 
-            <div className="relative w-full h-full min-h-[300px] lg:min-h-full">
+            <div className="relative w-full h-full">
               <Image
                 src="/dsw-past-img/20.jpg"
                 alt="Mini Career Fair presentation and networking"
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 45vw"
+                sizes="(max-width: 1280px) 100vw, 45vw"
                 className="object-cover object-center"
               />
             </div>
@@ -490,9 +518,9 @@ const DswHeroCarousel = () => {
           prevSlide();
         }}
         aria-label="Previous slide"
-        className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/25 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-2xl"
+        className="absolute left-1.5 sm:left-3 md:left-6 top-1/2 -translate-y-1/2 z-50 w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-black/20 hover:bg-black/80 active:bg-black/90 xl:bg-black/60 xl:hover:bg-black/90 opacity-40 hover:opacity-100 active:opacity-100 xl:opacity-100 text-white/75 hover:text-white xl:text-white backdrop-blur-none xl:backdrop-blur-md border border-white/15 hover:border-white/30 xl:border-white/25 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-md xl:shadow-2xl"
       >
-        <ChevronLeft className="w-6 h-6" />
+        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
       </button>
 
       <button
@@ -502,13 +530,13 @@ const DswHeroCarousel = () => {
           nextSlide();
         }}
         aria-label="Next slide"
-        className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/25 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-2xl"
+        className="absolute right-1.5 sm:right-3 md:right-6 top-1/2 -translate-y-1/2 z-50 w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-black/20 hover:bg-black/80 active:bg-black/90 xl:bg-black/60 xl:hover:bg-black/90 opacity-40 hover:opacity-100 active:opacity-100 xl:opacity-100 text-white/75 hover:text-white xl:text-white backdrop-blur-none xl:backdrop-blur-md border border-white/15 hover:border-white/30 xl:border-white/25 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-md xl:shadow-2xl"
       >
-        <ChevronRight className="w-6 h-6" />
+        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
       </button>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1">
+      <div className="absolute bottom-8 sm:bottom-10 md:bottom-12 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1">
         <button
           type="button"
           onClick={(e) => {
@@ -516,7 +544,7 @@ const DswHeroCarousel = () => {
             setCurrentIndex(0);
           }}
           aria-label="Go to slide 1"
-          className="p-3 flex items-center justify-center cursor-pointer group"
+          className="p-2 sm:p-3 flex items-center justify-center cursor-pointer group"
         >
           <span
             className={`block transition-all duration-300 rounded-full ${
@@ -534,7 +562,7 @@ const DswHeroCarousel = () => {
             setCurrentIndex(1);
           }}
           aria-label="Go to slide 2"
-          className="p-3 flex items-center justify-center cursor-pointer group"
+          className="p-2 sm:p-3 flex items-center justify-center cursor-pointer group"
         >
           <span
             className={`block transition-all duration-300 rounded-full ${
@@ -554,12 +582,12 @@ const DswHeroCarousel = () => {
           scrollToContent();
         }}
         aria-label="Scroll to DSW content"
-        className="absolute bottom-3 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center text-white/80 hover:text-white transition-colors cursor-pointer group"
+        className="absolute bottom-1.5 sm:bottom-2.5 md:bottom-3 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center text-white/80 hover:text-white transition-colors cursor-pointer group"
       >
-        <span className="text-[11px] font-medium tracking-wide mb-0.5 opacity-80 group-hover:opacity-100">
+        <span className="text-[10px] sm:text-[11px] font-medium tracking-wide mb-0.5 opacity-80 group-hover:opacity-100">
           Scroll to explore
         </span>
-        <ChevronDown className="w-4 h-4 animate-bounce" />
+        <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-bounce" />
       </button>
     </div>
   );
