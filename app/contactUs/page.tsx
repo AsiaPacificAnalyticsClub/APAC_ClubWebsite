@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Send, Mail, User, MessageSquare } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 
 interface FormData {
   name: string
@@ -11,6 +12,11 @@ interface FormData {
   subject: string
   message: string
 }
+
+// EmailJS config — from your EmailJS dashboard
+const EMAILJS_SERVICE_ID = 'service_apac@apu123' // double-check this in your dashboard, looks unusual
+const EMAILJS_TEMPLATE_ID = 'template_zo9oilo'
+const EMAILJS_PUBLIC_KEY = 'tkbgbvVmlyQwoKfYr'
 
 const ContactUs = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -21,8 +27,9 @@ const ContactUs = () => {
   })
 
   const [errors, setErrors] = useState<Partial<FormData>>({})
-  const [isSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -43,36 +50,43 @@ const ContactUs = () => {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (validateForm()) {
-      const recipientEmail = "asiapacificanalyticsclubapu@gmail.com"
-      const mailSubject = encodeURIComponent(formData.subject)
-      const mailBody = encodeURIComponent(`
-        Name: ${formData.name}
-        Email: ${formData.email}
-        
-        Message:
-        ${formData.message}
-      `)
-  
-      const mailtoLink = `mailto:${recipientEmail}?subject=${mailSubject}&body=${mailBody}`
-      window.location.href = mailtoLink
-  
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      setTimeout(()=>{
-        setSubmitMessage('Your message has been prepared in your email client!');
-        setSubmitMessage('');
-      },3000)
-      
-    } else {
-      setTimeout(()=>{
-        setSubmitMessage('Please fill in all required fields correctly.')
-        setSubmitMessage('');
-      },3000)
-      
+
+    if (!validateForm()) {
+      setSubmitStatus('error')
+      setSubmitMessage('Please fill in all required fields correctly.')
+      setTimeout(() => setSubmitMessage(''), 4000)
+      return
     }
-   
+
+    setIsSubmitting(true)
+    setSubmitMessage('')
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      )
+
+      setSubmitStatus('success')
+      setSubmitMessage('Your message has been sent successfully!')
+      setFormData({ name: '', email: '', subject: '', message: '' })
+    } catch (error) {
+      console.error('EmailJS send failed:', error)
+      setSubmitStatus('error')
+      setSubmitMessage('Something went wrong. Please try again or email us directly.')
+    } finally {
+      setIsSubmitting(false)
+      setTimeout(() => setSubmitMessage(''), 5000)
+    }
   }
 
   return (
@@ -83,7 +97,7 @@ const ContactUs = () => {
         <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-white/20 to-transparent rounded-full blur-3xl" />
       </div>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -94,7 +108,7 @@ const ContactUs = () => {
             {/* Form Section */}
             <div className="flex-1 p-8 md:p-12">
               <div className="text-center md:text-left mb-8">
-                <motion.h1 
+                <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
@@ -102,14 +116,13 @@ const ContactUs = () => {
                 >
                   Get in Touch
                 </motion.h1>
-                <motion.p 
+                <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                   className="text-gray-600"
                 >
                   We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
-
                 </motion.p>
               </div>
 
@@ -195,7 +208,7 @@ const ContactUs = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className={`text-center text-sm ${
-                      submitMessage.includes('error') ? 'text-red-600' : 'text-green-600'
+                      submitStatus === 'error' ? 'text-red-600' : 'text-green-600'
                     }`}
                   >
                     {submitMessage}
@@ -221,13 +234,10 @@ const ContactUs = () => {
                   width={700}
                   height={1500}
                   className=" py-10"
-
                   priority
                 />
-               
               </motion.div>
-             
-            </div> 
+            </div>
           </div>
         </div>
       </motion.div>

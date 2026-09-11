@@ -30,7 +30,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky inset-0 z-20 top-0 backdrop-blur-sm shadow-md">
+    <header className="sticky top-0 inset-x-0 z-20 backdrop-blur-sm shadow-md">
       {/*Header Content*/}
       <div className="px-12 py-2 ">
         <div className="flex flex-row justify-between">
@@ -71,8 +71,8 @@ const Header = () => {
 
           {/*Mobile Navigation*/}
           <div
-            className={`lg:hidden fixed inset-0  transition-all duration-300 ease-in-out ${
-              isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+            className={`lg:hidden fixed inset-0 transition-all duration-300 ease-in-out ${
+              isOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"
             }`}
           >
             <div className="flex flex-col items-center justify-center h-screen px-6">

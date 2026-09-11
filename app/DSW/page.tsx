@@ -26,24 +26,26 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Modal } from "@mui/material";
 import Image from "next/image";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { DswItem, DswDetails, EventType } from "@/constants/DSW";
+// import { DswDetails } from "@/constants/DSW";
+import { DswItem, EventType } from "@/constants/DSW";
 import Carousel from "@/app/DSW/sections/Carousel";
 import { SearchX, Mic, BriefcaseBusiness, FileText } from "lucide-react";
+import DswHeroCarousel from "./DswHeroCarousel";
 import DswScheduleCard from "@/components/ui/DSW-Schedule-Card";
 
 export type Year = 2025 | 2026;
 
-const DSW_DETAILS: Record<Year, DswDetails> = {
-  2025: {
-    date: "24 June - 26 June",
-    photoLink:
-      "https://cloudmails-my.sharepoint.com/:f:/g/personal/beyondmedia_apu_edu_my/ErpizYVAAnxNvVbp1rfQUM0BtCsYG0Fx5hY-zlbruw29Lg?e=otztwe",
-  },
-  2026: {
-    date: "22 September - 25 September",
-    photoLink: null,
-  },
-};
+// const DSW_DETAILS: Record<Year, DswDetails> = {
+//   2025: {
+//     date: "24 June - 26 June",
+//     photoLink:
+//       "https://cloudmails-my.sharepoint.com/:f:/g/personal/beyondmedia_apu_edu_my/ErpizYVAAnxNvVbp1rfQUM0BtCsYG0Fx5hY-zlbruw29Lg?e=otztwe",
+//   },
+//   2026: {
+//     date: "22 September - 25 September",
+//     photoLink: null,
+//   },
+// };
 
 const PLACEHOLDER_IMAGE = "/APACPythonWorkshop.png"; // Path to your placeholder image
 
@@ -78,32 +80,58 @@ const DswEvent = () => {
       .finally(() => setLoading(false));
   }, [year, type]);
 
-  const dwsDetails: DswDetails = DSW_DETAILS[year];
+  // const dwsDetails: DswDetails = DSW_DETAILS[year];
 
   return (
     <div className="min-h-screen w-full bg-white">
+      <DswHeroCarousel />
 
       <div className="mb-8 pt-8">
-
-        <h1 className="text-3xl font-bold text-center text-[var(--text)] mb-2">
+        {/* <h1 className="text-3xl font-bold text-center text-[var(--text)] mb-2">
           Data Science Week {year}
         </h1>
 
         <p className="text-center text-lg font-bold text-[var(--text-muted)] mb-1">
           {dwsDetails.date}
-        </p>
-        
-      </div>
+        </p> */}
 
-      <div className="space-y-2 relative mx-auto mb-6 w-full max-w-7xl px-8">
-          <p className="text-sm text-[var(--primary-color)] font-bold tracking-wide uppercase">Event Week</p>
+        {/* DELETE AFTER DSW 2026 IS OVER */}
+        {year == 2026 && (
+          <div className="max-w-3xl mx-auto px-4 mt-4">
+            <div
+              className="
+                flex items-center justify-center gap-2
+                px-5 py-3 mb-2
+                bg-[image:var(--gradient)] 
+                border-t border-[var(--highlight)]
+                rounded-lg shadow-custom
+              "
+            >
+              <Mic size={20} className="shrink-0" />
+              <p className="text-center text-base font-semibold text-[var(--text)]">
+                Special Keynote by Kasatria on &quot;Why do people leave without
+                buying something after arriving?&quot;
+              </p>
+            </div>
 
-          <h1 className="text-6xl font-extrabold tracking-tight">
-            <span className="text-[var(--text)]">Four days. </span>
-            <span className="text-[var(--primary-color)]">One Experience.</span>
-          </h1>
+            <div className="text-[var(--text)] bg-[image:var(--gradient)] border-t border-[var(--highlight)] rounded-lg shadow-custom">
+              <p className="flex items-center justify-center gap-2 text-center text-base font-semibold rounded-lg px-5 py-3 ">
+                <BriefcaseBusiness size={20} className="shrink-0" />
+                Mini Career Fair with Internship & Job Opportunities
+              </p>
 
-          <p className="text-md text-[var(--text-muted)] font-medium">Explore the tentative programme from 22-25 September 2026.</p>
+              <a
+                href="https://forms.cloud.microsoft/r/XMKLC2SD83"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 text-center text-base text-md font-medium rounded-lg px-5 pb-4 transition-all hover:underline hover:text-[var(--secondary)] text-[var(--text-muted)]"
+              >
+                <FileText size={20} className="shrink-0" />
+                Drop your CV here
+              </a>
+            </div>
+          </div>
+        )}
       </div>
 
       <Carousel>
