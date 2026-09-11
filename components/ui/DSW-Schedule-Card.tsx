@@ -72,22 +72,38 @@ export default function DswScheduleCard({
           {subtitle}
         </p>
 
-          <button
-            type="button"
-            onClick={onViewPoster}
-            className="
-              mt-5
-              rounded-full
-              bg-white/90
-              px-5 py-2.5
-              text-sm
-              font-bold
-              text-[var(--text)]
-              transition
-            "
-          >
-            View Schedule
-          </button>
+          <div className="flex flex-row justify-center">
+            <button
+              type="button"
+              onClick={onViewPoster}
+              className="
+                group
+                relative
+                mt-5
+                text-md
+                font-bold
+                text-white/90
+                transition
+              "
+            >
+              View Schedule
+
+              <span
+                className="
+                  absolute
+                  bottom-0
+                  left-0
+                  h-[2px]
+                  w-0
+                  bg-white/90
+                  transition-all
+                  duration-300
+                  ease-out
+                  group-hover:w-full
+                "
+              />
+            </button>
+          </div>
       </div>
     </div>
   );

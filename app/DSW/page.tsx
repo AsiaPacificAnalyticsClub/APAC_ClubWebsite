@@ -27,7 +27,9 @@ import { Modal } from "@mui/material";
 import Image from "next/image";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { DswItem, DswDetails, EventType } from "@/constants/DSW";
+import Carousel from "@/app/DSW/sections/Carousel";
 import { SearchX, Mic, BriefcaseBusiness, FileText } from "lucide-react";
+import DswScheduleCard from "@/components/ui/DSW-Schedule-Card";
 
 export type Year = 2025 | 2026;
 
@@ -61,6 +63,11 @@ const DswEvent = () => {
     setYear(year);
   };
 
+  const handleOpenPoster = (poster: string) => {
+    setCurrentImageIndex(0);
+    setOpenImage([poster]);
+  };
+
   useEffect(() => {
     setLoading(true);
 
@@ -75,54 +82,72 @@ const DswEvent = () => {
 
   return (
     <div className="min-h-screen w-full bg-white">
+
       <div className="mb-8 pt-8">
+
         <h1 className="text-3xl font-bold text-center text-[var(--text)] mb-2">
           Data Science Week {year}
         </h1>
+
         <p className="text-center text-lg font-bold text-[var(--text-muted)] mb-1">
           {dwsDetails.date}
         </p>
-
-        {/* DELETE AFTER DSW 2026 IS OVER */}
-        {year == 2026 && (
-          <div className="max-w-3xl mx-auto px-4 mt-4">
-            <div 
-              className="
-                flex items-center justify-center gap-2
-                px-5 py-3 mb-2
-                bg-[image:var(--gradient)] 
-                border-t border-[var(--highlight)]
-                rounded-lg shadow-custom
-              ">
-              <Mic size={20} className="shrink-0" />
-              <p 
-                className="text-center text-base font-semibold text-[var(--text)]"
-              >
-                Special Keynote by Kasatria on &quot;Why do people leave without buying something after arriving?&quot;
-              </p>
-            </div>
-
-            <div className="text-[var(--text)] bg-[image:var(--gradient)] border-t border-[var(--highlight)] rounded-lg shadow-custom">
-              <p className="flex items-center justify-center gap-2 text-center text-base font-semibold rounded-lg px-5 py-3 ">
-                <BriefcaseBusiness size={20} className="shrink-0"/>
-                Mini Career Fair with Internship & Job Opportunities
-              </p>
-
-              <a
-                href="https://forms.cloud.microsoft/r/XMKLC2SD83"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 text-center text-base text-md font-medium rounded-lg px-5 pb-4 transition-all hover:underline hover:text-[var(--secondary)] text-[var(--text-muted)]"
-              >
-                <FileText size={20} className="shrink-0" />
-                Drop your CV here
-              </a>
-            </div>
-          </div>
-        )}
+        
       </div>
 
-      {/* enlarge poster when click */}
+      <div className="space-y-2 relative mx-auto mb-6 w-full max-w-7xl px-8">
+          <p className="text-sm text-[var(--primary-color)] font-bold tracking-wide uppercase">Event Week</p>
+
+          <h1 className="text-6xl font-extrabold tracking-tight">
+            <span className="text-[var(--text)]">Four days. </span>
+            <span className="text-[var(--primary-color)]">One Experience.</span>
+          </h1>
+
+          <p className="text-md text-[var(--text-muted)] font-medium">Explore the tentative programme from 22-25 September 2026.</p>
+      </div>
+
+      <Carousel>
+        <DswScheduleCard
+          day="DAY 1"
+          title="Opening & Showcase"
+          subtitle="Kick off Data Science Week with the opening ceremony and showcase."
+          date="22 SEP"
+          type="FULL DAY"
+          image="/dsw26/cards/opening.jpg"
+          onViewPoster={() => handleOpenPoster("/dsw26/schedule/day-1.jpg")}
+        />
+
+        <DswScheduleCard
+          day="DAY 2"
+          title="Analytical Games & Workshops"
+          subtitle="Put your analytical skills to the test through interactive games and hands-on workshops."
+          date="23 SEP"
+          type="FULL DAY"
+          image="/dsw26/cards/games.jpg"
+          onViewPoster={() => handleOpenPoster("/dsw26/schedule/day-1.jpg")}
+        />
+
+        <DswScheduleCard
+          day="DAY 3"
+          title="Analytical Games & Workshops"
+          subtitle="Continue the challenge with engaging analytical games and practical workshops."
+          date="24 SEP"
+          type="FULL DAY"
+          image="/dsw26/cards/workshops.jpg"
+          onViewPoster={() => handleOpenPoster("/dsw26/schedule/day-1.jpg")}
+        />
+
+        <DswScheduleCard
+          day="DAY 4"
+          title="Talks & Industrial Visit"
+          subtitle="Gain industry insights through expert talks and an exciting visit to an industry partner."
+          date="25 SEP"
+          type="FULL DAY"
+          image="/dsw26/cards/talks.jpg"
+          onViewPoster={() => handleOpenPoster("/dsw26/schedule/day-1.jpg")}
+        />
+      </Carousel>
+      
       <Modal
         open={!!openImage}
         onClose={() => setOpenImage(null)}
@@ -130,72 +155,37 @@ const DswEvent = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "rgba(0,0,0,0.5)",
+          backgroundColor: "rgba(0,0,0,0.7)",
         }}
       >
         <Box
           sx={{
             position: "relative",
-            width: "60%",
+            width: "auto",
+            maxWidth: "90vw",
+            maxHeight: "90vh",
             outline: "none",
           }}
         >
           <Image
             src={openImage?.[currentImageIndex] || PLACEHOLDER_IMAGE}
-            alt="Enlarged preview"
-            layout="responsive"
-            width={800}
-            height={500}
-            style={{ borderRadius: "12px" }}
+            alt="Schedule poster"
+            width={824}
+            height={1029}
+            style={{
+              display: "block",
+              maxWidth: "90vw",
+              maxHeight: "90vh",
+              width: "auto",
+              height: "auto",
+              objectFit: "contain",
+              borderRadius: "12px",
+            }}
           />
-
-          {/* Only show nav if multiple images */}
-          {openImage && openImage.length > 1 && (
-            <>
-              <Button
-                onClick={() =>
-                  setCurrentImageIndex((prev) =>
-                    prev === 0 ? openImage.length - 1 : prev - 1,
-                  )
-                }
-                sx={{
-                  position: "absolute",
-                  top: "50%",
-                  left: 8,
-                  transform: "translateY(-50%)",
-                  zIndex: 1,
-                  backgroundColor: "rgba(0,0,0,0.5)",
-                  color: "#fff",
-                  "&:hover": { backgroundColor: "rgba(0,0,0,0.8)" },
-                }}
-              >
-                ◀
-              </Button>
-              <Button
-                onClick={() =>
-                  setCurrentImageIndex((prev) =>
-                    prev === openImage.length - 1 ? 0 : prev + 1,
-                  )
-                }
-                sx={{
-                  position: "absolute",
-                  top: "50%",
-                  right: 8,
-                  transform: "translateY(-50%)",
-                  zIndex: 1,
-                  backgroundColor: "rgba(0,0,0,0.5)",
-                  color: "#fff",
-                  "&:hover": { backgroundColor: "rgba(0,0,0,0.8)" },
-                }}
-              >
-                ▶
-              </Button>
-            </>
-          )}
         </Box>
       </Modal>
 
-      <div className="max-w-6xl mx-auto px-4 mb-8">
+      <div className="mt-8 max-w-6xl mx-auto px-4 mb-8">
         <div
           className="
             block md:flex

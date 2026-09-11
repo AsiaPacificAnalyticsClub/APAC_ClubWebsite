@@ -74,7 +74,8 @@ export default function Carousel({ children }: CarouselProps) {
             text-[var(--text)]
             shadow-custom
             transition
-            hover:scale-110
+            hover:bg-[var(--primary-color)]
+            hover:text-white
           "
         >
           <ChevronLeft size={24} />
@@ -123,7 +124,8 @@ export default function Carousel({ children }: CarouselProps) {
             text-[var(--text)]
             shadow-custom
             transition
-            hover:scale-110
+            hover:bg-[var(--primary-color)]
+            hover:text-white
           "
         >
           <ChevronRight size={24} />
