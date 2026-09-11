@@ -29,7 +29,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 // import { DswDetails } from "@/constants/DSW";
 import { DswItem, EventType } from "@/constants/DSW";
 import Carousel from "@/app/DSW/sections/Carousel";
-import { SearchX, Mic, BriefcaseBusiness, FileText } from "lucide-react";
+import { SearchX, Mic, BriefcaseBusiness, FileText, ChevronLeft, ChevronRight, X } from "lucide-react";
 import DswHeroCarousel from "./DswHeroCarousel";
 import DswScheduleCard from "@/components/ui/DSW-Schedule-Card";
 
@@ -65,9 +65,9 @@ const DswEvent = () => {
     setYear(year);
   };
 
-  const handleOpenPoster = (poster: string) => {
+  const handleOpenPoster = (poster: string | string[]) => {
     setCurrentImageIndex(0);
-    setOpenImage([poster]);
+    setOpenImage(Array.isArray(poster) ? poster : [poster]);
   };
 
   useEffect(() => {
@@ -94,44 +94,17 @@ const DswEvent = () => {
         <p className="text-center text-lg font-bold text-[var(--text-muted)] mb-1">
           {dwsDetails.date}
         </p> */}
+      </div>
 
-        {/* DELETE AFTER DSW 2026 IS OVER */}
-        {year == 2026 && (
-          <div className="max-w-3xl mx-auto px-4 mt-4">
-            <div
-              className="
-                flex items-center justify-center gap-2
-                px-5 py-3 mb-2
-                bg-[image:var(--gradient)] 
-                border-t border-[var(--highlight)]
-                rounded-lg shadow-custom
-              "
-            >
-              <Mic size={20} className="shrink-0" />
-              <p className="text-center text-base font-semibold text-[var(--text)]">
-                Special Keynote by Kasatria on &quot;Why do people leave without
-                buying something after arriving?&quot;
-              </p>
-            </div>
+      <div className="space-y-2 mb-4 relative mx-auto w-full max-w-7xl px-8">
+          <p className="text-[var(--primary-color)] text-lg font-bold uppercase tracking-wide">event week</p>
+          
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
+            <span className="text-[var(--text)]">Four days. </span>
+            <span className="text-[var(--primary-color)]">One experience.</span>
+          </h1>
 
-            <div className="text-[var(--text)] bg-[image:var(--gradient)] border-t border-[var(--highlight)] rounded-lg shadow-custom">
-              <p className="flex items-center justify-center gap-2 text-center text-base font-semibold rounded-lg px-5 py-3 ">
-                <BriefcaseBusiness size={20} className="shrink-0" />
-                Mini Career Fair with Internship & Job Opportunities
-              </p>
-
-              <a
-                href="https://forms.cloud.microsoft/r/XMKLC2SD83"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 text-center text-base text-md font-medium rounded-lg px-5 pb-4 transition-all hover:underline hover:text-[var(--secondary)] text-[var(--text-muted)]"
-              >
-                <FileText size={20} className="shrink-0" />
-                Drop your CV here
-              </a>
-            </div>
-          </div>
-        )}
+          <p className="text-md text-[var(--text-muted)]">Explore the tentative programme from 22-25 September 2026.</p>
       </div>
 
       <Carousel>
@@ -142,7 +115,12 @@ const DswEvent = () => {
           date="22 SEP"
           type="FULL DAY"
           image="/dsw26/cards/opening.jpg"
-          onViewPoster={() => handleOpenPoster("/dsw26/schedule/day-1.jpg")}
+          onViewPoster={() =>
+            handleOpenPoster([
+              "/dsw26/schedule/day-1-morning.jpeg",
+              "/dsw26/schedule/day-1-afternoon.jpeg",
+            ])
+          }
         />
 
         <DswScheduleCard
@@ -152,7 +130,12 @@ const DswEvent = () => {
           date="23 SEP"
           type="FULL DAY"
           image="/dsw26/cards/games.jpg"
-          onViewPoster={() => handleOpenPoster("/dsw26/schedule/day-1.jpg")}
+          onViewPoster={() =>
+            handleOpenPoster([
+              "/dsw26/schedule/day-2-morning.jpeg",
+              "/dsw26/schedule/day-2-afternoon.jpeg",
+            ])
+          }
         />
 
         <DswScheduleCard
@@ -162,7 +145,7 @@ const DswEvent = () => {
           date="24 SEP"
           type="FULL DAY"
           image="/dsw26/cards/workshops.jpg"
-          onViewPoster={() => handleOpenPoster("/dsw26/schedule/day-1.jpg")}
+          onViewPoster={() => handleOpenPoster("/dsw26/schedule/day-3.jpeg")}
         />
 
         <DswScheduleCard
@@ -172,7 +155,12 @@ const DswEvent = () => {
           date="25 SEP"
           type="FULL DAY"
           image="/dsw26/cards/talks.jpg"
-          onViewPoster={() => handleOpenPoster("/dsw26/schedule/day-1.jpg")}
+          onViewPoster={() =>
+            handleOpenPoster([
+              "/dsw26/schedule/day-4-morning.jpeg",
+              "/dsw26/schedule/day-4-afternoon.jpeg",
+            ])
+          }
         />
       </Carousel>
       
@@ -189,27 +177,110 @@ const DswEvent = () => {
         <Box
           sx={{
             position: "relative",
-            width: "auto",
-            maxWidth: "90vw",
-            maxHeight: "90vh",
+            width: "90vw",
+            height: "90vh",
             outline: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <Image
             src={openImage?.[currentImageIndex] || PLACEHOLDER_IMAGE}
             alt="Schedule poster"
-            width={824}
-            height={1029}
+            fill
+            sizes="90vw"
             style={{
-              display: "block",
-              maxWidth: "90vw",
-              maxHeight: "90vh",
-              width: "auto",
-              height: "auto",
               objectFit: "contain",
               borderRadius: "12px",
             }}
           />
+
+          <button
+            type="button"
+            onClick={() => setOpenImage(null)}
+            aria-label="Close"
+            className="
+              absolute right-4 top-4 z-10
+              flex h-10 w-10 items-center justify-center
+              rounded-full
+              bg-black/60
+              text-white
+              backdrop-blur-sm
+              transition
+              hover:bg-black/80
+            "
+          >
+            <X size={22} />
+          </button>
+
+          {openImage && openImage.length > 1 && (
+            <button
+              type="button"
+              onClick={() =>
+                setCurrentImageIndex((prev) =>
+                  prev === 0 ? openImage.length - 1 : prev - 1
+                )
+              }
+              aria-label="Previous image"
+              className="
+                absolute left-4 top-1/2 z-10
+                flex h-12 w-12 -translate-y-1/2
+                items-center justify-center
+                rounded-full
+                bg-black/60
+                text-white
+                backdrop-blur-sm
+                transition
+                hover:bg-black/80
+              "
+            >
+              <ChevronLeft size={28} />
+            </button>
+          )}
+
+          {openImage && openImage.length > 1 && (
+            <button
+              type="button"
+              onClick={() =>
+                setCurrentImageIndex((prev) =>
+                  prev === openImage.length - 1 ? 0 : prev + 1
+                )
+              }
+              aria-label="Next image"
+              className="
+                absolute right-4 top-1/2 z-10
+                flex h-12 w-12 -translate-y-1/2
+                items-center justify-center
+                rounded-full
+                bg-black/60
+                text-white
+                backdrop-blur-sm
+                transition
+                hover:bg-black/80
+              "
+            >
+              <ChevronRight size={28} />
+            </button>
+          )}
+
+          {/* Image counter */}
+          {openImage && openImage.length > 1 && (
+            <div
+              className="
+                absolute bottom-4 left-1/2 z-10
+                -translate-x-1/2
+                rounded-full
+                bg-black/60
+                px-3 py-1.5
+                text-sm font-medium
+                text-white
+                backdrop-blur-sm
+              "
+            >
+              {currentImageIndex + 1} / {openImage.length}
+            </div>
+          )}
         </Box>
       </Modal>
 
