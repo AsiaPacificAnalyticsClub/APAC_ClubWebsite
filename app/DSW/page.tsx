@@ -29,7 +29,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 // import { DswDetails } from "@/constants/DSW";
 import { DswItem, EventType } from "@/constants/DSW";
 import Carousel from "@/app/DSW/sections/Carousel";
-import { SearchX, Mic, BriefcaseBusiness, FileText, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { SearchX, ChevronLeft, ChevronRight, X } from "lucide-react";
 import DswHeroCarousel from "./DswHeroCarousel";
 import DswScheduleCard from "@/components/ui/DSW-Schedule-Card";
 
