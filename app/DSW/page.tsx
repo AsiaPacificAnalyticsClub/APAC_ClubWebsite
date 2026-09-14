@@ -54,7 +54,7 @@ const DswEvent = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0); //track datahack state
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<DswItem[]>([]);
-  const [type, setType] = useState<EventType>(EventType.GAME);
+  const [type, setType] = useState<EventType>(EventType.EVENTS);
   const [year, setYear] = useState<Year>(2026);
 
   const handleTypeChange = (event: SyntheticEvent, type: EventType) => {
@@ -97,14 +97,18 @@ const DswEvent = () => {
       </div>
 
       <div className="space-y-2 mb-4 relative mx-auto w-full max-w-7xl px-8">
-          <p className="text-[var(--primary-color)] text-lg font-bold uppercase tracking-wide">event week</p>
-          
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
-            <span className="text-[var(--text)]">Four days. </span>
-            <span className="text-[var(--primary-color)]">One experience.</span>
-          </h1>
+        <p className="text-[var(--primary-color)] text-lg font-bold uppercase tracking-wide">
+          event week
+        </p>
 
-          <p className="text-md text-[var(--text-muted)]">Explore the tentative programme from 22-25 September 2026.</p>
+        <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
+          <span className="text-[var(--text)]">Four days. </span>
+          <span className="text-[var(--primary-color)]">One experience.</span>
+        </h1>
+
+        <p className="text-md text-[var(--text-muted)]">
+          Explore the tentative programme from 22-25 September 2026.
+        </p>
       </div>
 
       <Carousel>
@@ -163,7 +167,7 @@ const DswEvent = () => {
           }
         />
       </Carousel>
-      
+
       <Modal
         open={!!openImage}
         onClose={() => setOpenImage(null)}
@@ -219,7 +223,7 @@ const DswEvent = () => {
               type="button"
               onClick={() =>
                 setCurrentImageIndex((prev) =>
-                  prev === 0 ? openImage.length - 1 : prev - 1
+                  prev === 0 ? openImage.length - 1 : prev - 1,
                 )
               }
               aria-label="Previous image"
@@ -244,7 +248,7 @@ const DswEvent = () => {
               type="button"
               onClick={() =>
                 setCurrentImageIndex((prev) =>
-                  prev === openImage.length - 1 ? 0 : prev + 1
+                  prev === openImage.length - 1 ? 0 : prev + 1,
                 )
               }
               aria-label="Next image"
