@@ -24,7 +24,6 @@ import { Spinner } from "@/components/ui/spinner";
 import { CalendarToday as CalendarTodayIcon } from "@mui/icons-material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Modal } from "@mui/material";
-import Image from "next/image";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 // import { DswDetails } from "@/constants/DSW";
 import { DswItem, EventType } from "@/constants/DSW";
