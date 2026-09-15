@@ -52,9 +52,10 @@ const PLACEHOLDER_IMAGE = "/APACPythonWorkshop.png"; // Path to your placeholder
 const DswEvent = () => {
   const [openImage, setOpenImage] = useState<string[] | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0); //track datahack state
+  const [openMobileImage, setOpenMobileImage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<DswItem[]>([]);
-  const [type, setType] = useState<EventType>(EventType.EVENTS);
+  const [type, setType] = useState<EventType>(EventType.GAME);
   const [year, setYear] = useState<Year>(2026);
 
   const handleTypeChange = (event: SyntheticEvent, type: EventType) => {
@@ -97,18 +98,14 @@ const DswEvent = () => {
       </div>
 
       <div className="space-y-2 mb-4 relative mx-auto w-full max-w-7xl px-8">
-        <p className="text-[var(--primary-color)] text-lg font-bold uppercase tracking-wide">
-          event week
-        </p>
+          <p className="text-[var(--primary-color)] text-lg font-bold uppercase tracking-wide">event week</p>
+          
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
+            <span className="text-[var(--text)]">Four days. </span>
+            <span className="text-[var(--primary-color)]">One experience.</span>
+          </h1>
 
-        <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
-          <span className="text-[var(--text)]">Four days. </span>
-          <span className="text-[var(--primary-color)]">One experience.</span>
-        </h1>
-
-        <p className="text-md text-[var(--text-muted)]">
-          Explore the tentative programme from 22-25 September 2026.
-        </p>
+          <p className="text-md text-[var(--text-muted)]">Explore the tentative programme from 22-25 September 2026.</p>
       </div>
 
       <Carousel>
@@ -167,7 +164,7 @@ const DswEvent = () => {
           }
         />
       </Carousel>
-
+      
       <Modal
         open={!!openImage}
         onClose={() => setOpenImage(null)}
@@ -189,16 +186,25 @@ const DswEvent = () => {
             justifyContent: "center",
           }}
         >
-          <Image
-            src={openImage?.[currentImageIndex] || PLACEHOLDER_IMAGE}
-            alt="Schedule poster"
-            fill
-            sizes="90vw"
-            style={{
-              objectFit: "contain",
-              borderRadius: "12px",
-            }}
-          />
+          <picture>
+            {openMobileImage && (
+              <source
+                media="(max-width: 768px)"
+                srcSet={openMobileImage}
+              />
+            )}
+
+            <img
+              src={openImage?.[currentImageIndex] || PLACEHOLDER_IMAGE}
+              alt="Event poster"
+              style={{
+                maxWidth: "90vw",
+                maxHeight: "90vh",
+                objectFit: "contain",
+                borderRadius: "12px",
+              }}
+            />
+          </picture>
 
           <button
             type="button"
@@ -223,7 +229,7 @@ const DswEvent = () => {
               type="button"
               onClick={() =>
                 setCurrentImageIndex((prev) =>
-                  prev === 0 ? openImage.length - 1 : prev - 1,
+                  prev === 0 ? openImage.length - 1 : prev - 1
                 )
               }
               aria-label="Previous image"
@@ -248,7 +254,7 @@ const DswEvent = () => {
               type="button"
               onClick={() =>
                 setCurrentImageIndex((prev) =>
-                  prev === openImage.length - 1 ? 0 : prev + 1,
+                  prev === openImage.length - 1 ? 0 : prev + 1
                 )
               }
               aria-label="Next image"
@@ -360,10 +366,13 @@ const DswEvent = () => {
                         alt={item.title}
                         sx={{ cursor: "pointer" }}
                         onClick={() => {
-                          setCurrentImageIndex(0); // reset to first image
+                          setCurrentImageIndex(0);
+
                           setOpenImage(
-                            item.images || [item.image || PLACEHOLDER_IMAGE],
+                            item.images || [item.image || PLACEHOLDER_IMAGE]
                           );
+
+                          setOpenMobileImage(item.imageMobile || null);
                         }}
                       />
                       <Box

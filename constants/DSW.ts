@@ -49,6 +49,12 @@ export interface DswItem {
   image: string;
 
   /**
+   * Mobile image path (served from /public)
+   * @example "/dsw_FindKey_Mobile.png"
+   */
+  imageMobile: string;
+
+  /**
    * Optional gallery images
    * @remarks Used for additional images in carousel view
    * @example ["/dsw_DataHack.png", "/dsw_DataHack_Rules.png"]
