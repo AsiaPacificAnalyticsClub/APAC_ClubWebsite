@@ -54,7 +54,7 @@ const DswEvent = () => {
   const [openMobileImage, setOpenMobileImage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<DswItem[]>([]);
-  const [type, setType] = useState<EventType>(EventType.GAME);
+  const [type, setType] = useState<EventType>(EventType.EVENTS);
   const [year, setYear] = useState<Year>(2026);
 
   const handleTypeChange = (event: SyntheticEvent, type: EventType) => {
