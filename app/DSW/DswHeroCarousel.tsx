@@ -307,218 +307,33 @@ const DswHeroCarousel = () => {
 
       {/* ===================== SLIDE 2 (Mini Career Fair) ===================== */}
       <div
-        className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out bg-[#06151a] overflow-hidden flex items-center ${
+        className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out bg-[#06151a] overflow-hidden ${
           currentIndex === 1
             ? "opacity-100 translate-x-0 pointer-events-auto z-10 visible"
-            : currentIndex > 1
-              ? "opacity-0 -translate-x-full pointer-events-none z-0 invisible"
-              : "opacity-0 translate-x-full pointer-events-none z-0 invisible"
+            : "opacity-0 -translate-x-full pointer-events-none z-0 invisible"
         }`}
       >
-        {/* Subtle background glow */}
-        <div className="absolute top-1/4 left-10 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
-        {/* Upward trending line chart graph behind heading (matching prototype) */}
-        <div className="absolute top-6 sm:top-10 md:top-12 xl:top-16 left-6 sm:left-1/4 md:left-1/4 xl:left-1/3 w-[260px] sm:w-[380px] md:w-[440px] xl:w-[500px] h-[180px] sm:h-[240px] md:h-[280px] xl:h-[320px] pointer-events-none z-0 opacity-25 sm:opacity-35 md:opacity-40 xl:opacity-45">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 500 320"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Background Grid Lines */}
-            <line
-              x1="80"
-              y1="20"
-              x2="80"
-              y2="280"
-              stroke="#0ea5e9"
-              strokeWidth="0.75"
-              strokeDasharray="4 4"
-              opacity="0.25"
-            />
-            <line
-              x1="160"
-              y1="20"
-              x2="160"
-              y2="280"
-              stroke="#0ea5e9"
-              strokeWidth="0.75"
-              strokeDasharray="4 4"
-              opacity="0.25"
-            />
-            <line
-              x1="240"
-              y1="20"
-              x2="240"
-              y2="280"
-              stroke="#0ea5e9"
-              strokeWidth="0.75"
-              strokeDasharray="4 4"
-              opacity="0.25"
-            />
-            <line
-              x1="320"
-              y1="20"
-              x2="320"
-              y2="280"
-              stroke="#0ea5e9"
-              strokeWidth="0.75"
-              strokeDasharray="4 4"
-              opacity="0.25"
-            />
-            <line
-              x1="400"
-              y1="20"
-              x2="400"
-              y2="280"
-              stroke="#0ea5e9"
-              strokeWidth="0.75"
-              strokeDasharray="4 4"
-              opacity="0.25"
-            />
-            <line
-              x1="30"
-              y1="70"
-              x2="450"
-              y2="70"
-              stroke="#0ea5e9"
-              strokeWidth="0.75"
-              strokeDasharray="4 4"
-              opacity="0.25"
-            />
-            <line
-              x1="30"
-              y1="140"
-              x2="450"
-              y2="140"
-              stroke="#0ea5e9"
-              strokeWidth="0.75"
-              strokeDasharray="4 4"
-              opacity="0.25"
-            />
-            <line
-              x1="30"
-              y1="210"
-              x2="450"
-              y2="210"
-              stroke="#0ea5e9"
-              strokeWidth="0.75"
-              strokeDasharray="4 4"
-              opacity="0.25"
-            />
+        {/* Full Hero Poster */}
+        <div className="relative w-full h-full">
+          <Image
+            src="/DSW_2026_Career_Fair.jpg"
+            alt="Mini Career Fair"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
 
-            {/* Glowing trend line with nodes */}
-            <path
-              d="M 40 240 L 120 200 L 190 235 L 260 145 L 340 180 L 430 65"
-              stroke="url(#trendGradient)"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            {/* Area under trend line */}
-            <path
-              d="M 40 240 L 120 200 L 190 235 L 260 145 L 340 180 L 430 65 L 430 280 L 40 280 Z"
-              fill="url(#trendAreaGradient)"
-              opacity="0.18"
-            />
-
-            {/* Nodes / Dots on trend line */}
-            <circle cx="120" cy="200" r="4.5" fill="#38bdf8" />
-            <circle cx="190" cy="235" r="4.5" fill="#38bdf8" />
-            <circle cx="260" cy="145" r="4.5" fill="#38bdf8" />
-            <circle cx="340" cy="180" r="4.5" fill="#38bdf8" />
-            <circle cx="430" cy="65" r="6" fill="#38bdf8" />
-
-            <defs>
-              <linearGradient
-                id="trendGradient"
-                x1="40"
-                y1="240"
-                x2="430"
-                y2="65"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stopColor="#0284c7" stopOpacity="0.4" />
-                <stop offset="0.6" stopColor="#38bdf8" />
-                <stop offset="1" stopColor="#2dd4bf" />
-              </linearGradient>
-              <linearGradient
-                id="trendAreaGradient"
-                x1="240"
-                y1="65"
-                x2="240"
-                y2="280"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stopColor="#38bdf8" stopOpacity="0.35" />
-                <stop offset="1" stopColor="#06151a" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-
-        <div className="relative z-10 w-full h-full flex flex-col xl:flex-row items-center justify-between">
-          {/* Left Content Area */}
-          <div className="w-full xl:w-[55%] flex-1 xl:flex-initial xl:h-full flex flex-col justify-center px-7 sm:px-10 md:px-14 xl:pl-16 2xl:pl-20 z-20 pt-6 sm:pt-8 md:pt-10 pb-2 xl:py-0">
-            {/* Badge */}
-            <div className="mb-2.5 sm:mb-4 md:mb-6">
-              <span className="inline-flex items-center px-3 sm:px-3.5 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider text-teal-400 border border-teal-500/40 bg-teal-950/40 backdrop-blur-md uppercase">
-                MINI CAREER FAIR
-              </span>
-            </div>
-
-            {/* Main Title */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold tracking-tight text-white leading-[1.04] mb-2.5 sm:mb-4">
-              YOUR NEXT
-              <br />
-              OPPORTUNITY
-              <br />
-              STARTS HERE.
-            </h2>
-
-            {/* Subtitle */}
-            <p className="text-amber-400 font-bold text-base sm:text-lg md:text-xl tracking-tight mb-2 sm:mb-3">
-              Internship & Career Opportunities
-            </p>
-
-            {/* Description */}
-            <p className="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed max-w-[90%] sm:max-w-md md:max-w-xl xl:max-w-lg mb-4 sm:mb-6 md:mb-8 font-light line-clamp-3 sm:line-clamp-none">
-              Meet companies, explore internship opportunities and discover
-              potential career paths.
-            </p>
-
-            {/* CTA Button */}
-            <div>
-              <a
-                href="https://forms.cloud.microsoft/r/XMKLC2SD83"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-5 sm:px-7 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs sm:text-sm md:text-base transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:scale-[1.02] cursor-pointer"
-              >
-                Drop your CV
-              </a>
-            </div>
-          </div>
-
-          {/* Right Side - Presentation / Career Fair Image */}
-          <div className="w-full xl:w-[45%] h-[38%] sm:h-[40%] md:h-[42%] xl:h-full relative overflow-hidden flex items-center justify-center pointer-events-auto">
-            {/* Gradient masks for seamless edge fading */}
-            <div className="hidden xl:block absolute inset-y-0 left-0 w-24 md:w-36 lg:w-44 bg-gradient-to-r from-[#06151a] via-[#06151a]/85 to-transparent z-20 pointer-events-none" />
-            <div className="absolute inset-x-0 top-0 h-12 sm:h-16 md:h-20 bg-gradient-to-b from-[#06151a] to-transparent z-20 pointer-events-none" />
-            <div className="absolute inset-x-0 bottom-0 h-16 sm:h-20 md:h-24 bg-gradient-to-t from-[#06151a] to-transparent z-20 pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-4 sm:w-8 bg-gradient-to-l from-[#06151a] to-transparent z-20 pointer-events-none" />
-
-            <div className="relative w-full h-full">
-              <Image
-                src="/dsw-past-img/20.jpg"
-                alt="Mini Career Fair presentation and networking"
-                fill
-                priority
-                sizes="(max-width: 1280px) 100vw, 45vw"
-                className="object-cover object-center"
-              />
-            </div>
+          {/* Drop CV Button */}
+          <div className="absolute bottom-20 sm:bottom-24 md:bottom-28 left-1/2 -translate-x-1/2 z-20">
+            <a
+              href="https://forms.cloud.microsoft/r/XMKLC2SD83"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 rounded-lg sm:rounded-xl bg-[#97e1f6] hover:bg-teal-400 text-slate-950 font-bold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-teal-500/30 hover:shadow-teal-500/50 hover:scale-[1.03] cursor-pointer"
+            >
+              Drop your CV
+            </a>
           </div>
         </div>
       </div>
