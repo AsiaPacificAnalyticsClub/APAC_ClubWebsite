@@ -306,40 +306,40 @@ const DswHeroCarousel = () => {
       </div>
 
       {/* ===================== SLIDE 2 (Mini Career Fair) ===================== */}
-<div
-  className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out bg-[#06151a] overflow-hidden ${
-    currentIndex === 1
-      ? "opacity-100 translate-x-0 pointer-events-auto z-10 visible"
-      : "opacity-0 -translate-x-full pointer-events-none z-0 invisible"
-  }`}
->
-  {/* Full Hero Poster */}
-  <div className="relative w-full h-full">
-    <Image
-      src="/DSW_2026_Career_Fair.jpeg"
-      alt="Mini Career Fair"
-      fill
-      priority
-      sizes="100vw"
-      className="object-cover object-center"
-    />
-
-    {/* Optional subtle dark overlay so the button stands out */}
-    <div className="absolute inset-0 bg-black/10 pointer-events-none" />
-
-    {/* Drop CV Button */}
-    <div className="absolute bottom-20 sm:bottom-24 md:bottom-28 left-1/2 -translate-x-1/2 z-20">
-      <a
-        href="https://forms.cloud.microsoft/r/XMKLC2SD83"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 rounded-lg sm:rounded-xl bg-[#97e1f6] hover:bg-teal-400 text-slate-950 font-bold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-teal-500/30 hover:shadow-teal-500/50 hover:scale-[1.03] cursor-pointer"
+      <div
+        className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out bg-[#06151a] overflow-hidden ${
+          currentIndex === 1
+            ? "opacity-100 translate-x-0 pointer-events-auto z-10 visible"
+            : "opacity-0 -translate-x-full pointer-events-none z-0 invisible"
+        }`}
       >
-        Drop your CV
-      </a>
-    </div>
-  </div>
-</div>
+        {/* Full Hero Poster */}
+        <div className="relative w-full h-full">
+          <Image
+            src="/DSW_2026_Career_Fair.jpeg"
+            alt="Mini Career Fair"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+
+          {/* Optional subtle dark overlay so the button stands out */}
+          <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+
+          {/* Drop CV Button */}
+          <div className="absolute bottom-20 sm:bottom-24 md:bottom-28 left-1/2 -translate-x-1/2 z-20">
+            <a
+              href="https://forms.cloud.microsoft/r/XMKLC2SD83"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 rounded-lg sm:rounded-xl bg-[#97e1f6] hover:bg-teal-400 text-slate-950 font-bold text-sm sm:text-base transition-all duration-300 shadow-lg shadow-teal-500/30 hover:shadow-teal-500/50 hover:scale-[1.03] cursor-pointer"
+            >
+              Drop your CV
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* ===================== SLIDE 3 (Official Main Poster) ===================== */}
       <div
