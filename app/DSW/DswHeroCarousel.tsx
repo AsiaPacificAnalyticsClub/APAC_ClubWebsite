@@ -324,9 +324,6 @@ const DswHeroCarousel = () => {
             className="object-cover object-center"
           />
 
-          {/* Optional subtle dark overlay so the button stands out */}
-          <div className="absolute inset-0 bg-black/10 pointer-events-none" />
-
           {/* Drop CV Button */}
           <div className="absolute bottom-20 sm:bottom-24 md:bottom-28 left-1/2 -translate-x-1/2 z-20">
             <a
