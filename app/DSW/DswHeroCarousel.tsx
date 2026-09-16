@@ -316,7 +316,7 @@ const DswHeroCarousel = () => {
         {/* Full Hero Poster */}
         <div className="relative w-full h-full">
           <Image
-            src="/DSW_2026_Career_Fair.jpeg"
+            src="/DSW_2026_Career_Fair.jpg"
             alt="Mini Career Fair"
             fill
             priority
