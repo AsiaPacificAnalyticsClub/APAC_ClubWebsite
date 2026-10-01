@@ -29,7 +29,6 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { DswItem, EventType } from "@/constants/DSW";
 import Carousel from "@/app/DSW/sections/Carousel";
 import { SearchX, ChevronLeft, ChevronRight, X } from "lucide-react";
-import DswHeroCarousel from "./DswHeroCarousel";
 import DswScheduleCard from "@/components/ui/DSW-Schedule-Card";
 
 export type Year = 2025 | 2026;
@@ -84,20 +83,9 @@ const DswEvent = () => {
 
   return (
     <div className="min-h-screen w-full bg-white">
-      <DswHeroCarousel />
 
-      <div className="mb-8 pt-8">
-        {/* <h1 className="text-3xl font-bold text-center text-[var(--text)] mb-2">
-          Data Science Week {year}
-        </h1>
-
-        <p className="text-center text-lg font-bold text-[var(--text-muted)] mb-1">
-          {dwsDetails.date}
-        </p> */}
-      </div>
-
-      <div className="space-y-2 mb-4 relative mx-auto w-full max-w-7xl px-8">
-          <p className="text-[var(--primary-color)] text-lg font-bold uppercase tracking-wide">event week</p>
+      <div className="space-y-2 mt-12 mb-4 relative mx-auto w-full max-w-7xl px-8">
+          <p className="text-[var(--primary-color)] text-lg font-bold uppercase tracking-wide">data science week</p>
           
           <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
             <span className="text-[var(--text)]">Four days. </span>
